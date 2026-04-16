@@ -29,6 +29,7 @@ document.addEventListener("DOMContentLoaded", () => {
   initParticles();
   initAITerminal();
   initContactForm();
+  initNeuralBackground();
 });
 
 /* ======================================================
@@ -676,5 +677,81 @@ function initContactForm() {
       status.textContent = "";
       status.className = "";
     }, 4000);
+  });
+}
+
+/* =========================
+     NEURAL BACKGROUND
+========================= */
+function initNeuralBackground() {
+  const canvas = document.getElementById("neural-bg");
+  if (!canvas) return;
+
+  const ctx = canvas.getContext("2d");
+
+  let width = canvas.width = window.innerWidth;
+  let height = canvas.height = window.innerHeight;
+
+  const NODES = 80;
+
+  const nodes = Array.from({ length: NODES }, () => ({
+    x: Math.random() * width,
+    y: Math.random() * height,
+    vx: (Math.random() - 0.5) * 0.6,
+    vy: (Math.random() - 0.5) * 0.6
+  }));
+
+  function drawLine(a, b, dist) {
+    const opacity = 1 - dist / 140;
+
+    ctx.strokeStyle = `rgba(0, 255, 140, ${opacity * 0.25})`;
+    ctx.lineWidth = 1;
+
+    ctx.beginPath();
+    ctx.moveTo(a.x, a.y);
+    ctx.lineTo(b.x, b.y);
+    ctx.stroke();
+  }
+
+  function animate() {
+    ctx.clearRect(0, 0, width, height);
+
+    for (let i = 0; i < nodes.length; i++) {
+      const n = nodes[i];
+
+      n.x += n.vx;
+      n.y += n.vy;
+
+      if (n.x < 0 || n.x > width) n.vx *= -1;
+      if (n.y < 0 || n.y > height) n.vy *= -1;
+
+      // draw node
+      ctx.fillStyle = "rgba(0, 255, 140, 0.7)";
+      ctx.beginPath();
+      ctx.arc(n.x, n.y, 2, 0, Math.PI * 2);
+      ctx.fill();
+
+      // connections
+      for (let j = i + 1; j < nodes.length; j++) {
+        const m = nodes[j];
+
+        const dx = n.x - m.x;
+        const dy = n.y - m.y;
+        const dist = Math.sqrt(dx * dx + dy * dy);
+
+        if (dist < 140) {
+          drawLine(n, m, dist);
+        }
+      }
+    }
+
+    requestAnimationFrame(animate);
+  }
+
+  animate();
+
+  window.addEventListener("resize", () => {
+    width = canvas.width = window.innerWidth;
+    height = canvas.height = window.innerHeight;
   });
 }
