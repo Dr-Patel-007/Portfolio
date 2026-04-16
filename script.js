@@ -279,6 +279,12 @@ function initSmoothNavHighlight() {
   });
 }
 
+window.addEventListener("scroll", () => {
+  const nav = document.querySelector(".nav");
+  if (window.scrollY > 80) nav.classList.add("shrink");
+  else nav.classList.remove("shrink");
+});
+
 /* ======================================================
    SIMPLE CLICK TRACKING
 ====================================================== */
