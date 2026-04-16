@@ -2,8 +2,6 @@
 const roles=[
   "Senior Software Engineer",
   "Senior AI Engineer",
-  "LLM & RAG Specialist",
-  "Applied AI Architect"
 ];
 let i=0,j=0;
 const text=document.getElementById("typing-text");
