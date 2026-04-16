@@ -4,10 +4,16 @@
   <meta charset="UTF-8" />
   <title>Dixit Patel, Ph.D. — Senior AI Engineer</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Senior Software Engineer - Artificial Intelligence">
+  <meta name="description" content="Senior Software Engineer - Artificial Intelligence" />
 
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css">
+
+  <link rel="stylesheet" href="styles.css" />
+
+  <!-- EmailJS -->
+  <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
 </head>
 
 <body>
@@ -21,7 +27,9 @@
     <a href="#skills">Skills</a>
     <a href="#projects">Projects</a>
     <a href="#experience">Experience</a>
-    <a href="#achievements">Achievements</a>
+    <a href="#education">Education</a>
+    <a href="#research">Research</a>
+    <a href="#recommendations">Recommendations</a>
     <a href="#contact">Contact</a>
     <button id="theme-toggle" aria-label="Toggle theme">🌙</button>
   </nav>
@@ -33,7 +41,8 @@
 
   <div class="hero-layout reveal">
     <div class="profile-wrapper">
-      <img src="assets/profile.jpg" alt="Dixit Patel profile photo" class="profile-image">
+      <img src="assets/profile.jpg" alt="Dixit Patel" class="profile-image">
+      <span class="availability">✅ Open to Opportunities</span>
     </div>
 
     <div class="hero-text">
@@ -43,14 +52,21 @@
       <p class="typing"><span id="typing-text"></span></p>
 
       <div class="chips">
-        <span>LLMs</span><span>RAG</span><span>AI Agents</span>
-        <span>Backend Systems</span><span>AWS</span>
+        <span>LLMs</span>
+        <span>RAG</span>
+        <span>AI Agents</span>
+        <span>Backend Systems</span>
+        <span>AWS</span>
       </div>
 
       <div class="buttons">
-        <a href="#projects" class="btn primary">View Projects</a>
-        <a href="#contact" class="btn secondary">Contact</a>
-        <a href="assets/Dixit_Patel_Resume.pdf" download class="btn secondary">Download Resume</a>
+        <a href="#projects" class="btn primary track" data-event="view_projects">View Projects</a>
+        <a href="assets/Dixit_Patel_Resume.pdf" class="btn secondary track" data-event="download_resume" download>Download Resume</a>
+      </div>
+
+      <div class="social-links">
+        <a href="https://www.linkedin.com" target="_blank" class="track" data-event="linkedin">LinkedIn</a>
+        <a href="https://github.com" target="_blank" class="track" data-event="github">GitHub</a>
       </div>
     </div>
   </div>
@@ -60,8 +76,10 @@
 <section id="about" class="section reveal">
   <h3 class="section-title">About Me</h3>
   <p class="section-text">
-    Senior AI Engineer with a Ph.D. in Computer Science, specializing in production‑grade
-    LLM systems, Retrieval‑Augmented Generation, AI agents, and scalable backend architecture.
+    Senior AI Engineer with a Ph.D. in Computer Science, specializing in design and delivery of
+    production‑grade AI systems including Large Language Models, Retrieval‑Augmented Generation,
+    AI agents, and scalable backend architectures. Proven experience translating research and
+    engineering into real‑world enterprise solutions.
   </p>
 </section>
 
@@ -69,10 +87,12 @@
 <section id="skills" class="section reveal">
   <h3 class="section-title">Technical Capabilities</h3>
   <div class="grid">
-    <div class="card">AI & ML<br><span>LLMs · GenAI · RAG · Evaluation</span></div>
-    <div class="card">Backend<br><span>Python · APIs · Microservices</span></div>
-    <div class="card">Cloud<br><span>AWS · Docker · CI/CD</span></div>
-    <div class="card">Data<br><span>SQL · MongoDB · ETL</span></div>
+    <div class="card"><strong>Programming</strong><br><span>Python, C#, Java, SQL, JavaScript, HTML, CSS</span></div>
+    <div class="card"><strong>AI & ML</strong><br><span>GenAI, LLMs, RAG, AI Agents, Prompt Engineering, Model Evaluation</span></div>
+    <div class="card"><strong>Backend Systems</strong><br><span>REST APIs, Microservices, System Design, OOP, DSA</span></div>
+    <div class="card"><strong>Data</strong><br><span>MySQL, PostgreSQL, MongoDB, JSON, ETL Pipelines</span></div>
+    <div class="card"><strong>Cloud & DevOps</strong><br><span>AWS, Docker, CI/CD, Scalable Architectures</span></div>
+    <div class="card"><strong>Frameworks & Tools</strong><br><span>Django, .NET, Git, GitHub, Copilot Studio</span></div>
   </div>
 </section>
 
@@ -80,71 +100,75 @@
 <section id="projects" class="section reveal">
   <h3 class="section-title">Featured Projects</h3>
   <div class="grid">
-
-    <div class="card hover project" data-project="rag">
-      <h4>Enterprise RAG Platform</h4>
-      <p>Secure enterprise knowledge retrieval with LLMs.</p>
-    </div>
-
-    <div class="card hover project" data-project="agent">
-      <h4>AI Agent Automation</h4>
-      <p>Autonomous workflow orchestration.</p>
-    </div>
-
-    <div class="card hover project" data-project="backend">
-      <h4>Scalable Backend APIs</h4>
-      <p>High‑performance Python microservices.</p>
-    </div>
-
+    <div class="card hover project" data-project="rag">Enterprise RAG AI Platform</div>
+    <div class="card hover project" data-project="agent">AI Agent Automation</div>
+    <div class="card hover project" data-project="backend">Scalable Backend APIs</div>
   </div>
 </section>
 
 <!-- EXPERIENCE -->
 <section id="experience" class="section reveal">
-  <h3 class="section-title">Experience</h3>
-  <div class="timeline">
-    <div class="timeline-item">
-      <h4>Senior Software Engineer – AI</h4>
-      <span>L&T Tech Services (Caterpillar) · 2025–Present</span>
-    </div>
-    <div class="timeline-item">
-      <h4>Software Engineer</h4>
-      <span>Fabricators, Inc. · 2023–2025</span>
-    </div>
+  <h3 class="section-title">Professional Experience</h3>
+  <div class="grid">
+    <div class="card hover experience" data-exp="caterpillar">Senior Software Engineer – AI<br><span>L&T Tech Services (Caterpillar)</span></div>
+    <div class="card hover experience" data-exp="fabricators">Software Engineer<br><span>Fabricators, Inc.</span></div>
+    <div class="card hover experience" data-exp="wright">Graduate Research Assistant (Ph.D.)<br><span>Wright State University</span></div>
+    <div class="card hover experience" data-exp="lnt">Software Engineer<br><span>L&T Technology Services Ltd., India</span></div>
   </div>
 </section>
 
-<!-- ACHIEVEMENTS -->
-<section id="achievements" class="section reveal">
-  <h3 class="section-title">Achievements</h3>
+<!-- EDUCATION -->
+<section id="education" class="section reveal">
+  <h3 class="section-title">Education</h3>
   <div class="grid">
-    <div class="card">🏆 IADIS Outstanding Paper Award</div>
-    <div class="card">🎓 Ph.D. GPA 3.92</div>
-    <div class="card">📄 30+ Peer Reviews</div>
-    <div class="card">💰 Fully Funded Ph.D.</div>
+    <div class="card">Ph.D. – Computer Science & Engineering<br><span>Wright State University | GPA 3.92</span></div>
+    <div class="card">M.S. – Computer Science<br><span>Wright State University | GPA 3.92</span></div>
+    <div class="card">B.E. – Electronics & Communication<br><span>Gujarat Technological University | GPA 3.52</span></div>
+  </div>
+</section>
+
+<!-- RESEARCH -->
+<section id="research" class="section reveal">
+  <h3 class="section-title">Research Profiles</h3>
+  <div class="grid">
+    <a href="https://scholar.google.com/citations?user=BwPUssAAAAJ&hl=en" class="card hover" target="_blank">Google Scholar</a>
+    <a href="https://www.researchgate.net/profile/Dixit-Patel-18" class="card hover" target="_blank">ResearchGate</a>
+  </div>
+</section>
+
+<!-- RECOMMENDATIONS -->
+<section id="recommendations" class="section reveal">
+  <h3 class="section-title">Recommendations</h3>
+  <div class="card">
+    Professional recommendations are available on LinkedIn, including stakeholders and leaders from
+    Caterpillar, L&T Technology Services, and academic advisors from Wright State University.
   </div>
 </section>
 
 <!-- CONTACT -->
-<section id="contact" class="section reveal center">
-  <h3 class="section-title">Contact</h3>
+<section id="contact" class="section reveal contact-section">
+  <h3 class="section-title center">Let’s Connect</h3>
 
-  <form class="contact-form">
-    <input type="text" placeholder="Your Name" required>
-    <input type="email" placeholder="Your Email" required>
-    <textarea rows="5" placeholder="Your Message" required></textarea>
+  <form id="contact-form" class="contact-form">
+    <div class="form-field"><label>Name</label><input type="text" name="name" required></div>
+    <div class="form-field"><label>Email</label><input type="email" name="email" required></div>
+    <div class="form-field"><label>Message</label><textarea name="message" rows="5" required></textarea></div>
     <button class="btn primary">Send Message</button>
+    <p id="form-status"></p>
   </form>
 
-  <p class="contact-email">dbpatel8754@gmail.com</p>
+  <div class="contact-direct">
+    Or email directly:
+    <a href="mailto:dbpatel8754@gmail.com">dbpatel8754@gmail.com</a>
+  </div>
 </section>
 
-<!-- PROJECT MODAL -->
-<div id="project-modal" class="modal">
+<!-- MODAL -->
+<div id="modal" class="modal">
   <div class="modal-content">
     <span id="modal-close">&times;</span>
     <h3 id="modal-title"></h3>
-    <p id="modal-description"></p>
+    <p id="modal-body"></p>
   </div>
 </div>
 
