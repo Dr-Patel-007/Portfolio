@@ -438,34 +438,13 @@ function initAITerminal() {
 
   if (!terminal || !metrics) return;
 
-  /* lock terminal scroll */
+  /* lock terminal scroll so it never expands page */
   terminal.style.overflowY = "auto";
   terminal.style.maxHeight = "320px";
 
-  /* audio (single context fix) */
-  const AudioCtx = window.AudioContext || window.webkitAudioContext;
-  const audioCtx = new AudioCtx();
-
-  function beep() {
-    try {
-      if (audioCtx.state === "suspended") audioCtx.resume();
-
-      const osc = audioCtx.createOscillator();
-      const gain = audioCtx.createGain();
-
-      osc.type = "square";
-      osc.frequency.value = 880;
-      gain.gain.value = 0.02;
-
-      osc.connect(gain);
-      gain.connect(audioCtx.destination);
-
-      osc.start();
-      osc.stop(audioCtx.currentTime + 0.03);
-    } catch (e) {}
-  }
-
-  /* metrics */
+  /* =========================
+     LIVE METRICS
+  ========================= */
   function updateMetrics() {
     const cpu = Math.floor(28 + Math.random() * 45);
     const ram = Math.floor(42 + Math.random() * 45);
@@ -483,13 +462,16 @@ function initAITerminal() {
       <div class="metric-box">LATENCY<br><strong>${ping}ms</strong></div>
       <div class="metric-box">STATUS<br><strong class="metric-live">● ONLINE</strong></div>
       <div class="metric-box">TIME<br><strong>${time}</strong></div>
-      <div class="metric-box">AGENTS<br><strong>${1 + Math.floor(Math.random()*5)} ACTIVE</strong></div>
+      <div class="metric-box">AGENTS<br><strong>${1 + Math.floor(Math.random() * 5)} ACTIVE</strong></div>
     `;
   }
 
   updateMetrics();
   setInterval(updateMetrics, 1000);
 
+  /* =========================
+     COMMAND SEQUENCE
+  ========================= */
   const sequences = [
     { cmd: "initialize portfolio", result: "Senior AI Engineer profile loaded" },
     { cmd: "load experience", result: "7+ years engineering modules ready" },
@@ -502,6 +484,9 @@ function initAITerminal() {
 
   let index = 0;
 
+  /* =========================
+     TYPE LINE (NO SOUND)
+  ========================= */
   function typeLine(text, done) {
 
     const line = document.createElement("div");
@@ -511,14 +496,13 @@ function initAITerminal() {
     let i = 0;
 
     function type() {
+
       if (i <= text.length) {
 
         line.innerHTML =
           `<span class="prompt">DIXIT@AI:~$ </span>` +
           text.slice(0, i) +
           `<span class="console-cursor">_</span>`;
-
-        if (i % 2 === 0) beep();
 
         i++;
 
@@ -527,6 +511,7 @@ function initAITerminal() {
         setTimeout(type, 35);
 
       } else {
+
         line.innerHTML =
           `<span class="prompt">DIXIT@AI:~$ </span>` +
           text;
@@ -538,6 +523,9 @@ function initAITerminal() {
     type();
   }
 
+  /* =========================
+     RESULT OUTPUT
+  ========================= */
   function printResult(text) {
 
     const result = document.createElement("div");
@@ -555,6 +543,9 @@ function initAITerminal() {
     terminal.scrollTop = terminal.scrollHeight;
   }
 
+  /* =========================
+     MAIN LOOP
+  ========================= */
   function run() {
 
     if (index >= sequences.length) {
