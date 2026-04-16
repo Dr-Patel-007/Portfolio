@@ -28,7 +28,6 @@ document.addEventListener("DOMContentLoaded", () => {
   initAIBubble();
   initParticles();
   initAITerminal();
-  initContactForm();
   initNeuralBackground();
 });
 
@@ -224,37 +223,6 @@ function initPortfolioModal() {
 
   document.addEventListener("keydown", e => {
     if (e.key === "Escape") closeModal();
-  });
-}
-
-/* ======================================================
-   CONTACT FORM
-====================================================== */
-function initContactForm() {
-  const form = document.getElementById("contact-form");
-  const status = document.getElementById("form-status");
-
-  if (!form || !status) return;
-
-  form.addEventListener("submit", e => {
-    e.preventDefault();
-
-    status.textContent = "Sending message...";
-
-    const formData = Object.fromEntries(new FormData(form).entries());
-
-    if (typeof emailjs !== "undefined") {
-      emailjs.send("SERVICE_ID", "TEMPLATE_ID", formData)
-        .then(() => {
-          status.textContent = "✅ Message sent successfully.";
-          form.reset();
-        })
-        .catch(() => {
-          status.textContent = "❌ Failed to send.";
-        });
-    } else {
-      status.textContent = "⚠️ Email service not configured.";
-    }
   });
 }
 
