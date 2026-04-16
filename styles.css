@@ -59,3 +59,137 @@ body{font-family:Inter,sans-serif;background:var(--bg);color:var(--text);transit
 .modal-content{background:var(--card);padding:2rem;border-radius:18px;max-width:600px}
 
 #scroll-progress{position:fixed;top:0;left:0;height:3px;background:var(--accent);width:0}
+
+/* ===============================
+   RESEARCH & PUBLICATIONS
+=================================*/
+
+.research-grid{
+  margin-top:2.5rem;
+}
+
+.research-card{
+  background:var(--card);
+  padding:2rem;
+  border-radius:16px;
+  text-align:center;
+  text-decoration:none;
+  color:var(--text);
+  transition:.4s;
+}
+
+.research-card:hover{
+  transform:translateY(-8px);
+  box-shadow:0 0 30px rgba(125,211,252,.35);
+}
+
+.research-icon{
+  font-size:2.4rem;
+  margin-bottom:.8rem;
+}
+
+.research-card h4{
+  margin-bottom:.6rem;
+  font-size:1.2rem;
+}
+
+.research-card p{
+  color:var(--muted);
+  font-size:.95rem;
+}
+
+.publications{
+  margin-top:3rem;
+  max-width:700px;
+  margin-inline:auto;
+}
+
+.publications h4{
+  margin-bottom:1rem;
+  text-align:center;
+}
+
+.publications ul{
+  list-style:none;
+  padding:0;
+}
+
+.publications li{
+  background:var(--card);
+  padding:1.4rem;
+  border-radius:14px;
+}
+
+.publications span{
+  display:block;
+  color:var(--muted);
+  font-size:.92rem;
+  margin-top:.45rem;
+}
+
+/* ===============================
+   EDUCATION SECTION
+=================================*/
+
+.education-grid{
+  margin-top:2rem;
+}
+
+.education-card{
+  background:var(--card);
+  padding:2rem;
+  border-radius:16px;
+  transition:.4s;
+}
+
+.education-card:hover{
+  transform:translateY(-8px);
+  box-shadow:0 0 30px rgba(125,211,252,.35);
+}
+
+.education-card h4{
+  font-size:1.1rem;
+  margin-bottom:.8rem;
+}
+
+.education-card p{
+  color:var(--text);
+  margin-bottom:.6rem;
+  line-height:1.5;
+}
+
+.education-card span{
+  color:var(--muted);
+  font-size:.95rem;
+}
+
+/* ===============================
+   SKILLS SECTION
+=================================*/
+
+.skills-grid{
+  margin-top:2rem;
+}
+
+.skill-card{
+  background:var(--card);
+  padding:2rem;
+  border-radius:16px;
+  transition:.4s;
+}
+
+.skill-card:hover{
+  transform:translateY(-8px);
+  box-shadow:0 0 30px rgba(125,211,252,.35);
+}
+
+.skill-card h4{
+  font-size:1.1rem;
+  margin-bottom:.8rem;
+}
+
+.skill-card p{
+  color:var(--muted);
+  line-height:1.6;
+  font-size:.96rem;
+}

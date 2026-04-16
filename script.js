@@ -1,4 +1,4 @@
-emailjs.init("YOUR_PUBLIC_KEY");
+
 
 /* Typing */
 const roles=["Senior Software Engineer","Senior AI Engineer"];
