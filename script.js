@@ -755,7 +755,7 @@ function initNeuralBackground() {
     if (n.x < 0 || n.x > width) n.vx *= -1;
     if (n.y < 0 || n.y > height) n.vy *= -1;
 
-    // =========================
+    /*// =========================
     // UPGRADE 1: Mouse attraction
     // =========================
     if (attraction) {
@@ -764,7 +764,7 @@ function initNeuralBackground() {
 
       n.x += dx * 0.0008 * strength;
       n.y += dy * 0.0008 * strength;
-    }
+    }*/
   }
 
   /* =========================
