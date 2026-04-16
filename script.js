@@ -28,6 +28,7 @@ document.addEventListener("DOMContentLoaded", () => {
   initAIBubble();
   initParticles();
   initAITerminal();
+  initContactForm();
 });
 
 /* ======================================================
@@ -569,4 +570,111 @@ function initAITerminal() {
   }
 
   run();
+}
+
+  /* =========================
+     Init Contact Form
+  ========================= */
+
+function initContactForm() {
+  const form = document.getElementById("contact-form");
+  const status = document.getElementById("form-status");
+  const submitBtn = form?.querySelector("button[type='submit']");
+
+  if (!form || !status || !submitBtn) return;
+
+  const inputs = form.querySelectorAll("input, textarea");
+
+  function setStatus(msg, type = "") {
+    status.textContent = msg;
+    status.className = type; // success | error | loading (optional styling)
+  }
+
+  function validateField(field) {
+    const wrapper = field.closest(".form-field");
+
+    let error = wrapper.querySelector(".error-msg");
+
+    if (!error) {
+      error = document.createElement("div");
+      error.className = "error-msg";
+      wrapper.appendChild(error);
+    }
+
+    if (!field.value.trim()) {
+      error.textContent = "This field is required";
+      field.classList.add("input-error");
+      return false;
+    }
+
+    if (field.type === "email" && !field.value.includes("@")) {
+      error.textContent = "Enter a valid email";
+      field.classList.add("input-error");
+      return false;
+    }
+
+    error.remove();
+    field.classList.remove("input-error");
+    return true;
+  }
+
+  function validateForm() {
+    let ok = true;
+    inputs.forEach(i => {
+      if (!validateField(i)) ok = false;
+    });
+    return ok;
+  }
+
+  inputs.forEach(input => {
+    input.addEventListener("input", () => {
+      validateField(input);
+    });
+  });
+
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault();
+
+    if (!validateForm()) {
+      setStatus("Fix errors before sending.", "error");
+      return;
+    }
+
+    submitBtn.disabled = true;
+    submitBtn.classList.add("loading");
+
+    setStatus("Encrypting message...", "loading");
+
+    const formData = Object.fromEntries(new FormData(form).entries());
+
+    try {
+      if (typeof emailjs !== "undefined") {
+
+        setStatus("Sending secure transmission...", "loading");
+
+        await emailjs.send(
+          "SERVICE_ID",
+          "TEMPLATE_ID",
+          formData
+        );
+
+        setStatus("✔ Message delivered successfully", "success");
+        form.reset();
+
+      } else {
+        setStatus("Email service not configured", "error");
+      }
+
+    } catch (err) {
+      setStatus("Transmission failed. Try again.", "error");
+    }
+
+    submitBtn.disabled = false;
+    submitBtn.classList.remove("loading");
+
+    setTimeout(() => {
+      status.textContent = "";
+      status.className = "";
+    }, 4000);
+  });
 }

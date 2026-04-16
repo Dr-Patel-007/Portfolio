@@ -1473,3 +1473,103 @@ body{
 @keyframes blinkCursor{
   50%{opacity:0;}
 }
+
+/* ===============================
+   CONTACT FORM
+=============================== */
+
+/* ===============================
+   CONTACT SECTION UPGRADE
+=============================== */
+
+.contact-section {
+  max-width: 700px;
+  margin: auto;
+}
+
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.form-field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.form-field label {
+  font-size: 0.85rem;
+  color: rgba(125, 255, 190, 0.8);
+  letter-spacing: 0.5px;
+}
+
+.contact-form input,
+.contact-form textarea {
+  background: rgba(0,0,0,0.25);
+  border: 1px solid rgba(0,255,120,0.15);
+  border-radius: 10px;
+  padding: 12px 14px;
+  color: #00ff99;
+  font-family: Consolas, monospace;
+  outline: none;
+  transition: all 0.2s ease;
+}
+
+.contact-form input:focus,
+.contact-form textarea:focus {
+  border-color: rgba(0,255,120,0.6);
+  box-shadow: 0 0 12px rgba(0,255,120,0.15);
+}
+
+.input-error {
+  border-color: #ff4d4d !important;
+  box-shadow: 0 0 10px rgba(255,0,0,0.2);
+}
+
+.error-msg {
+  font-size: 0.75rem;
+  color: #ff6b6b;
+}
+
+.contact-form button.btn.primary {
+  background: linear-gradient(90deg, #00ff7b, #00d9ff);
+  border: none;
+  padding: 12px;
+  border-radius: 10px;
+  font-weight: bold;
+  cursor: pointer;
+  color: #001b10;
+  transition: 0.25s ease;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.contact-form button.btn.primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px rgba(0,255,120,0.25);
+}
+
+.contact-form button.loading {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+#form-status {
+  font-size: 0.85rem;
+  margin-top: 4px;
+  color: #7dffbe;
+}
+
+#form-status.success {
+  color: #00ff88;
+}
+
+#form-status.error {
+  color: #ff6b6b;
+}
+
+#form-status.loading {
+  color: #00d9ff;
+}
