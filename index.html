@@ -1,880 +1,697 @@
-<!doctype html>
-<html class="no-js" lang="en">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <!-- =====================================
+       META / SEO
+  ====================================== -->
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta
+    name="description"
+    content="Dixit Patel, Ph.D. | Senior Software Engineer specializing in Artificial Intelligence, LLMs, RAG, Backend Engineering, and Scalable Systems."
+  />
 
-    <head>
-        <!-- meta data -->
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+  <title>Dixit Patel, Ph.D. — Senior AI Engineer</title>
 
-        <!--font-family-->
-		<link href="https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800,900&amp;subset=devanagari,latin-ext" rel="stylesheet">
-        
-        <!-- title of site -->
-        <title>Dr. Patel's portfolio</title>
+  <!-- =====================================
+       GOOGLE FONTS
+  ====================================== -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap"
+    rel="stylesheet"
+  />
 
-        <!-- For favicon png -->
-		<link rel="shortcut icon" type="image/icon" href="assets/logo/favicon.png"/>
-       
-        <!--font-awesome.min.css-->
-        <link rel="stylesheet" href="assets/css/font-awesome.min.css">
+  <!-- =====================================
+       MAIN STYLESHEET
+  ====================================== -->
+  <link rel="stylesheet" href="styles.css" />
 
-		<!--flat icon css-->
-		<link rel="stylesheet" href="assets/css/flaticon.css">
+  <!-- =====================================
+       EMAILJS
+  ====================================== -->
+  <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
+</head>
 
-		<!--animate.css-->
-        <link rel="stylesheet" href="assets/css/animate.css">
+<body>
 
-        <!--owl.carousel.css-->
-        <link rel="stylesheet" href="assets/css/owl.carousel.min.css">
-		<link rel="stylesheet" href="assets/css/owl.theme.default.min.css">
-		
-        <!--bootstrap.min.css-->
-        <link rel="stylesheet" href="assets/css/bootstrap.min.css">
-		
-		<!-- bootsnav -->
-		<link rel="stylesheet" href="assets/css/bootsnav.css" >	
-        
-        <!--style.css-->
-        <link rel="stylesheet" href="assets/css/style.css">
-        
-        <!--responsive.css-->
-        <link rel="stylesheet" href="assets/css/responsive.css">
-        
-        <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-        <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
-		
-        <!--[if lt IE 9]>
-			<script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
-			<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-        <![endif]-->
+  <!-- =====================================
+       SCROLL PROGRESS BAR
+  ====================================== -->
+  <div id="scroll-progress"></div>
+  <canvas id="particle-canvas"></canvas>
+  <div class="gradient-mesh"></div>
 
-    </head>
+  <!-- =====================================
+       HEADER / PREMIUM NAVBAR
+  ====================================== -->
+  <header class="nav">
+
+    <!-- Brand -->
+    <div class="nav-brand">
+      <a href="#home" aria-label="Go to Home section">
+        <span class="brand-top">Software Engineer - AI Portfolio</span>
+        <span class="brand-name">Dixit Patel<span>.</span></span>
+      </a>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="nav-menu" aria-label="Main Navigation">
+      <a href="#home">Home</a>
+      <a href="#about">About</a>
+      <a href="#skills">Skills</a>
+      <a href="#projects">Projects</a>
+      <a href="#experience">Experience</a>
+      <a href="#education">Education</a>
+      <a href="#research">Research</a>
+      <a href="#recommendations">Recommendations</a>
+      <a href="#contact">Contact</a>
+
+      <button id="theme-toggle" aria-label="Toggle Theme">
+        🌙
+      </button>
+    </nav>
+  </header>
+
+  <!-- =====================================
+       HERO SECTION
+  ====================================== -->
+  <section id="home" class="hero">
+
+    <div class="hero-bg"></div>
+
+    <div class="hero-layout reveal">
+
+      <!-- Profile Image -->
+      <div class="profile-wrapper">
+        <img
+          src="assets/profile.jpg"
+          alt="Dixit Patel"
+          class="profile-image"
+        />
+      </div>
+
+      <!-- Hero Content -->
+      <div class="hero-text">
+
+        <h1>
+          Dixit Patel
+          <span>, Ph.D.</span>
+        </h1>
+
+        <h2>
+          Senior Software Engineer – Artificial Intelligence
+        </h2>
+
+        <!-- Typing Animation -->
+        <p class="typing">
+          <span id="typing-text"></span>
+        </p>
+
+        <!-- Skill Chips -->
+        <div class="chips">
+          <span>LLMs</span>
+          <span>RAG</span>
+          <span>AI Agents</span>
+		  <span>Python</span>
+          <span>Backend Systems</span>
+          <span>Software Engineering and Development (Full Stack)</span>
+        </div>
+
+        <!-- CTA Buttons -->
+        <div class="buttons">
+          <a
+            href="#projects"
+            class="btn primary track"
+            data-event="view_projects"
+          >
+            View Projects
+          </a>
+
+          <a
+            href="assets/Dixit_Patel_Resume.pdf"
+            class="btn secondary track"
+            data-event="download_resume"
+            download
+          >
+            Download Resume
+          </a>
+        </div>
+
+        <!-- Social Links -->
+        <div class="social-links">
+
+          <a
+            href="https://www.linkedin.com/in/dixit-patel-2050/"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="track"
+            data-event="linkedin"
+          >
+            LinkedIn
+          </a>
+
+          <a
+            href="#contact"
+            class="track"
+            data-event="contact"
+          >
+            Contact
+          </a>
+
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+<!-- =====================================
+       METRIC COUNTERS
+====================================== -->
+<section class="metrics reveal">
+
+  <div class="metrics-grid">
+
+    <div class="metric-card tilt-card">
+      <h3 class="counter" data-target="7">0</h3>
+      <p>Years Experience</p>
+    </div>
+
+    <div class="metric-card tilt-card">
+      <h3 class="counter" data-target="3">0</h3>
+      <p>Graduate Degrees (BE/MS/PHD)</p>
+    </div>
+
+    <div class="metric-card tilt-card">
+      <h3 class="counter" data-target="10">0</h3>
+      <p>Enterprise Projects</p>
+    </div>
+
+    <div class="metric-card tilt-card">
+      <h3 class="counter" data-target="8">0</h3>
+      <p>Research Works</p>
+    </div>
+
+  </div>
+
+</section>
+
+  <!-- =====================================
+       ABOUT SECTION
+  ====================================== -->
+  <section id="about" class="section reveal">
+
+    <h3 class="section-title">About Me</h3>
+
+    <p class="section-text justified">
+      Senior Software Engineer with a strong focus on applied AI systems and
+      scalable software development, combining rigorous academic research
+      experience with hands-on industry delivery. Proven ability to design,
+      build, and deploy production-grade AI-enabled applications using Python
+      tech stack, cloud-based architecture, and modern machine learning and
+      generative AI techniques.
+    </p>
+
+    <p class="section-text justified">
+      Experienced across the full software lifecycle including backend
+      architecture, API development, testing, deployment, data engineering,
+      model integration, LLM systems, and performance optimization.
+    </p>
+
+    <p class="section-text justified">
+      Known for ownership, technical depth, and building robust enterprise
+      solutions that generate measurable business value.
+    </p>
+
+    <div class="section-divider"></div>
+  </section>
+
+<!-- =====================================
+       SKILLS SECTION
+====================================== -->
+<section id="skills" class="section reveal">
+
+  <h3 class="section-title">Technical Capabilities</h3>
+
+  <!-- FILTER BUTTONS -->
+  <div class="skills-filters">
+    <button class="skill-filter active" data-filter="all">All</button>
+    <button class="skill-filter" data-filter="ai">AI / ML</button>
+    <button class="skill-filter" data-filter="backend">Backend</button>
+    <button class="skill-filter" data-filter="cloud">Cloud</button>
+    <button class="skill-filter" data-filter="data">Data</button>
+    <button class="skill-filter" data-filter="tools">Tools</button>
+  </div>
+  
+  <div class="grid skills-grid">
+
+    <!-- AI -->
+    <div class="skill-card tilt-card" data-category="ai">
+      <h4>AI & Machine Learning</h4>
+      <p>GenAI, LLMs, RAG, AI Agents, Prompt Engineering</p>
+
+      <div class="skill-icons">
+        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg">
+        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tensorflow/tensorflow-original.svg">
+        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/pytorch/pytorch-original.svg">
+      </div>
+    </div>
+
+    <!-- Backend -->
+    <div class="skill-card tilt-card" data-category="backend">
+      <h4>Backend Systems</h4>
+      <p>REST APIs, Microservices, System Design, DSA</p>
+
+      <div class="skill-icons">
+        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg">
+        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg">
+        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg">
+      </div>
+    </div>
+
+    <!-- Cloud -->
+    <div class="skill-card tilt-card" data-category="cloud">
+      <h4>Cloud & DevOps</h4>
+      <p>AWS, Docker, CI/CD, Scalable Architectures</p>
+
+      <div class="skill-icons">
+        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/amazonwebservices/amazonwebservices-original.svg">
+        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg">
+        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/kubernetes/kubernetes-plain.svg">
+      </div>
+    </div>
+
+    <!-- Data -->
+    <div class="skill-card tilt-card" data-category="data">
+      <h4>Databases & Data</h4>
+      <p>MySQL, PostgreSQL, MongoDB, ETL Pipelines</p>
+
+      <div class="skill-icons">
+        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg">
+        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg">
+        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg">
+      </div>
+    </div>
+
+    <!-- Tools -->
+    <div class="skill-card tilt-card" data-category="tools">
+      <h4>Frameworks & Tools</h4>
+      <p>Django, .NET, Git, GitHub, Copilot Studio</p>
+
+      <div class="skill-icons">
+        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/django/django-plain.svg">
+        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg">
+        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linux/linux-original.svg">
+      </div>
+    </div>
+
+  </div>
+  
+  </br></br>
+  <div class="skills-radar">
+
+  <div class="radar-card">
+    <h4>Engineering Strength Matrix</h4>
+
+    <div class="radar-row">
+      <span>AI Systems</span>
+      <div class="bar"><div style="width:95%"></div></div>
+    </div>
+
+    <div class="radar-row">
+      <span>Backend Engineering</span>
+      <div class="bar"><div style="width:92%"></div></div>
+    </div>
+
+    <div class="radar-row">
+      <span>Cloud & DevOps</span>
+      <div class="bar"><div style="width:85%"></div></div>
+    </div>
+
+    <div class="radar-row">
+      <span>Databases</span>
+      <div class="bar"><div style="width:88%"></div></div>
+    </div>
+
+    <div class="radar-row">
+      <span>Architecture</span>
+      <div class="bar"><div style="width:90%"></div></div>
+    </div>
+
+  </div>
+  
+  </div>
+  
+  <div class="orbit-wrapper">
+
+  <div class="orbit-center">
+    AI Core
+  </div>
+
+  <div class="orbit orbit-1">
+    <span>Python</span>
+  </div>
+
+  <div class="orbit orbit-2">
+    <span>DSA</span>
+  </div>
+
+  <div class="orbit orbit-3">
+    <span>Software Tools</span>
+  </div>
+
+  <div class="orbit orbit-4">
+    <span>LLMs</span>
+  </div>
+
+  <div class="orbit orbit-5">
+    <span>Databases</span>
+  </div>
+  
+  </div>
+  
+  <div class="section-divider"></div>
+
+</section>
+
+  <!-- =====================================
+       PROJECTS SECTION
+  ====================================== -->
+  <section id="projects" class="section reveal">
+
+    <h3 class="section-title">Featured Projects</h3>
+
+    <div class="grid project-grid">
+
+      <div class="project-card project" data-project="rag">
+        <div class="project-icon">🧠</div>
+        <h4>Enterprise RAG AI Platform</h4>
+        <p>
+          Secure natural-language search across enterprise data using vector
+          retrieval, LLM orchestration, and scalable APIs.
+        </p>
+        <span>LLMs • RAG • Python • APIs</span>
+      </div>
+
+      <div class="project-card tilt-card project" data-project="agent">
+        <div class="project-icon">🤖</div>
+        <h4>AI Agent Automation</h4>
+        <p>
+          Autonomous multi-step workflows using Microsoft Copilot Studio and
+          intelligent task orchestration.
+        </p>
+        <span>AI Agents • Automation • Copilot</span>
+      </div>
+
+      <div class="project-card tilt-card project" data-project="backend">
+        <div class="project-icon">⚙️</div>
+        <h4>Scalable Backend Systems</h4>
+        <p>
+          High-performance backend services focused on reliability,
+          integrations, maintainability, and scale.
+        </p>
+        <span>Python • Microservices • Cloud</span>
+      </div>
+
+    </div>
+  
+	<div class="section-divider"></div>
+
+  </section>
+
+  <!-- =====================================
+       EXPERIENCE SECTION
+  ====================================== -->
+  <section id="experience" class="section reveal">
+
+    <h3 class="section-title">Professional Experience</h3>
+
+    <div class="grid experience-grid">
+
+      <div class="experience-card tilt-card experience" data-exp="caterpillar">
+        <h4>Senior Software Engineer – Artificial Intelligence</h4>
+        <p>L&T Technology Services LLC | Caterpillar Inc.</p>
+        <span>Mossville, Illinois • May 2025 – Present</span>
+      </div>
+
+      <div class="experience-card tilt-card experience" data-exp="fabricators">
+        <h4>Software Engineer</h4>
+        <p>Fabricators, Inc.</p>
+        <span>Chattanooga, Tennessee • Apr 2023 – May 2025</span>
+      </div>
+
+      <div class="experience-card tilt-card experience" data-exp="wright">
+        <h4>Graduate Research Assistant</h4>
+        <p>Wright State University</p>
+        <span>Dayton, Ohio • Dec 2018 – Dec 2022</span>
+      </div>
+
+      <div class="experience-card tilt-card experience" data-exp="lnt">
+        <h4>Software Engineer</h4>
+        <p>L&T Technology Services Limited</p>
+        <span>Navi Mumbai, India • Jun 2016 – Jun 2018</span>
+      </div>
+
+    </div>
+  
+	<div class="section-divider"></div>
+
+  </section>
+
+  <!-- =====================================
+       EDUCATION SECTION
+  ====================================== -->
+  <section id="education" class="section reveal">
+
+    <h3 class="section-title">Education</h3>
+
+    <div class="grid education-grid">
+
+      <div class="education-card tilt-card">
+        <h4>Ph.D. in Computer Science & Engineering</h4>
+        <p>Wright State University • 2019 – 2022</p>
+        <span>GPA: 3.92</span>
+      </div>
+
+      <div class="education-card tilt-card">
+        <h4>M.S. in Computer Science</h4>
+        <p>Wright State University • 2018 – 2022</p>
+        <span>GPA: 3.92</span>
+      </div>
+
+      <div class="education-card tilt-card">
+        <h4>B.E. in Electronics & Communication Engineering</h4>
+        <p>Gujarat Technological University • 2011 – 2015</p>
+        <span>GPA: 3.52</span>
+      </div>
+
+    </div>
 	
-	<body>
-		<!--[if lte IE 9]>
-            <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience and security.</p>
-        <![endif]-->
-		
-		<!-- top-area Start -->
-		<header class="top-area">
-			<div class="header-area">
-				<!-- Start Navigation -->
-			    <nav class="navbar navbar-default bootsnav navbar-fixed dark no-background">
+	<div class="section-divider"></div>
 
-			        <div class="container">
+  </section>
 
-			            <!-- Start Header Navigation -->
-			            <div class="navbar-header">
-			                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar-menu">
-			                    <i class="fa fa-bars"></i>
-			                </button>
-			                <a class="navbar-brand" href="index.html"> Hello There! Welcome to Dixit Patel's profile!</a>
-			            </div><!--/.navbar-header-->
-			            <!-- End Header Navigation -->
+  <!-- =====================================
+       RESEARCH SECTION
+  ====================================== -->
+  <section id="research" class="section reveal">
 
-			            <!-- Collect the nav links, forms, and other content for toggling -->
-			            <div class="collapse navbar-collapse menu-ui-design" id="navbar-menu">
-			                <ul class="nav navbar-nav navbar-right" data-in="fadeInDown" data-out="fadeOutUp">
-			                <li class=" smooth-menu active"></li>
-			                    <li class=" smooth-menu"><a href="#education">education</a></li>
-			                    <li class="smooth-menu"><a href="#skills">skills</a></li>
-			                    <li class="smooth-menu"><a href="#experience">experience</a></li>
-			                    <li class="smooth-menu"><a href="#profiles">profile</a></li>
-			                    <li class="smooth-menu"><a href="#portfolio">portfolio</a></li>
-			                    <!--<li class="smooth-menu"><a href="#clients">clients</a></li>-->
-			                    <li class="smooth-menu"><a href="#contact">contact</a></li>
-			                </ul><!--/.nav -->
-			            </div><!-- /.navbar-collapse -->
-			        </div><!--/.container-->
-			    </nav><!--/nav-->
-			    <!-- End Navigation -->
-			</div><!--/.header-area-->
+    <h3 class="section-title">Research & Publications</h3>
 
-		    <div class="clearfix"></div>
+    <div class="grid research-grid">
 
-		</header><!-- /.top-area-->
-		<!-- top-area End -->
+      <a
+        class="research-card tilt-card"
+        href="https://scholar.google.com/citations?user=Bw-PUssAAAAJ&hl=en"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        <div class="research-icon">🔬</div>
+        <h4>Google Scholar</h4>
+        <p>Publications, citations, and academic impact</p>
+      </a>
+
+      <a
+        class="research-card tilt-card"
+        href="https://www.researchgate.net/profile/Dixit-Patel-18"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        <div class="research-icon">📘</div>
+        <h4>ResearchGate</h4>
+        <p>Research articles & collaborations</p>
+      </a>
+
+    </div>
+
+    <div class="publications">
+      <h4>Selected Publication</h4>
+
+      <ul>
+        <li>
+          Outstanding Paper Award – IADIS 2022
+        </li>
+      </ul>
+    </div>
+  
+	<div class="section-divider"></div>
+
+  </section>
+
+  <!-- =====================================
+       RECOMMENDATIONS SECTION
+  ====================================== -->
+  <section id="recommendations" class="section reveal">
+
+    <h3 class="section-title">Recommendations</h3>
+
+    <div class="grid recommendations-grid">
+
+      <div class="recommendation-card tilt-card">
+        <h4>Professional Endorsements</h4>
+        <p>
+          Recommendations available from colleagues, collaborators, and
+          industry professionals.
+        </p>
+      </div>
+
+      <div class="recommendation-card tilt-card">
+        <h4>Leadership & Collaboration</h4>
+        <p>
+          Recognized for ownership, mentorship, teamwork, and dependable
+          delivery of AI solutions.
+        </p>
+      </div>
+
+      <div class="recommendation-card tilt-card linkedin-card">
+
+        <h4>LinkedIn Recommendations</h4>
+
+        <p>
+          Explore verified testimonials and endorsements.
+        </p>
+
+        <a
+          href="https://www.linkedin.com/in/dixit-patel-2050/"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="linkedin-btn"
+        >
+          <span class="linkedin-icon">in</span>
+          Visit LinkedIn
+        </a>
+
+      </div>
+
+    </div>
 	
-		<!--welcome-hero start -->
-		<section id="welcome-hero" class="welcome-hero">
-			<div class="container">
-				<div class="row">
-					<div class="col-md-12 text-center">
-						<div class="header-text">
+	<div class="section-divider"></div>
 
-							<p> </p>
-							<p> </p>
-							<p> </p>
-							<p> </p>
-							<p> </p>
-							<h2>Greetings from </br> Dixit Patel!👋</h2>
-							<p>A passionate Software Engineer/Developer</p>
-							<a href="assets/download/CV_Patel.pdf" download>download resume</a></br>
-							<p>Build Together & Grow Together"</br>
-							With</br>
-							Commitment, Collaboration, & Consistency</p>
-						</div><!--/.header-text-->
-					</div><!--/.col-->
-				</div><!-- /.row-->
-			</div><!-- /.container-->
+  </section>
 
-		</section><!--/.welcome-hero-->
-		<!--welcome-hero end -->
+  <!-- =====================================
+       CONTACT SECTION
+  ====================================== -->
+  <section id="contact" class="section reveal contact-section">
 
-		<!--about start -->
-		<section id="about" class="about">
-			<div class="section-heading text-center">
-				<h2>about me</h2>
-			</div>
-			<div class="container">
-				<div class="about-content">
-					<div class="row">
-						<div class="col-sm-6">
-							<div class="single-about-txt">
-								<h3>
-								Experienced Software Engineer with a strong background in software engineering and development. Demonstrated success in crafting and optimizing code for optimal efficiency, while ensuring peak performance, security, and scalability. Recognized for outstanding contributions throughout the professional career. Poised to bring my advanced skills to bear on cutting-edge tech projects, contributing to excellence in execution and achievement of strategic objectives. Open to exploring new tech stacks as per organizational requirements, eager to adapt and contribute effectively.
-								</h3>
-								<p>
-									<!--Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Sed ut perspi unde omnis iste natus error sit voluptatem accusantium doloremque lauda ntium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam vo luptatem quia voluptas sit aspernatur aut odit aut fugit,-->
-								</p>
-								<!--<div class="row">
-									<div class="col-sm-4">
-										<div class="single-about-add-info">
-											<h3>phone</h3>
-											<p>(+1) 423-314-7456</p>
-										</div>
-									</div>
-									<div class="col-sm-4">
-										<div class="single-about-add-info">
-											<h3>email</h3>
-											<p>dixit.patel.phd@gmail.com</p>
-										</div>
-									</div>
-									<div class="col-sm-4">
-										<div class="single-about-add-info">
-											<h3>website</h3>
-											<p>https://dr-patel.github.io/Portfolio/</p>
-										</div>
-									</div>
-								</div>-->
-							</div>
-						</div>
-						<div class="col-sm-offset-1 col-sm-5">
-							<div class="single-about-img">
-								<img src="assets/images/about/profile_image.jpg" alt="profile_image">
-								<div class="about-list-icon">
-									<ul>
-										<li>
-											<a href="#">
-												<i  class="fa fa-facebook" aria-hidden="true"></i>
-											</a>
-										</li><!-- / li -->
-										<li>
-											<a href="#">
-												<i  class="fa fa-dribbble" aria-hidden="true"></i>
-											</a>
-											
-										</li><!-- / li -->
-										<li>
-											<a href="#">
-												<i  class="fa fa-twitter" aria-hidden="true"></i>
-											</a>
-											
-										</li><!-- / li -->
-										<li>
-											<a href="https://www.linkedin.com/in/dixit-patel-2050/">
-												<i  class="fa fa-linkedin" aria-hidden="true"></i>
-											</a>
-										</li><!-- / li -->
-										<li>
-											<a href="#">
-												<i  class="fa fa-instagram" aria-hidden="true"></i>
-											</a>
-										</li><!-- / li -->
-										
-										
-									</ul><!-- / ul -->
-								</div><!-- /.about-list-icon -->
+    <h3 class="section-title center">Let’s Connect</h3>
 
-							</div>
+    <form id="contact-form" class="contact-form">
 
-						</div>
-					</div>
-				</div>
-			</div>
-		</section><!--/.about-->
-		<!--about end -->
-		
-		<!--education start -->
-		<section id="education" class="education">
-			<div class="section-heading text-center">
-				<h2>education</h2>
-			</div>
-			<div class="container">
-				<div class="education-horizontal-timeline">
-					<div class="row">
-						<div class="col-sm-4">
-							<div class="single-horizontal-timeline">
-								<div class="experience-time">
-									<h2>2019 - 2022</h2>
-									<h3>Doctor of Philosophy</h3>
-									<h3>Computer Science and Engineering</h3>
-									<h3>GPA: 3.92/4.0</h3>
-								</div><!--/.experience-time-->
-								<div class="timeline-horizontal-border">
-									<i class="fa fa-circle" aria-hidden="true"></i>
-									<span class="single-timeline-horizontal"></span>
-								</div>
-								<div class="timeline">
-									<div class="timeline-content">
-										<h4 class="title">
-											Wright State University
-										</h4>
-										<h5>Ohio, USA</h5>
-										<p class="description">
-											<!--Duis aute irure dolor in reprehenderit in vol patate velit esse cillum dolore eu fugiat nulla pari. Excepteur sint occana inna tecat cupidatat non proident.-->
-										</p>
-									</div><!--/.timeline-content-->
-								</div><!--/.timeline-->
-							</div>
-						</div>
-						<div class="col-sm-4">
-							<div class="single-horizontal-timeline">
-								<div class="experience-time">
-									<h2>2018 - 2022</h2>
-									<h3>Master of Science</h3>
-									<h3>Computer Science</h3>
-									<h3>GPA: 3.92/4.0</h3>
-								</div><!--/.experience-time-->
-								<div class="timeline-horizontal-border">
-									<i class="fa fa-circle" aria-hidden="true"></i>
-									<span class="single-timeline-horizontal"></span>
-								</div>
-								<div class="timeline">
-									<div class="timeline-content">
-										<h4 class="title">
-											Wright State University
-										</h4>
-										<h5>ohio, USA</h5>
-										<p class="description">
-											<!--Duis aute irure dolor in reprehenderit in vol patate velit esse cillum dolore eu fugiat nulla pari. Excepteur sint occana inna tecat cupidatat non proident.-->
-										</p>
-									</div><!--/.timeline-content-->
-								</div><!--/.timeline-->
-							</div>
-						</div>
-						<div class="col-sm-4">
-							<div class="single-horizontal-timeline">
-								<div class="experience-time">
-									<h2>2011 - 2015</h2>
-									<h3>Bachelor of Science</h3>
-									<h3>Computer Science</h3>
-									<h3>GPA: 3.52/4.0</h3>
-								</div><!--/.experience-time-->
-								<div class="timeline-horizontal-border">
-									<i class="fa fa-circle" aria-hidden="true"></i>
-									<span class="single-timeline-horizontal spacial-horizontal-line
-									"></span>
-								</div>
-								<div class="timeline">
-									<div class="timeline-content">
-										<h4 class="title">
-											gujarat technological university
-										</h4>
-										<h5>gujarat, india</h5>
-										<p class="description">
-											<!--Duis aute irure dolor in reprehenderit in vol patate velit esse cillum dolore eu fugiat nulla pari. Excepteur sint occana inna tecat cupidatat non proident. -->
-										</p>
-									</div><!--/.timeline-content-->
-								</div><!--/.timeline-->
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
+      <div class="form-field">
+        <label for="name">Name</label>
+        <input id="name" type="text" name="name" required />
+      </div>
 
-		</section><!--/.education-->
-		<!--education end -->
+      <div class="form-field">
+        <label for="email">Email</label>
+        <input id="email" type="email" name="email" required />
+      </div>
 
-		<!--skills start -->
-		<section id="skills" class="skills">
-				<div class="skill-content">
-					<div class="section-heading text-center">
-						<h2>skills</h2>
-						<h3>[Please download the resume to check the detailed skills]</h3>
-					</div>
-					<div class="container">
-						<div class="row">
-							<div class="col-md-6">
-								<div class="single-skill-content">
-									<div class="barWrapper">
-										<span class="progressText">Technical Skills</span>
-										<div class="single-progress-txt">
-											<div class="progress ">
-												<div class="progress-bar" role="progressbar" aria-valuenow="98" aria-valuemin="10" aria-valuemax="100" style="">
-													  
-												</div>
-											</div>
-											<h3>98%</h3>	
-										</div>
-									</div><!-- /.barWrapper -->
-									<div class="barWrapper">
-										<span class="progressText">Communication and Interpersonal Skills</span>
-										<div class="single-progress-txt">
-											<div class="progress ">
-											   <div class="progress-bar" role="progressbar" aria-valuenow="95" aria-valuemin="10" aria-valuemax="100" style="">
-												    
-											   </div>
-											</div>
-											<h3>95%</h3>	
-										</div>
-									</div><!-- /.barWrapper -->
-									<div class="barWrapper">
-										<span class="progressText">Software Engineering/Development Skills</span>
-										<div class="single-progress-txt">
-											<div class="progress ">
-											   <div class="progress-bar" role="progressbar" aria-valuenow="98" aria-valuemin="10" aria-valuemax="100" style="">
-												   
-											   </div>
-											</div>
-											<h3>98%</h3>	
-										</div>
-									</div><!-- /.barWrapper -->
-									<div class="barWrapper">
-										<span class="progressText">Entrepreneurial and Innovation Skills</span>
-										<div class="single-progress-txt">
-											<div class="progress ">
-											   <div class="progress-bar" role="progressbar" aria-valuenow="97" aria-valuemin="10" aria-valuemax="100" style="">
-												    
-											   </div>
-											</div>
-											<h3>97%</h3>	
-										</div>
-									</div><!-- /.barWrapper -->
-								</div>
-							</div>
-							<div class="col-md-6">
-								<div class="single-skill-content">
-									<div class="barWrapper">
-										<span class="progressText">Teamwork, Leadership, and Adaptability Skills</span>
-										<div class="single-progress-txt">
-											<div class="progress ">
-												<div class="progress-bar" role="progressbar" aria-valuenow="98" aria-valuemin="10" aria-valuemax="100" style="">
-													
-												</div>
-											</div>
-											<h3>98%</h3>	
-										</div>
-									</div><!-- /.barWrapper -->
-									<div class="barWrapper">
-										<span class="progressText">Cognitive and Analytical Skills</span>
-										<div class="single-progress-txt">
-											<div class="progress ">
-											   <div class="progress-bar" role="progressbar" aria-valuenow="97" aria-valuemin="10" aria-valuemax="100" style="">
-												    
-											   </div>
-											</div>
-											<h3>97%</h3>	
-										</div>
-									</div><!-- /.barWrapper -->
-									<div class="barWrapper">
-										<span class="progressText">Problem Solving and Team Collaborative Skills</span>
-										<div class="single-progress-txt">
-											<div class="progress ">
-											   <div class="progress-bar" role="progressbar" aria-valuenow="98" aria-valuemin="10" aria-valuemax="100" style="">
-												   
-											   </div>
-											</div>
-											<h3>98%</h3>	
-										</div>
-									</div><!-- /.barWrapper -->
-									<div class="barWrapper">
-										<span class="progressText">Other Technical Skills (Mentioned in the Resume)</span>
-										<div class="single-progress-txt">
-											<div class="progress ">
-											   <div class="progress-bar" role="progressbar" aria-valuenow="96" aria-valuemin="10" aria-valuemax="100" style="">
-												    
-											   </div>
-											</div>
-											<h3>96%</h3>	
-										</div>
-									</div><!-- /.barWrapper -->
-								</div>
-							</div>
-						</div><!-- /.row -->
-					</div>	<!-- /.container -->		
-				</div><!-- /.skill-content-->
+      <div class="form-field">
+        <label for="message">Message</label>
+        <textarea id="message" name="message" rows="5" required></textarea>
+      </div>
 
-		</section><!--/.skills-->
-		<!--skills end -->
+      <button class="btn primary" type="submit">
+        Send Message
+      </button>
 
-		<!--experience start -->
-		<section id="experience" class="experience">
-			<div class="section-heading text-center">
-				<h2>experience</h2>
-			</div>
-			<div class="container">
-				<div class="experience-content">
-						<div class="main-timeline">
-							<ul>
-								<li>
-									<div class="single-timeline-box fix">
-										<div class="row">
-											<div class="col-md-5">
-												<div class="experience-time text-right">
-													<h2>Apr 2023 - Present</h2>
-													<h3>Software Engineer</h3>
-												</div><!--/.experience-time-->
-											</div><!--/.col-->
-											<div class="col-md-offset-1 col-md-5">
-												<div class="timeline">
-													<div class="timeline-content">
-														<h4 class="title">
-															<span><i class="fa fa-circle" aria-hidden="true"></i></span>
-															Fabricators
-														</h4>
-														<h5>Chattanooga, USA</h5>
-														<p class="description">
-															<!--Duis aute irure dolor in reprehenderit in vol patate velit esse cillum dolore eu fugiat nulla pari. Excepteur sint occana inna tecat cupidatat non proident.--> 
-														</p>
-													</div><!--/.timeline-content-->
-												</div><!--/.timeline-->
-											</div><!--/.col-->
-										</div>
-									</div><!--/.single-timeline-box-->
-								</li>
+      <p id="form-status"></p>
 
-								<li>
-									<div class="single-timeline-box fix">
-										<div class="row">
-											<div class="col-md-5">
-												<div class="experience-time text-right">
-													<h2>Dec 2018 - Dec 2022</h2>
-													<h3>Graduate Research Assistant (Software Developer)</h3>
-												</div><!--/.experience-time-->
-											</div><!--/.col-->
-											<div class="col-md-offset-1 col-md-5">
-												<div class="timeline">
-													<div class="timeline-content">
-														<h4 class="title">
-															<span><i class="fa fa-circle" aria-hidden="true"></i></span>
-															Wright State University
-														</h4>
-														<h5>Ohio, USA</h5>
-														<p class="description">
-															<!--Duis aute irure dolor in reprehenderit in vol patate velit esse cillum dolore eu fugiat nulla pari. Excepteur sint occana inna tecat cupidatat non proident.--> 
-														</p>
-													</div><!--/.timeline-content-->
-												</div><!--/.timeline-->
-											</div><!--/.col-->
-										</div>
-									</div><!--/.single-timeline-box-->
-								</li>
+    </form>
 
-								<li>
-									<div class="single-timeline-box fix">
-										<div class="row">
-											<div class="col-md-5">
-												<div class="experience-time text-right">
-													<h2>June 2016 - June 2018</h2>
-													<h3>Software Engineer</h3>
-												</div><!--/.experience-time-->
-											</div><!--/.col-->
-											<div class="col-md-offset-1 col-md-5">
-												<div class="timeline">
-													<div class="timeline-content">
-														<h4 class="title">
-															<span><i class="fa fa-circle" aria-hidden="true"></i></span>
-															L&T Technology Services
-														</h4>
-														<h5>Maharashtra, India</h5>
-														<p class="description">
-															<!--Duis aute irure dolor in reprehenderit in vol patate velit esse cillum dolore eu fugiat nulla pari. Excepteur sint occana inna tecat cupidatat non proident.--> 
-														</p>
-													</div><!--/.timeline-content-->
-												</div><!--/.timeline-->
-											</div><!--/.col-->
-										</div>
-									</div><!--/.single-timeline-box-->
-								</li>
-							</ul>
-						</div><!--.main-timeline-->
-					</div><!--.experience-content-->
-			</div>
+    <div class="contact-direct">
+      Or email directly:
+      <a href="mailto:dbpatel8754@gmail.com">
+        dbpatel8754@gmail.com
+      </a>
+    </div>
+  
+	<div class="section-divider"></div>
 
-		</section><!--/.experience-->
-		<!--experience end -->
+  </section>
 
-		<!--profiles start -->
-		<section id="profiles" class="profiles">
-			<div class="profiles-details">
-				<div class="section-heading text-center">
-					<h2>profiles</h2>
-					<h3>[More Coming soon!]</h3>
-				</div>
-				<div class="container">
-					<div class="profiles-content">
-						<div class="row">
-							<div class="col-sm-3">
-								<div class="single-profile">
-									<div class="profile-txt">
-										<a href=""><i class="fa fa-linkedin"></i></a>
-										<div class="profile-icon-name">LinkedIn</div>
-									</div>
-									<div class="single-profile-overlay">
-										<div class="profile-txt">
-											<a href="https://www.linkedin.com/in/dixit-patel-2050/"><i class="fa fa-linkedin"></i></a>
-											<div class="profile-icon-name">LinkedIn</div>
-										</div>
-									</div>
-								</div>
-							</div>
-							<!--<div class="col-sm-3">
-								<div class="single-profile">
-									<div class="profile-txt">
-										<a href=""><i class="flaticon-dribbble"></i></a>
-										<div class="profile-icon-name">dribbble</div>
-									</div>
-									<div class="single-profile-overlay">
-										<div class="profile-txt">
-											<a href=""><i class="flaticon-dribbble"></i></a>
-											<div class="profile-icon-name">dribbble</div>
-										</div>
-									</div>
-								</div>
-							</div>
-							<div class="col-sm-3">
-								<div class="single-profile">
-									<div class="profile-txt">
-										<a href=""><i class="flaticon-behance-logo"></i></a>
-										<div class="profile-icon-name">behance</div>
-									</div>
-									<div class="single-profile-overlay">
-										<div class="profile-txt">
-											<a href=""><i class="flaticon-behance-logo"></i></a>
-											<div class="profile-icon-name">behance</div>
-										</div>
-									</div>
-								</div>
-							</div>-->
-							<div class="col-sm-3">
-								<div class="single-profile profile-no-border">
-									<div class="profile-txt">
-										<a href=""><i class="flaticon-github-logo"></i></a>
-										<div class="profile-icon-name">github</div>
-									</div>
-									<div class="single-profile-overlay">
-										<div class="profile-txt">
-											<a href="https://github.com/Dr-Patel"><i class="flaticon-github-logo"></i></a>
-											<div class="profile-icon-name">github</div>
-										</div>
-									</div>
-								</div>
-							</div>
-						</div>
-						<!--<div class="profile-border"></div>
-						<div class="row">
-							<div class="col-sm-3">
-								<div class="single-profile">
-									<div class="profile-txt">
-										<a href=""><i class="flaticon-flickr-website-logo-silhouette"></i></a>
-										<div class="profile-icon-name">flickR</div>
-									</div>
-									<div class="single-profile-overlay">
-										<div class="profile-txt">
-											<a href=""><i class="flaticon-flickr-website-logo-silhouette"></i></a>
-											<div class="profile-icon-name">flickR</div>
-										</div>
-									</div>
-								</div>
-							</div>
-							<div class="col-sm-3">
-								<div class="single-profile">
-									<div class="profile-txt">
-										<a href=""><i class="flaticon-smug"></i></a>
-										<div class="profile-icon-name">smungMung</div>
-									</div>
-									<div class="single-profile-overlay">
-										<div class="profile-txt">
-											<a href=""><i class="flaticon-smug"></i></a>
-											<div class="profile-icon-name">smungMung</div>
-										</div>
-									</div>
-								</div>
-							</div>
-							<div class="col-sm-3">
-								<div class="single-profile">
-									<div class="profile-txt">
-										<a href=""><i class="flaticon-squarespace-logo"></i></a>
-										<div class="profile-icon-name">squareSpace</div>
-									</div>
-									<div class="single-profile-overlay">
-										<div class="profile-txt">
-											<a href=""><i class="flaticon-squarespace-logo"></i></a>
-											<div class="profile-icon-name">squareSpace</div>
-										</div>
-									</div>
-								</div>
-							</div>
-							<div class="col-sm-3">
-								<div class="single-profile profile-no-border">
-									<div class="profile-txt">
-										<a href=""><i class="flaticon-bitbucket-logotype-camera-lens-in-perspective"></i></a>
-										<div class="profile-icon-name">bitBucket</div>
-									</div>
-									<div class="single-profile-overlay">
-										<div class="profile-txt">
-											<a href=""><i class="flaticon-bitbucket-logotype-camera-lens-in-perspective"></i></a>
-											<div class="profile-icon-name">bitBucket</div>
-										</div>
-									</div>
-								</div>
-							</div>-->
-						</div>
-					</div>
-				</div>
-			</div>
+  <!-- =====================================
+       MODAL
+  ====================================== -->
+  <div id="modal" class="modal">
 
-		</section><!--/.profiles-->
-		<!--profiles end -->
+    <div class="modal-content">
 
-		<!--portfolio start -->
-		<section id="portfolio" class="portfolio">
-			<div class="portfolio-details">
-				<div class="section-heading text-center">
-					<h2>portfolio</h2>
-					<h3>[Coming soon!]</h3>
-				</div>
-				<!--<div class="container">
-					<div class="portfolio-content">
-						<div class="isotope">
-							<div class="row">
+      <button
+        id="modal-close"
+        type="button"
+        aria-label="Close modal"
+      >
+        &times;
+      </button>
 
-								<div class="col-sm-4">
-									<div class="item">
-										<img src="assets/images/portfolio/p1.jpg" alt="portfolio image"/>
-										<div class="isotope-overlay">
-											<a href="#">
-												ui/ux design
-											</a>
-										</div><!-- /.isotope-overlay -->
-									<!--</div><!-- /.item -->
-									<!--<div class="item">
-										<img src="assets/images/portfolio/p2.jpg" alt="portfolio image"/>
-										<div class="isotope-overlay">
-											<a href="#">
-												ui/ux design
-											</a>
-										</div><!-- /.isotope-overlay -->
-									<!--</div><!-- /.item -->
-								<!--</div><!-- /.col -->
+      <h3 id="modal-title"></h3>
+      <p id="modal-body"></p>
 
-								<!--<div class="col-sm-4">
-									<div class="item">
-										<img src="assets/images/portfolio/p3.jpg" alt="portfolio image"/>
-										<div class="isotope-overlay">
-											<a href="#">
-												web design
-											</a>
-										</div><!-- /.isotope-overlay -->
-									<!--</div><!-- /.item -->
-								<!--</div><!-- /.col -->
+    </div>
+  </div>
+  
+  <!-- =====================================
+       AI ASSISTANT BUBBLE
+  ====================================== -->
+  <div class="ai-bubble" id="aiBubble">
 
-								<!--<div class="col-sm-4">
-									<div class="item">
-										<img src="assets/images/portfolio/p4.jpg" alt="portfolio image"/>
-										<div class="isotope-overlay">
-											<a href="#">
-												web development
-											</a>
-										</div><!-- /.isotope-overlay -->
-									<!--</div><!-- /.item -->
-									<!--<div class="item">
-										<img src="assets/images/portfolio/p5.jpg" alt="portfolio image"/>
-										<div class="isotope-overlay">
-											<a href="#">
-												web development
-											</a>
-										</div><!-- /.isotope-overlay -->
-									<!--</div><!-- /.item -->
-								<!--</div><!-- /.col -->
-							<!--</div><!-- /.row -->
-						<!--</div><!--/.isotope-->
-					<!--</div><!--/.gallery-content-->
-				<!--</div><!--/.container-->
-			</div><!--/.portfolio-details-->
+  <button class="ai-toggle" id="aiToggle">
+    ✦
+  </button>
 
-		</section><!--/.portfolio-->
-		<!--portfolio end -->
+  <div class="ai-panel" id="aiPanel">
 
-		<!--clients start -->
-		<!--<section id="clients" class="clients">
-			<div class="section-heading text-center">
-				<h2>clients</h2>
-				<h3>[Coming soon!]</h3>
-			</div>
-			<!--<div class="clients-area">
-				<div class="container">
-					<div class="owl-carousel owl-theme" id="client">
-						<div class="item">
-							<a href="#">
-								<img src="assets/images/clients/c1.png" alt="brand-image" />
-							</a>
-						</div><!--/.item-->
-						<!--<div class="item">
-							<a href="#">
-								<img src="assets/images/clients/c2.png" alt="brand-image" />
-							</a>
-						</div><!--/.item-->
-						<!--<div class="item">
-							<a href="#">
-								<img src="assets/images/clients/c3.png" alt="brand-image" />
-							</a>
-						</div><!--/.item-->
-						<!--<div class="item">
-							<a href="#">
-								<img src="assets/images/clients/c4.png" alt="brand-image" />
-							</a>
-						</div><!--/.item-->
-						<!--<div class="item">
-							<a href="#">
-								<img src="assets/images/clients/c5.png" alt="brand-image" />
-							</a>
-						</div><!--/.item-->
-						<!--<div class="item">
-							<a href="#">
-								<img src="assets/images/clients/c6.png" alt="brand-image" />
-							</a>
-						</div><!--/.item-->
-						<!--<div class="item">
-							<a href="#">
-								<img src="assets/images/clients/c7.png" alt="brand-image" />
-							</a>
-						</div><!--/.item-->
-					<!--</div><!--/.owl-carousel-->
-				<!--</div><!--/.container-->
-			<!--</div><!--/.clients-area-->
+    <h4>AI Assistant</h4>
+    <p>Ask about Dixit's experience:</p>
 
-		<!--</section><!--/.clients-->
+    <button class="ai-action" data-link="#projects">
+      View Projects
+    </button>
 
-		<!--</section><!--/.clients-->
-		<!--clients end -->
+    <button class="ai-action" data-link="#experience">
+      Experience
+    </button>
 
-		<!--contact start -->
-		<section id="contact" class="contact">
-			<div class="section-heading text-center">
-				<h2>contact me</h2>
-			</div>
-			<div class="container">
-				<div class="contact-content">
-					<div class="row">
-						<div class="col-md-offset-1 col-md-6 col-sm-5">
-							<div class="single-contact-box">
-								<div class="contact-form">
-									<form>
-										<iframe src="https://docs.google.com/forms/d/e/1FAIpQLSfdI34-Hme0u2MMlnNVTbi3KI8YEgk2diYV_j9Et0fNlNs0Vg/viewform?embedded=true" width="640" height="824" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe>
-									</form><!--/form-->
-								</div><!--/.contact-form-->
-							</div><!--/.single-contact-box-->
-						</div><!--/.col-->
-						<div class="col-md-offset-1 col-md-6 col-sm-5">
-							<div class="single-contact-box">
-								<div class="contact-adress">
-									<div class="contact-add-head">
-										<h3>Dixit Patel</h3>
-										<p>Software Engineer/Developer</p>
-									</div>
-									<div class="contact-add-info">
-										<div class="single-contact-add-info">
-											<h3>phone</h3>
-											<p>(+1) 423-314-7456</p>
-										</div>
-										<div class="single-contact-add-info">
-											<h3>email</h3>
-											<p>dixit.patel.phd@gmail.com</p>
-										</div>
-										<div class="single-contact-add-info">
-											<h3>website</h3>
-											<p>https://dr-patel.github.io/Portfolio/</p>
-										</div>
-									</div>
-								</div><!--/.contact-adress-->
-								<div class="hm-foot-icon">
-									<ul>
-										<li><a href="#"><i class="fa fa-facebook"></i></a></li><!--/li-->
-										<li><a href="#"><i class="fa fa-dribbble"></i></a></li><!--/li-->
-										<li><a href="#"><i class="fa fa-twitter"></i></a></li><!--/li-->
-										<li><a href="#"><i class="fa fa-linkedin"></i></a></li><!--/li-->
-										<li><a href="#"><i class="fa fa-instagram"></i></a></li><!--/li-->
-									</ul><!--/ul-->
-								</div><!--/.hm-foot-icon-->
-							</div><!--/.single-contact-box-->
-						</div><!--/.col-->
-					</div><!--/.row-->
-				</div><!--/.contact-content-->
-			</div><!--/.container-->
+    <button class="ai-action" data-link="assets/Dixit_Patel_Resume.pdf">
+      Resume
+    </button>
 
-		</section><!--/.contact-->
-		<!--contact end -->
+    <button class="ai-action" data-link="#contact">
+      Contact
+    </button>
 
-		<!--footer-copyright start-->
-		<footer id="footer-copyright" class="footer-copyright">
-			<div class="container">
-				<div class="hm-footer-copyright text-center">
-					<p>
-						<!--&copy; copyright Dixit Patel.--> <!--design and developed by <a href="https://www.themesine.com/">themesine</a>-->
-					</p><!--/p-->
-				</div><!--/.text-center-->
-			</div><!--/.container-->
+  </div>
+  
+  </div>
 
-			<div id="scroll-Top">
-				<div class="return-to-top">
-					<i class="fa fa-angle-up " id="scroll-top" ></i>
-				</div>
-				
-			</div><!--/.scroll-Top-->
-			
-        </footer><!--/.footer-copyright-->
-		<!--footer-copyright end-->
-		
-		<!-- Include all js compiled plugins (below), or include individual files as needed -->
+  <!-- =====================================
+       MAIN SCRIPT
+  ====================================== -->
+  <script src="script.js"></script>
 
-		<script src="assets/js/jquery.js"></script>
-        
-        <!--modernizr.min.js-->
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js"></script>
-		
-		<!--bootstrap.min.js-->
-        <script src="assets/js/bootstrap.min.js"></script>
-		
-		<!-- bootsnav js -->
-		<script src="assets/js/bootsnav.js"></script>
-		
-		<!-- jquery.sticky.js -->
-		<script src="assets/js/jquery.sticky.js"></script>
-		
-		<!-- for progress bar start-->
-
-		<!-- progressbar js -->
-		<script src="assets/js/progressbar.js"></script>
-
-		<!-- appear js -->
-		<script src="assets/js/jquery.appear.js"></script>
-
-		<!-- for progress bar end -->
-
-		<!--owl.carousel.js-->
-        <script src="assets/js/owl.carousel.min.js"></script>
-
-
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js"></script>
-		
-        
-        <!--Custom JS-->
-        <script src="assets/js/custom.js"></script>
-        
-    </body>
-	
+</body>
 </html>
