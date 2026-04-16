@@ -1,12 +1,10 @@
 /* ======================================================
    Dixit Patel Portfolio Website
-   script.js
-   Clean / Refactored / Professional Version
+   script.js (FINAL PRODUCTION VERSION)
 ====================================================== */
 
 /* ======================================================
    OPTIONAL: EmailJS Initialization
-   Replace with your actual public key
 ====================================================== */
 if (typeof emailjs !== "undefined") {
   emailjs.init("YOUR_PUBLIC_KEY");
@@ -28,6 +26,8 @@ document.addEventListener("DOMContentLoaded", () => {
   initTiltCards();
   initCounters();
   initAIBubble();
+  initParticles();
+  initAITerminal();
 });
 
 /* ======================================================
@@ -35,10 +35,9 @@ document.addEventListener("DOMContentLoaded", () => {
 ====================================================== */
 function initTypingAnimation() {
   const roles = [
-    "Senior Software Engineer",
+    "Senior Software Engineer - AI",
     "Senior AI Engineer",
-    "LLM / RAG Solutions Engineer",
-    "Scalable Backend Architect"
+    "Python Developer"
   ];
 
   const target = document.getElementById("typing-text");
@@ -48,20 +47,19 @@ function initTypingAnimation() {
   let charIndex = 0;
   let deleting = false;
 
-  function typeLoop() {
-    const currentRole = roles[roleIndex];
+  function loop() {
+    const role = roles[roleIndex];
 
-    if (!deleting) {
-      target.textContent = currentRole.slice(0, charIndex++);
-    } else {
-      target.textContent = currentRole.slice(0, charIndex--);
-    }
+    target.textContent = role.substring(0, charIndex);
+
+    if (!deleting) charIndex++;
+    else charIndex--;
 
     let speed = deleting ? 45 : 90;
 
-    if (!deleting && charIndex > currentRole.length) {
+    if (!deleting && charIndex > role.length) {
       deleting = true;
-      speed = 1400;
+      speed = 1200;
     }
 
     if (deleting && charIndex < 0) {
@@ -70,25 +68,21 @@ function initTypingAnimation() {
       speed = 400;
     }
 
-    setTimeout(typeLoop, speed);
+    setTimeout(loop, speed);
   }
 
-  typeLoop();
+  loop();
 }
 
 /* ======================================================
-   METRIC COUNTERS
+   COUNTERS
 ====================================================== */
-function initCounters(){
-
+function initCounters() {
   const counters = document.querySelectorAll(".counter");
 
   const observer = new IntersectionObserver(entries => {
-
     entries.forEach(entry => {
-
-      if(entry.isIntersecting){
-
+      if (entry.isIntersecting) {
         const el = entry.target;
         const target = +el.dataset.target;
 
@@ -98,7 +92,7 @@ function initCounters(){
         const update = () => {
           count += speed;
 
-          if(count < target){
+          if (count < target) {
             el.textContent = Math.ceil(count);
             requestAnimationFrame(update);
           } else {
@@ -109,55 +103,45 @@ function initCounters(){
         update();
         observer.unobserve(el);
       }
-
     });
-
-  }, { threshold:.45 });
+  }, { threshold: 0.45 });
 
   counters.forEach(c => observer.observe(c));
 }
 
 /* ======================================================
-   REVEAL ON SCROLL ANIMATION
+   REVEAL ANIMATION
 ====================================================== */
 function initRevealAnimations() {
   const elements = document.querySelectorAll(".reveal");
 
-  const observer = new IntersectionObserver(
-    entries => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add("show");
-        }
-      });
-    },
-    {
-      threshold: 0.12
-    }
-  );
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add("show");
+      }
+    });
+  }, { threshold: 0.12 });
 
   elements.forEach(el => observer.observe(el));
 }
 
 /* ======================================================
-   TOP SCROLL PROGRESS BAR
+   SCROLL PROGRESS
 ====================================================== */
 function initScrollProgress() {
   const progress = document.getElementById("scroll-progress");
   if (!progress) return;
 
   window.addEventListener("scroll", () => {
-    const height =
-      document.documentElement.scrollHeight - window.innerHeight;
-
+    const height = document.documentElement.scrollHeight - window.innerHeight;
     const percent = (window.scrollY / height) * 100;
-
     progress.style.width = percent + "%";
   });
 }
 
 /* ======================================================
-   DARK / LIGHT THEME TOGGLE
+   THEME TOGGLE
 ====================================================== */
 function initThemeToggle() {
   const toggle = document.getElementById("theme-toggle");
@@ -175,7 +159,7 @@ function initThemeToggle() {
 }
 
 /* ======================================================
-   PROJECT + EXPERIENCE MODAL
+   MODAL SYSTEM
 ====================================================== */
 function initPortfolioModal() {
   const modal = document.getElementById("modal");
@@ -185,61 +169,43 @@ function initPortfolioModal() {
 
   if (!modal || !title || !body || !closeBtn) return;
 
-  /* ----------------------------------
-     Modal Data
-  ---------------------------------- */
   const projectData = {
-    rag:
-      "Designed secure Retrieval-Augmented Generation (RAG) platforms using LLMs, vector databases, enterprise search, and scalable backend APIs.",
-
-    agent:
-      "Built intelligent AI agents and automated workflows using Microsoft Copilot Studio and modern orchestration patterns.",
-
-    backend:
-      "Developed scalable Python backend systems, REST APIs, integrations, and optimized microservices for enterprise performance."
+    rag: "Designed secure RAG systems using LLMs and vector databases.",
+    agent: "Built AI agents using Copilot Studio and workflows.",
+    backend: "Developed scalable Python backend APIs and microservices."
   };
 
   const experienceData = {
-    caterpillar:
-      "Leading enterprise AI initiatives including RAG platforms, LLM integrations, AI agents, model evaluation, secure enterprise search, and business workflow automation.",
-
-    fabricators:
-      "Developed backend systems for manufacturing operations, improved execution performance by ~33%, and delivered robust Python / database solutions.",
-
-    wright:
-      "Built applied healthcare software systems, contributed to research success securing $1M+ funding, and developed tested production-quality applications.",
-
-    lnt:
-      "Worked on enterprise software delivery and AI/computer vision proof-of-concepts using Python and engineering best practices."
+    caterpillar: "Led enterprise AI initiatives and LLM integrations.",
+    fabricators: "Improved backend performance by ~33%.",
+    wright: "Built healthcare systems and secured $1M+ funding.",
+    lnt: "Worked on enterprise software and AI PoCs."
   };
 
-  /* ----------------------------------
-     Click Handlers
-  ---------------------------------- */
   document.querySelectorAll(".project, .experience").forEach(card => {
     card.addEventListener("click", () => {
-      const key = card.dataset.project || card.dataset.exp;
 
+      const key = card.dataset.project || card.dataset.exp;
       const isProject = card.classList.contains("project");
 
       title.textContent =
         card.querySelector("h4")?.textContent ||
         card.innerText.split("\n")[0];
 
-      body.textContent = isProject
-        ? projectData[key]
-        : experienceData[key];
+      body.textContent =
+        isProject ? projectData[key] : experienceData[key];
 
       modal.style.display = "flex";
       document.body.style.overflow = "hidden";
     });
   });
 
-  /* ----------------------------------
-     Close Modal
-  ---------------------------------- */
-  closeBtn.addEventListener("click", closeModal);
+  function closeModal() {
+    modal.style.display = "none";
+    document.body.style.overflow = "";
+  }
 
+  closeBtn.addEventListener("click", closeModal);
   modal.addEventListener("click", e => {
     if (e.target === modal) closeModal();
   });
@@ -247,11 +213,6 @@ function initPortfolioModal() {
   document.addEventListener("keydown", e => {
     if (e.key === "Escape") closeModal();
   });
-
-  function closeModal() {
-    modal.style.display = "none";
-    document.body.style.overflow = "";
-  }
 }
 
 /* ======================================================
@@ -268,32 +229,25 @@ function initContactForm() {
 
     status.textContent = "Sending message...";
 
-    const formData = Object.fromEntries(
-      new FormData(form).entries()
-    );
+    const formData = Object.fromEntries(new FormData(form).entries());
 
-    /* If EmailJS configured */
     if (typeof emailjs !== "undefined") {
-      emailjs
-        .send("SERVICE_ID", "TEMPLATE_ID", formData)
+      emailjs.send("SERVICE_ID", "TEMPLATE_ID", formData)
         .then(() => {
-          status.textContent =
-            "✅ Message sent successfully.";
+          status.textContent = "✅ Message sent successfully.";
           form.reset();
         })
         .catch(() => {
-          status.textContent =
-            "❌ Unable to send. Please email directly.";
+          status.textContent = "❌ Failed to send.";
         });
     } else {
-      status.textContent =
-        "⚠️ Email service not configured.";
+      status.textContent = "⚠️ Email service not configured.";
     }
   });
 }
 
 /* ======================================================
-   ACTIVE NAV LINK ON SCROLL
+   NAV HIGHLIGHT
 ====================================================== */
 function initSmoothNavHighlight() {
   const sections = document.querySelectorAll("section[id]");
@@ -310,13 +264,12 @@ function initSmoothNavHighlight() {
 
       if (window.scrollY >= top &&
           window.scrollY < top + height) {
-        current = section.getAttribute("id");
+        current = section.id;
       }
     });
 
     links.forEach(link => {
       link.classList.remove("active");
-
       if (link.getAttribute("href") === "#" + current) {
         link.classList.add("active");
       }
@@ -324,53 +277,47 @@ function initSmoothNavHighlight() {
   });
 }
 
-window.addEventListener("scroll", () => {
-  const nav = document.querySelector(".nav");
-  if (window.scrollY > 80) nav.classList.add("shrink");
-  else nav.classList.remove("shrink");
-});
-
 /* ======================================================
-   SIMPLE CLICK TRACKING
+   TRACKING
 ====================================================== */
 function initTracking() {
   document.querySelectorAll(".track").forEach(item => {
     item.addEventListener("click", () => {
-      console.log("Tracked event:", item.dataset.event);
+      console.log("Tracked:", item.dataset.event);
     });
   });
 }
 
 /* ======================================================
-   PARTICLE SYSTEM
+   PARTICLES
 ====================================================== */
-function initParticles(){
+function initParticles() {
   const canvas = document.getElementById("particle-canvas");
-  if(!canvas) return;
+  if (!canvas) return;
 
   const ctx = canvas.getContext("2d");
   canvas.width = window.innerWidth;
   canvas.height = window.innerHeight;
 
-  let particles = Array.from({length: 60}, () => ({
+  const particles = Array.from({ length: 60 }, () => ({
     x: Math.random() * canvas.width,
     y: Math.random() * canvas.height,
     vx: (Math.random() - 0.5) * 0.3,
     vy: (Math.random() - 0.5) * 0.3
   }));
 
-  function animate(){
-    ctx.clearRect(0,0,canvas.width,canvas.height);
+  function animate() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
 
     particles.forEach(p => {
       p.x += p.vx;
       p.y += p.vy;
 
-      if(p.x < 0 || p.x > canvas.width) p.vx *= -1;
-      if(p.y < 0 || p.y > canvas.height) p.vy *= -1;
+      if (p.x < 0 || p.x > canvas.width) p.vx *= -1;
+      if (p.y < 0 || p.y > canvas.height) p.vy *= -1;
 
       ctx.beginPath();
-      ctx.arc(p.x, p.y, 1.5, 0, Math.PI*2);
+      ctx.arc(p.x, p.y, 1.5, 0, Math.PI * 2);
       ctx.fillStyle = "rgba(125,211,252,0.6)";
       ctx.fill();
     });
@@ -381,126 +328,254 @@ function initParticles(){
   animate();
 }
 
-initParticles();
-
-/* =====================================================
-   CURSOR GLOW TRAIL (VERY PREMIUM FEEL)
-===================================================== */
+/* ======================================================
+   CURSOR GLOW
+====================================================== */
 const glow = document.createElement("div");
 glow.className = "cursor-glow";
 document.body.appendChild(glow);
 
-document.addEventListener("mousemove", (e) => {
+document.addEventListener("mousemove", e => {
   glow.style.left = e.clientX + "px";
   glow.style.top = e.clientY + "px";
 });
 
-/* =====================================================
-   SKILL FILTER LOGIC
-===================================================== */
-function initSkillFilters(){
+/* ======================================================
+   SKILL FILTERS
+====================================================== */
+function initSkillFilters() {
   const buttons = document.querySelectorAll(".skill-filter");
   const cards = document.querySelectorAll(".skill-card");
 
-  buttons.forEach(btn=>{
-    btn.addEventListener("click", ()=>{
-      
-      // active button UI
-      buttons.forEach(b=>b.classList.remove("active"));
+  buttons.forEach(btn => {
+    btn.addEventListener("click", () => {
+      buttons.forEach(b => b.classList.remove("active"));
       btn.classList.add("active");
 
       const filter = btn.dataset.filter;
 
-      cards.forEach(card=>{
-        const match = filter === "all" || card.dataset.category === filter;
+      cards.forEach(card => {
+        const match =
+          filter === "all" ||
+          card.dataset.category === filter;
 
-        if(match){
-          card.classList.remove("hide");
-        } else {
-          card.classList.add("hide");
-        }
+        card.classList.toggle("hide", !match);
       });
-
     });
   });
 }
 
-/* =====================================================
+/* ======================================================
    TILT CARDS
-===================================================== */
-function initTiltCards(){
-
-  const cards = document.querySelectorAll(".tilt-card");
-
-  cards.forEach(card => {
-
+====================================================== */
+function initTiltCards() {
+  document.querySelectorAll(".tilt-card").forEach(card => {
     card.addEventListener("mousemove", e => {
-
       const rect = card.getBoundingClientRect();
 
       const x = e.clientX - rect.left;
       const y = e.clientY - rect.top;
 
-      const centerX = rect.width / 2;
-      const centerY = rect.height / 2;
-
-      const rotateX = -(y - centerY) / 12;
-      const rotateY = (x - centerX) / 12;
+      const rotateX = -(y - rect.height / 2) / 12;
+      const rotateY = (x - rect.width / 2) / 12;
 
       card.style.transform =
         `perspective(1000px)
          rotateX(${rotateX}deg)
          rotateY(${rotateY}deg)
          translateY(-6px)`;
-
-      card.style.setProperty("--x", `${x}px`);
-      card.style.setProperty("--y", `${y}px`);
     });
 
     card.addEventListener("mouseleave", () => {
       card.style.transform = "";
     });
-
   });
 }
 
-/* =====================================================
+/* ======================================================
    AI BUBBLE
-===================================================== */
-function initAIBubble(){
-
+====================================================== */
+function initAIBubble() {
   const toggle = document.getElementById("aiToggle");
   const panel = document.getElementById("aiPanel");
 
-  if(!toggle || !panel) return;
+  if (!toggle || !panel) return;
 
   toggle.addEventListener("click", () => {
     panel.classList.toggle("open");
   });
 
   document.querySelectorAll(".ai-action").forEach(btn => {
-
     btn.addEventListener("click", () => {
-
       const link = btn.dataset.link;
 
-      if(link.endsWith(".pdf")){
+      if (link.endsWith(".pdf")) {
         window.open(link, "_blank");
-      }else{
+      } else {
         document.querySelector(link)?.scrollIntoView({
-          behavior:"smooth"
+          behavior: "smooth"
         });
       }
 
       panel.classList.remove("open");
     });
-
   });
 
   document.addEventListener("click", e => {
-    if(!e.target.closest(".ai-bubble")){
+    if (!e.target.closest(".ai-bubble")) {
       panel.classList.remove("open");
     }
   });
+}
 
+/* ======================================================
+   AI TERMINAL (FINAL FIXED)
+====================================================== */
+function initAITerminal() {
+
+  const terminal = document.getElementById("consoleBody");
+  const metrics = document.getElementById("terminalMetrics");
+
+  if (!terminal || !metrics) return;
+
+  /* lock terminal scroll */
+  terminal.style.overflowY = "auto";
+  terminal.style.maxHeight = "320px";
+
+  /* audio (single context fix) */
+  const AudioCtx = window.AudioContext || window.webkitAudioContext;
+  const audioCtx = new AudioCtx();
+
+  function beep() {
+    try {
+      if (audioCtx.state === "suspended") audioCtx.resume();
+
+      const osc = audioCtx.createOscillator();
+      const gain = audioCtx.createGain();
+
+      osc.type = "square";
+      osc.frequency.value = 880;
+      gain.gain.value = 0.02;
+
+      osc.connect(gain);
+      gain.connect(audioCtx.destination);
+
+      osc.start();
+      osc.stop(audioCtx.currentTime + 0.03);
+    } catch (e) {}
+  }
+
+  /* metrics */
+  function updateMetrics() {
+    const cpu = Math.floor(28 + Math.random() * 45);
+    const ram = Math.floor(42 + Math.random() * 45);
+    const ping = Math.floor(8 + Math.random() * 24);
+
+    const time = new Date().toLocaleTimeString([], {
+      hour: "2-digit",
+      minute: "2-digit",
+      second: "2-digit"
+    });
+
+    metrics.innerHTML = `
+      <div class="metric-box">CPU<br><strong>${cpu}%</strong></div>
+      <div class="metric-box">RAM<br><strong>${ram}%</strong></div>
+      <div class="metric-box">LATENCY<br><strong>${ping}ms</strong></div>
+      <div class="metric-box">STATUS<br><strong class="metric-live">● ONLINE</strong></div>
+      <div class="metric-box">TIME<br><strong>${time}</strong></div>
+      <div class="metric-box">AGENTS<br><strong>${1 + Math.floor(Math.random()*5)} ACTIVE</strong></div>
+    `;
+  }
+
+  updateMetrics();
+  setInterval(updateMetrics, 1000);
+
+  const sequences = [
+    { cmd: "initialize portfolio", result: "Senior AI Engineer profile loaded" },
+    { cmd: "load experience", result: "7+ years engineering modules ready" },
+    { cmd: "scan skills", result: "LLMs | RAG | Python | Backend | Cloud" },
+    { cmd: "fetch projects", result: "Enterprise systems synchronized" },
+    { cmd: "detect visitor", result: "Recruiter traffic identified" },
+    { cmd: "opportunity status", result: "READY FOR INTERVIEW" },
+    { cmd: "system health", result: "All services operational" }
+  ];
+
+  let index = 0;
+
+  function typeLine(text, done) {
+
+    const line = document.createElement("div");
+    line.className = "console-line";
+    terminal.appendChild(line);
+
+    let i = 0;
+
+    function type() {
+      if (i <= text.length) {
+
+        line.innerHTML =
+          `<span class="prompt">DIXIT@AI:~$ </span>` +
+          text.slice(0, i) +
+          `<span class="console-cursor">_</span>`;
+
+        if (i % 2 === 0) beep();
+
+        i++;
+
+        terminal.scrollTop = terminal.scrollHeight;
+
+        setTimeout(type, 35);
+
+      } else {
+        line.innerHTML =
+          `<span class="prompt">DIXIT@AI:~$ </span>` +
+          text;
+
+        done();
+      }
+    }
+
+    type();
+  }
+
+  function printResult(text) {
+
+    const result = document.createElement("div");
+    result.className = "console-line";
+    result.textContent = text;
+
+    terminal.appendChild(result);
+
+    const bar = document.createElement("div");
+    bar.className = "loadbar";
+    bar.innerHTML = `<span></span>`;
+
+    terminal.appendChild(bar);
+
+    terminal.scrollTop = terminal.scrollHeight;
+  }
+
+  function run() {
+
+    if (index >= sequences.length) {
+      setTimeout(() => {
+        terminal.innerHTML = "";
+        index = 0;
+        run();
+      }, 2000);
+      return;
+    }
+
+    const item = sequences[index];
+
+    typeLine(item.cmd, () => {
+      setTimeout(() => {
+        printResult(item.result);
+        index++;
+        setTimeout(run, 800);
+      }, 250);
+    });
+  }
+
+  run();
 }
