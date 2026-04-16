@@ -24,6 +24,10 @@ document.addEventListener("DOMContentLoaded", () => {
   initContactForm();
   initSmoothNavHighlight();
   initTracking();
+  initSkillFilters();
+  initTiltCards();
+  initCounters();
+  initAIBubble();
 });
 
 /* ======================================================
@@ -70,6 +74,47 @@ function initTypingAnimation() {
   }
 
   typeLoop();
+}
+
+/* ======================================================
+   METRIC COUNTERS
+====================================================== */
+function initCounters(){
+
+  const counters = document.querySelectorAll(".counter");
+
+  const observer = new IntersectionObserver(entries => {
+
+    entries.forEach(entry => {
+
+      if(entry.isIntersecting){
+
+        const el = entry.target;
+        const target = +el.dataset.target;
+
+        let count = 0;
+        const speed = target / 70;
+
+        const update = () => {
+          count += speed;
+
+          if(count < target){
+            el.textContent = Math.ceil(count);
+            requestAnimationFrame(update);
+          } else {
+            el.textContent = target + "+";
+          }
+        };
+
+        update();
+        observer.unobserve(el);
+      }
+
+    });
+
+  }, { threshold:.45 });
+
+  counters.forEach(c => observer.observe(c));
 }
 
 /* ======================================================
@@ -380,5 +425,82 @@ function initSkillFilters(){
   });
 }
 
-// call it in DOMContentLoaded
-initSkillFilters();
+/* =====================================================
+   TILT CARDS
+===================================================== */
+function initTiltCards(){
+
+  const cards = document.querySelectorAll(".tilt-card");
+
+  cards.forEach(card => {
+
+    card.addEventListener("mousemove", e => {
+
+      const rect = card.getBoundingClientRect();
+
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+
+      const centerX = rect.width / 2;
+      const centerY = rect.height / 2;
+
+      const rotateX = -(y - centerY) / 12;
+      const rotateY = (x - centerX) / 12;
+
+      card.style.transform =
+        `perspective(1000px)
+         rotateX(${rotateX}deg)
+         rotateY(${rotateY}deg)
+         translateY(-6px)`;
+
+      card.style.setProperty("--x", `${x}px`);
+      card.style.setProperty("--y", `${y}px`);
+    });
+
+    card.addEventListener("mouseleave", () => {
+      card.style.transform = "";
+    });
+
+  });
+}
+
+/* =====================================================
+   AI BUBBLE
+===================================================== */
+function initAIBubble(){
+
+  const toggle = document.getElementById("aiToggle");
+  const panel = document.getElementById("aiPanel");
+
+  if(!toggle || !panel) return;
+
+  toggle.addEventListener("click", () => {
+    panel.classList.toggle("open");
+  });
+
+  document.querySelectorAll(".ai-action").forEach(btn => {
+
+    btn.addEventListener("click", () => {
+
+      const link = btn.dataset.link;
+
+      if(link.endsWith(".pdf")){
+        window.open(link, "_blank");
+      }else{
+        document.querySelector(link)?.scrollIntoView({
+          behavior:"smooth"
+        });
+      }
+
+      panel.classList.remove("open");
+    });
+
+  });
+
+  document.addEventListener("click", e => {
+    if(!e.target.closest(".ai-bubble")){
+      panel.classList.remove("open");
+    }
+  });
+
+}

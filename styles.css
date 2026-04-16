@@ -165,6 +165,23 @@ body{
   background:rgba(255,255,255,.75);
 }
 
+/* Glow line */
+.nav::after{
+  content:"";
+  position:absolute;
+  left:0;
+  bottom:0;
+  width:100%;
+  height:1px;
+  background:linear-gradient(
+    90deg,
+    transparent,
+    var(--accent),
+    transparent
+  );
+  opacity:.55;
+}
+
 .nav::after{
   content:"";
   position:absolute;
@@ -409,6 +426,44 @@ body{
 .social-links a:hover{
   color:var(--text);
 }
+
+/* =====================================================
+   METRIC COUNTERS
+===================================================== */
+.metrics{
+  max-width:1180px;
+  margin:auto;
+  padding:2rem 2rem 4rem;
+}
+
+.metrics-grid{
+  display:grid;
+  gap:1.25rem;
+  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+}
+
+.metric-card{
+  background:var(--card);
+  border:1px solid var(--border);
+  border-radius:20px;
+  padding:2rem;
+  text-align:center;
+
+  backdrop-filter:blur(16px);
+}
+
+.metric-card h3{
+  font-size:2.4rem;
+  color:var(--accent);
+  margin-bottom:.4rem;
+  font-weight:800;
+}
+
+.metric-card p{
+  color:var(--muted);
+  font-weight:600;
+}
+
 
 /* =====================================================
    CARD BASE STYLE
@@ -902,4 +957,313 @@ body{
   opacity:0;
   transform:scale(.9);
   pointer-events:none;
+}
+
+.skills-radar{
+  display:flex;
+  justify-content:center;
+  margin-bottom:2.5rem;
+}
+
+.radar-card{
+  width:min(760px,100%);
+  padding:2rem;
+  border-radius:22px;
+
+  background:rgba(255,255,255,.05);
+  border:1px solid var(--border);
+
+  backdrop-filter:blur(20px);
+
+  box-shadow:
+    0 20px 50px rgba(0,0,0,.25),
+    0 0 30px rgba(125,211,252,.08);
+}
+
+.radar-card h4{
+  text-align:center;
+  margin-bottom:1.6rem;
+  font-size:1.15rem;
+}
+
+.radar-row{
+  margin-bottom:1rem;
+}
+
+.radar-row span{
+  display:block;
+  margin-bottom:.45rem;
+  color:var(--muted);
+  font-size:.95rem;
+}
+
+.bar{
+  height:10px;
+  border-radius:999px;
+  background:rgba(255,255,255,.06);
+  overflow:hidden;
+}
+
+.bar div{
+  height:100%;
+  border-radius:999px;
+
+  background:linear-gradient(
+    90deg,
+    var(--accent),
+    var(--accent2)
+  );
+
+  box-shadow:0 0 12px rgba(125,211,252,.35);
+
+  animation:barGrow 1.5s ease forwards;
+}
+
+@keyframes barGrow{
+  from{
+    width:0 !important;
+  }
+}
+
+.bar{
+  height:12px;
+  border-radius:999px;
+  overflow:hidden;
+  background:rgba(255,255,255,.08);
+}
+
+[data-theme="light"] .bar{
+  background:rgba(0,0,0,.08);
+}
+
+.bar div{
+  height:100%;
+  border-radius:999px;
+
+  background:linear-gradient(
+    90deg,
+    #38bdf8,
+    #2563eb
+  );
+
+  box-shadow:
+    0 0 12px rgba(56,189,248,.45),
+    0 0 20px rgba(37,99,235,.25);
+
+  animation:barGrow 1.6s ease forwards;
+}
+
+/* =====================================================
+   ORBITING AI TECH CORE
+===================================================== */
+.orbit-wrapper{
+  position:relative;
+  width:340px;
+  height:340px;
+  margin:3rem auto;
+}
+
+.orbit-center{
+  position:absolute;
+  top:50%;
+  left:50%;
+  transform:translate(-50%,-50%);
+
+  width:110px;
+  height:110px;
+  border-radius:50%;
+
+  display:flex;
+  align-items:center;
+  justify-content:center;
+
+  font-weight:800;
+  font-size:1.1rem;
+
+  background:linear-gradient(
+    135deg,
+    var(--accent),
+    var(--accent2)
+  );
+
+  color:#000;
+
+  box-shadow:
+    0 0 25px rgba(125,211,252,.45),
+    0 0 50px rgba(125,211,252,.25);
+}
+
+.orbit{
+  position:absolute;
+  inset:0;
+  border:1px dashed rgba(125,211,252,.18);
+  border-radius:50%;
+
+  animation:spin 14s linear infinite;
+}
+
+.orbit span{
+  position:absolute;
+  top:-14px;
+  left:50%;
+  transform:translateX(-50%);
+
+  padding:.45rem .8rem;
+  border-radius:999px;
+
+  background:rgba(255,255,255,.06);
+  backdrop-filter:blur(12px);
+
+  font-size:.82rem;
+  font-weight:700;
+}
+
+[data-theme="light"] .orbit span{
+  background:rgba(255,255,255,.9);
+}
+
+.orbit-1{ width:180px;height:180px;top:80px;left:80px;animation-duration:14s;}
+.orbit-2{ width:240px;height:240px;top:50px;left:50px;animation-duration:18s;}
+.orbit-3{ width:300px;height:300px;top:20px;left:20px;animation-duration:22s;}
+.orbit-4{ width:220px;height:220px;top:60px;left:60px;animation-duration:16s;animation-direction:reverse;}
+.orbit-5{ width:280px;height:280px;top:30px;left:30px;animation-duration:20s;animation-direction:reverse;}
+
+@keyframes spin{
+  from{transform:rotate(0deg);}
+  to{transform:rotate(360deg);}
+}
+
+/* =====================================================
+   3D HOVER TILT CARDS
+===================================================== */
+.tilt-card{
+  transform-style:preserve-3d;
+  will-change:transform;
+  transition:
+    transform .18s ease,
+    box-shadow .25s ease;
+  position:relative;
+  overflow:hidden;
+}
+
+.tilt-card::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  background:
+    radial-gradient(
+      circle at var(--x,50%) var(--y,50%),
+      rgba(255,255,255,.14),
+      transparent 35%
+    );
+  opacity:0;
+  transition:.25s ease;
+  pointer-events:none;
+}
+
+.tilt-card:hover::before{
+  opacity:1;
+}
+
+.tilt-card:hover{
+  box-shadow:
+    0 18px 40px rgba(0,0,0,.25),
+    0 0 30px rgba(125,211,252,.18);
+}
+
+/* =====================================================
+   AI BUBBLE
+===================================================== */
+.ai-bubble{
+  position:fixed;
+  right:26px;
+  bottom:26px;
+  z-index:1200;
+}
+
+.ai-toggle{
+  width:62px;
+  height:62px;
+  border:none;
+  border-radius:50%;
+  cursor:pointer;
+
+  font-size:1.4rem;
+  font-weight:800;
+
+  background:linear-gradient(
+    135deg,
+    var(--accent),
+    var(--accent2)
+  );
+
+  color:#000;
+
+  box-shadow:
+    0 0 18px rgba(125,211,252,.35),
+    0 0 45px rgba(125,211,252,.22);
+
+  animation:pulseBubble 2.5s infinite;
+}
+
+@keyframes pulseBubble{
+  0%,100%{transform:scale(1);}
+  50%{transform:scale(1.08);}
+}
+
+.ai-panel{
+  position:absolute;
+  right:0;
+  bottom:78px;
+
+  width:240px;
+  padding:1rem;
+
+  border-radius:18px;
+  background:var(--card);
+  border:1px solid var(--border);
+
+  backdrop-filter:blur(18px);
+
+  opacity:0;
+  transform:translateY(12px);
+  pointer-events:none;
+
+  transition:.3s ease;
+}
+
+.ai-panel.open{
+  opacity:1;
+  transform:none;
+  pointer-events:auto;
+}
+
+.ai-panel h4{
+  margin-bottom:.45rem;
+}
+
+.ai-panel p{
+  color:var(--muted);
+  font-size:.92rem;
+  margin-bottom:.8rem;
+}
+
+.ai-action{
+  width:100%;
+  margin-bottom:.55rem;
+  padding:.7rem;
+
+  border:none;
+  border-radius:12px;
+  cursor:pointer;
+
+  background:rgba(255,255,255,.05);
+  color:var(--text);
+
+  transition:.25s;
+}
+
+.ai-action:hover{
+  background:rgba(125,211,252,.12);
+  transform:translateY(-2px);
 }
