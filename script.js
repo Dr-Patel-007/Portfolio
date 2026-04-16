@@ -32,10 +32,10 @@ const projectData={
   backend:"High‑performance Python microservices optimized for latency."
 };
 const experienceData={
-  caterpillar:"Led production AI systems, enterprise RAG apps, AI agents, and model validation.",
-  fabricators:"Optimized backend systems improving execution performance by ~33%.",
-  wright:"Developed applied healthcare AI systems supporting $1M+ research funding.",
-  lnt:"Built enterprise Python solutions and AI‑based computer vision POCs."
+  caterpillar:"Led production AI systems, enterprise RAG apps, AI agents, and model validation. [Please downlaod resume for detail.]",
+  fabricators:"Optimized backend systems improving execution performance by ~33%. [Please downlaod resume for detail.]",
+  wright:"Developed applied healthcare AI systems supporting $1M+ research funding. [Please downlaod resume for detail.]",
+  lnt:"Built enterprise Python solutions and AI‑based computer vision POCs. [Please downlaod resume for detail.]"
 };
 
 document.querySelectorAll(".project,.experience").forEach(el=>{
