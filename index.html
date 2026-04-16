@@ -114,8 +114,9 @@
           <span>LLMs</span>
           <span>RAG</span>
           <span>AI Agents</span>
+		  <span>Python</span>
           <span>Backend Systems</span>
-          <span>AWS</span>
+          <span>Software Engineering and Development (Full Stack)</span>
         </div>
 
         <!-- CTA Buttons -->
@@ -196,84 +197,81 @@
   </section>
 
 <!-- =====================================
-       SKILLS SECTION (UPGRADED)
+       SKILLS SECTION
 ====================================== -->
 <section id="skills" class="section reveal">
 
   <h3 class="section-title">Technical Capabilities</h3>
 
+  <!-- FILTER BUTTONS -->
+  <div class="skills-filters">
+    <button class="skill-filter active" data-filter="all">All</button>
+    <button class="skill-filter" data-filter="ai">AI / ML</button>
+    <button class="skill-filter" data-filter="backend">Backend</button>
+    <button class="skill-filter" data-filter="cloud">Cloud</button>
+    <button class="skill-filter" data-filter="data">Data</button>
+    <button class="skill-filter" data-filter="tools">Tools</button>
+  </div>
+
   <div class="grid skills-grid">
 
-    <!-- Programming -->
-    <div class="skill-card">
-      <h4>Programming</h4>
-      <p>Python, C#, Java, SQL, JavaScript, HTML, CSS</p>
-
-      <div class="skill-icons">
-        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" alt="Python"/>
-        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/csharp/csharp-original.svg" alt="C#"/>
-        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg" alt="Java"/>
-        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" alt="JavaScript"/>
-      </div>
-    </div>
-
-    <!-- AI & ML -->
-    <div class="skill-card">
+    <!-- AI -->
+    <div class="skill-card" data-category="ai">
       <h4>AI & Machine Learning</h4>
-      <p>GenAI, LLMs, RAG, AI Agents, Prompt Engineering, Model Evaluation</p>
+      <p>GenAI, LLMs, RAG, AI Agents, Prompt Engineering</p>
 
       <div class="skill-icons">
-        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" alt="Python"/>
-        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tensorflow/tensorflow-original.svg" alt="TensorFlow"/>
-        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/pytorch/pytorch-original.svg" alt="PyTorch"/>
+        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg">
+        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tensorflow/tensorflow-original.svg">
+        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/pytorch/pytorch-original.svg">
       </div>
     </div>
 
     <!-- Backend -->
-    <div class="skill-card">
+    <div class="skill-card" data-category="backend">
       <h4>Backend Systems</h4>
-      <p>REST APIs, Microservices, System Design, OOP, DSA</p>
+      <p>REST APIs, Microservices, System Design, DSA</p>
 
       <div class="skill-icons">
-        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg" alt="Node.js"/>
-        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg" alt="Docker"/>
-        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" alt="JavaScript"/>
-      </div>
-    </div>
-
-    <!-- Databases -->
-    <div class="skill-card">
-      <h4>Databases & Data</h4>
-      <p>MySQL, PostgreSQL, MongoDB, JSON, ETL Pipelines</p>
-
-      <div class="skill-icons">
-        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg" alt="MySQL"/>
-        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg" alt="PostgreSQL"/>
-        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg" alt="MongoDB"/>
+        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg">
+        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg">
+        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg">
       </div>
     </div>
 
     <!-- Cloud -->
-    <div class="skill-card">
+    <div class="skill-card" data-category="cloud">
       <h4>Cloud & DevOps</h4>
       <p>AWS, Docker, CI/CD, Scalable Architectures</p>
 
       <div class="skill-icons">
-        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/amazonwebservices/amazonwebservices-original.svg" alt="AWS"/>
-        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg" alt="Docker"/>
-        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/kubernetes/kubernetes-plain.svg" alt="Kubernetes"/>
+        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/amazonwebservices/amazonwebservices-original.svg">
+        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg">
+        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/kubernetes/kubernetes-plain.svg">
       </div>
     </div>
 
-    <!-- Frameworks -->
-    <div class="skill-card">
+    <!-- Data -->
+    <div class="skill-card" data-category="data">
+      <h4>Databases & Data</h4>
+      <p>MySQL, PostgreSQL, MongoDB, ETL Pipelines</p>
+
+      <div class="skill-icons">
+        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg">
+        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg">
+        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg">
+      </div>
+    </div>
+
+    <!-- Tools -->
+    <div class="skill-card" data-category="tools">
       <h4>Frameworks & Tools</h4>
       <p>Django, .NET, Git, GitHub, Copilot Studio</p>
 
       <div class="skill-icons">
-        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/django/django-plain.svg" alt="Django"/>
-        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/dot-net/dot-net-original.svg" alt=".NET"/>
-        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg" alt="Git"/>
+        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/django/django-plain.svg">
+        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg">
+        <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linux/linux-original.svg">
       </div>
     </div>
 

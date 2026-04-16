@@ -297,7 +297,7 @@ function initTracking() {
 }
 
 /* ======================================================
-   PARTICLE SYSTEM (LIGHTWEIGHT AI VIBE)
+   PARTICLE SYSTEM
 ====================================================== */
 function initParticles(){
   const canvas = document.getElementById("particle-canvas");
@@ -349,3 +349,36 @@ document.addEventListener("mousemove", (e) => {
   glow.style.left = e.clientX + "px";
   glow.style.top = e.clientY + "px";
 });
+
+/* =====================================================
+   SKILL FILTER LOGIC
+===================================================== */
+function initSkillFilters(){
+  const buttons = document.querySelectorAll(".skill-filter");
+  const cards = document.querySelectorAll(".skill-card");
+
+  buttons.forEach(btn=>{
+    btn.addEventListener("click", ()=>{
+      
+      // active button UI
+      buttons.forEach(b=>b.classList.remove("active"));
+      btn.classList.add("active");
+
+      const filter = btn.dataset.filter;
+
+      cards.forEach(card=>{
+        const match = filter === "all" || card.dataset.category === filter;
+
+        if(match){
+          card.classList.remove("hide");
+        } else {
+          card.classList.add("hide");
+        }
+      });
+
+    });
+  });
+}
+
+// call it in DOMContentLoaded
+initSkillFilters();

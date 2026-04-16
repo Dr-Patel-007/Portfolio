@@ -847,7 +847,7 @@ body{
 }
 
 /* =====================================================
-   CURSOR GLOW TRAIL (VERY PREMIUM FEEL)
+   CURSOR GLOW TRAIL
 ===================================================== */
 .cursor-glow{
   position:fixed;
@@ -860,4 +860,46 @@ body{
   transform:translate(-50%,-50%);
   filter:blur(8px);
   z-index:9999;
+}
+
+/* =====================================================
+   SKILL FILTER
+===================================================== */
+.skills-filters{
+  display:flex;
+  justify-content:center;
+  gap:10px;
+  flex-wrap:wrap;
+  margin-bottom:2rem;
+}
+
+.skill-filter{
+  padding:.6rem 1.2rem;
+  border-radius:999px;
+  border:1px solid var(--border);
+  background:rgba(255,255,255,.05);
+  color:var(--text);
+  cursor:pointer;
+  transition:.3s;
+}
+
+.skill-filter:hover{
+  transform:translateY(-2px);
+  box-shadow:0 0 15px rgba(125,211,252,.25);
+}
+
+.skill-filter.active{
+  background:linear-gradient(135deg,var(--accent),var(--accent2));
+  color:#000;
+  font-weight:700;
+}
+
+.skill-card{
+  transition: all .4s ease;
+}
+
+.skill-card.hide{
+  opacity:0;
+  transform:scale(.9);
+  pointer-events:none;
 }
