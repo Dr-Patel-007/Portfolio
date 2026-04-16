@@ -33,6 +33,16 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 
 /* ======================================================
+   AI NEURAL SYSTEM GLOBAL STATE (NEW)
+====================================================== */
+const AI_NEURAL = {
+  mouse: { x: window.innerWidth / 2, y: window.innerHeight / 2 },
+  scrollY: 0,
+  recruiterMode: 0, // 0 → normal, 1 → detected, 2 → high attention
+  pulse: 0
+};
+
+/* ======================================================
    HERO TYPING ANIMATION
 ====================================================== */
 function initTypingAnimation() {
@@ -683,28 +693,81 @@ function initContactForm() {
 /* =========================
      NEURAL BACKGROUND
 ========================= */
+/* ======================================================
+   NEURAL BACKGROUND (UPGRADED AI SYSTEM)
+   - Mouse attraction
+   - Pulse waves
+   - Dual-layer rendering
+   - Recruiter detection mode
+====================================================== */
 function initNeuralBackground() {
   const canvas = document.getElementById("neural-bg");
   if (!canvas) return;
 
   const ctx = canvas.getContext("2d");
 
-  let width = canvas.width = window.innerWidth;
-  let height = canvas.height = window.innerHeight;
+  let width = (canvas.width = window.innerWidth);
+  let height = (canvas.height = window.innerHeight);
 
-  const NODES = 80;
+  const NODES = 90;
 
-  const nodes = Array.from({ length: NODES }, () => ({
+  // =========================
+  // LAYER 1: DEEP NETWORK (slow + subtle)
+  // =========================
+  const deepNodes = Array.from({ length: NODES }, () => ({
     x: Math.random() * width,
     y: Math.random() * height,
-    vx: (Math.random() - 0.5) * 0.6,
-    vy: (Math.random() - 0.5) * 0.6
+    vx: (Math.random() - 0.5) * 0.25,
+    vy: (Math.random() - 0.5) * 0.25
   }));
 
-  function drawLine(a, b, dist) {
-    const opacity = 1 - dist / 140;
+  // =========================
+  // LAYER 2: ACTIVE NETWORK (fast + reactive)
+  // =========================
+  const activeNodes = Array.from({ length: 45 }, () => ({
+    x: Math.random() * width,
+    y: Math.random() * height,
+    vx: (Math.random() - 0.5) * 0.9,
+    vy: (Math.random() - 0.5) * 0.9
+  }));
 
-    ctx.strokeStyle = `rgba(0, 255, 140, ${opacity * 0.25})`;
+  /* =========================
+     MOUSE TRACKING
+  ========================= */
+  window.addEventListener("mousemove", (e) => {
+    AI_NEURAL.mouse.x = e.clientX;
+    AI_NEURAL.mouse.y = e.clientY;
+  });
+
+  window.addEventListener("scroll", () => {
+    AI_NEURAL.scrollY = window.scrollY;
+
+    // Recruiter detection trigger zone (hero section)
+    if (window.scrollY < window.innerHeight * 0.8) {
+      AI_NEURAL.recruiterMode = 2;
+    } else if (window.scrollY < window.innerHeight * 1.5) {
+      AI_NEURAL.recruiterMode = 1;
+    } else {
+      AI_NEURAL.recruiterMode = 0;
+    }
+  });
+
+  /* =========================
+     PULSE SYSTEM
+  ========================= */
+  function updatePulse() {
+    AI_NEURAL.pulse += 0.03;
+    requestAnimationFrame(updatePulse);
+  }
+  updatePulse();
+
+  /* =========================
+     DRAW CONNECTION
+  ========================= */
+  function drawLine(a, b, dist, intensity, color) {
+    const opacity = (1 - dist / 160) * intensity;
+
+    ctx.strokeStyle = color.replace("ALPHA", opacity);
     ctx.lineWidth = 1;
 
     ctx.beginPath();
@@ -713,43 +776,126 @@ function initNeuralBackground() {
     ctx.stroke();
   }
 
+  /* =========================
+     NODE UPDATE (with mouse attraction)
+  ========================= */
+  function updateNode(n, strength = 1, attraction = true) {
+    n.x += n.vx;
+    n.y += n.vy;
+
+    // wall bounce
+    if (n.x < 0 || n.x > width) n.vx *= -1;
+    if (n.y < 0 || n.y > height) n.vy *= -1;
+
+    // =========================
+    // UPGRADE 1: Mouse attraction
+    // =========================
+    if (attraction) {
+      const dx = AI_NEURAL.mouse.x - n.x;
+      const dy = AI_NEURAL.mouse.y - n.y;
+
+      n.x += dx * 0.0008 * strength;
+      n.y += dy * 0.0008 * strength;
+    }
+  }
+
+  /* =========================
+     RENDER LOOP
+  ========================= */
   function animate() {
     ctx.clearRect(0, 0, width, height);
 
-    for (let i = 0; i < nodes.length; i++) {
-      const n = nodes[i];
+    const pulseBoost = 1 + Math.sin(AI_NEURAL.pulse) * 0.15;
+    const recruiterBoost = AI_NEURAL.recruiterMode;
 
-      n.x += n.vx;
-      n.y += n.vy;
+    // =========================
+    // LAYER 1 — DEEP NETWORK
+    // =========================
+    deepNodes.forEach((n, i) => {
+      updateNode(n, 0.6, false);
 
-      if (n.x < 0 || n.x > width) n.vx *= -1;
-      if (n.y < 0 || n.y > height) n.vy *= -1;
-
-      // draw node
-      ctx.fillStyle = "rgba(0, 255, 140, 0.7)";
+      ctx.fillStyle = `rgba(120, 255, 200, 0.25)`;
       ctx.beginPath();
-      ctx.arc(n.x, n.y, 2, 0, Math.PI * 2);
+      ctx.arc(n.x, n.y, 1.6, 0, Math.PI * 2);
       ctx.fill();
 
-      // connections
-      for (let j = i + 1; j < nodes.length; j++) {
-        const m = nodes[j];
+      for (let j = i + 1; j < deepNodes.length; j++) {
+        const m = deepNodes[j];
+        const dx = n.x - m.x;
+        const dy = n.y - m.y;
+        const dist = Math.sqrt(dx * dx + dy * dy);
+
+        if (dist < 150) {
+          drawLine(
+            n,
+            m,
+            dist,
+            0.25 * pulseBoost,
+            "rgba(0,255,180,ALPHA)"
+          );
+        }
+      }
+    });
+
+    // =========================
+    // LAYER 2 — ACTIVE NETWORK (reactive)
+    // =========================
+    activeNodes.forEach((n, i) => {
+      updateNode(n, 1.5, true);
+
+      // recruiter mode glow boost
+      const glow = recruiterBoost ? 0.9 : 0.5;
+
+      ctx.fillStyle = `rgba(0, 255, 120, ${glow})`;
+      ctx.beginPath();
+      ctx.arc(n.x, n.y, 2.2 + recruiterBoost * 0.8, 0, Math.PI * 2);
+      ctx.fill();
+
+      for (let j = i + 1; j < activeNodes.length; j++) {
+        const m = activeNodes[j];
 
         const dx = n.x - m.x;
         const dy = n.y - m.y;
         const dist = Math.sqrt(dx * dx + dy * dy);
 
-        if (dist < 140) {
-          drawLine(n, m, dist);
+        if (dist < 160) {
+          drawLine(
+            n,
+            m,
+            dist,
+            0.6 + recruiterBoost * 0.4,
+            "rgba(0,255,120,ALPHA)"
+          );
         }
       }
-    }
+
+      // mouse connection beam (UPGRADE 1 highlight)
+      const mx = AI_NEURAL.mouse.x;
+      const my = AI_NEURAL.mouse.y;
+
+      const mdx = n.x - mx;
+      const mdy = n.y - my;
+      const mdist = Math.sqrt(mdx * mdx + mdy * mdy);
+
+      if (mdist < 180) {
+        drawLine(
+          n,
+          { x: mx, y: my },
+          mdist,
+          1.2,
+          "rgba(0,200,255,ALPHA)"
+        );
+      }
+    });
 
     requestAnimationFrame(animate);
   }
 
   animate();
 
+  /* =========================
+     RESIZE HANDLING
+  ========================= */
   window.addEventListener("resize", () => {
     width = canvas.width = window.innerWidth;
     height = canvas.height = window.innerHeight;
