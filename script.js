@@ -181,10 +181,10 @@ function initPortfolioModal() {
   if (!modal || !title || !body || !closeBtn) return;
 
   const projectData = {
-    rag: "Designed secure RAG systems using LLMs and vector databases.",
-    agent: "Built AI agents using Copilot Studio and workflows.",
-    backend: "Developed scalable Python backend APIs and microservices.",
-	healthcare: "Developed digital mobile health applications that secured over $1 million in research grant funding."
+    rag: "Designed AI-powered solutions and Retrieval-Augmented Generation (RAG) applications that improved secure access to enterprise data through security-trimmed retrieval, ensuring users only accessed authorized information while speeding up decision-making and reducing the time spent searching for critical data.",
+    agent: "Built intelligent AI automation agents using Copilot Studio and workflows that simplified multi-step business processes, reducing repetitive manual work and improving overall operational efficiency.",
+    backend: "Improved algorithmic and backend performance in a prior manufacturing software role by leveraging efficient data structures, resulting in approximately 33% higher execution efficiency along with better system responsiveness, reliability, and user productivity.",
+	healthcare: "Designed and developed mobile health applications for the healthcare professionals that supported real-world clinical workflows. These solutions exceeded client expectations and helped secure over $1 million in research grant funding for subsequent project phases."
   };
 
   const experienceData = {

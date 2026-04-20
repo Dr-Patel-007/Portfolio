@@ -1601,3 +1601,110 @@ section, header, footer {
   position: relative;
   z-index: 2;
 }
+
+/* ===============================
+   UNIQUE PROJECT CARD Icon's THEMES
+=============================== */
+
+.project-card[data-project="rag"] .project-icon{
+  animation: floatIcon 3s ease-in-out infinite;
+}
+
+.project-card[data-project="agent"] .project-icon{
+  animation: pulseIcon 2s infinite;
+}
+
+.project-card[data-project="backend"] .project-icon{
+  animation: rotateIcon 6s linear infinite;
+}
+
+.project-card[data-project="healthcare"] .project-icon{
+  animation: heartbeat 1.6s infinite;
+}
+
+
+/* ===============================
+   ICON ANIMATIONS
+=============================== */
+
+/* All project icons */
+.project-card .project-icon{
+  animation: floatProjectIcon 3s ease-in-out infinite;
+  transition: transform .3s ease;
+}
+
+/* Slight extra lift on hover */
+.project-card:hover .project-icon{
+  transform: scale(1.08);
+}
+
+/* Floating motion */
+@keyframes floatProjectIcon{
+  0%,100%{
+    transform: translateY(0px);
+  }
+  50%{
+    transform: translateY(-6px);
+  }
+}
+
+/* =====================================
+   UNIQUE CARD GLOW THEMES
+   All Sections Now Different
+===================================== */
+
+/* Projects - Electric Blue */
+.project-card:hover{
+  transform: translateY(-10px);
+  box-shadow:
+    0 0 38px rgba(0,180,255,.30),
+    0 14px 34px rgba(0,180,255,.14);
+}
+
+/* Skills - Cyan AI Glow */
+.skill-card:hover{
+  transform: translateY(-8px);
+  box-shadow:
+    0 0 35px rgba(0,255,255,.28),
+    0 12px 30px rgba(0,255,255,.12);
+}
+
+/* Experience - Purple */
+.experience-card:hover{
+  transform: translateY(-8px);
+  box-shadow:
+    0 0 35px rgba(180,120,255,.28),
+    0 12px 30px rgba(180,120,255,.12);
+}
+
+/* Education - Gold */
+.education-card:hover{
+  transform: translateY(-8px);
+  box-shadow:
+    0 0 35px rgba(255,190,0,.30),
+    0 12px 30px rgba(255,190,0,.14);
+}
+
+/* Research - Emerald Green */
+.research-card:hover{
+  transform: translateY(-8px);
+  box-shadow:
+    0 0 35px rgba(0,255,140,.28),
+    0 12px 30px rgba(0,255,140,.12);
+}
+
+/* Recommendations - Pink */
+.recommendation-card:hover{
+  transform: translateY(-8px);
+  box-shadow:
+    0 0 35px rgba(255,90,180,.28),
+    0 12px 30px rgba(255,90,180,.12);
+}
+
+/* Metrics - Orange */
+.metric-card:hover{
+  transform: translateY(-8px);
+  box-shadow:
+    0 0 35px rgba(255,140,0,.28),
+    0 12px 30px rgba(255,140,0,.12);
+}
