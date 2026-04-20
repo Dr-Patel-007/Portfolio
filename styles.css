@@ -541,206 +541,6 @@ body{
 }
 
 /* =====================================================
-   PROJECTS
-===================================================== */
-.project-grid{
-  margin-top:2rem;
-}
-
-.project-card{
-  background:var(--card);
-  border:1px solid var(--border);
-  border-radius:18px;
-  padding:2rem;
-  cursor:pointer;
-  transition:.35s;
-}
-
-.project-card:hover{
-  transform:translateY(-10px);
-  box-shadow:0 0 30px rgba(125,211,252,.28);
-}
-
-.project-icon{
-  font-size:2rem;
-  margin-bottom:1rem;
-}
-
-.project-card h4{
-  margin-bottom:.8rem;
-}
-
-.project-card p{
-  color:var(--muted);
-  margin-bottom:1rem;
-}
-
-.project-card span{
-  color:var(--accent);
-  font-size:.92rem;
-  font-weight:700;
-}
-
-/* =====================================================
-   EXPERIENCE / EDUCATION / RESEARCH / RECOMMENDATIONS
-===================================================== */
-.experience-card,
-.education-card,
-.research-card,
-.recommendation-card{
-  background:var(--card);
-  border:1px solid var(--border);
-  border-radius:18px;
-  padding:2rem;
-  transition:.35s;
-}
-
-.experience-card:hover,
-.education-card:hover,
-.research-card:hover,
-.recommendation-card:hover{
-  transform:translateY(-8px);
-  box-shadow:0 0 30px rgba(125,211,252,.28);
-}
-
-.experience-card,
-.project-card{
-  cursor:pointer;
-}
-
-.experience-card h4,
-.education-card h4,
-.research-card h4,
-.recommendation-card h4{
-  margin-bottom:.8rem;
-}
-
-.experience-card p,
-.education-card p,
-.research-card p,
-.recommendation-card p{
-  color:var(--muted);
-}
-
-.experience-card span,
-.education-card span{
-  display:block;
-  margin-top:.7rem;
-  color:var(--accent);
-  font-size:.92rem;
-}
-
-/* =====================================
-   ACHIEVEMENT CARD
-===================================== */
-
-/* Add achievement card to common card family */
-.achievement-card{
-  background: var(--card);
-  border: 1px solid var(--border);
-  border-radius: 18px;
-  padding: 2rem;
-  transition: .35s ease;
-  box-shadow: var(--shadow);
-  position: relative;
-  overflow: hidden;
-}
-
-/* Premium subtle top glow line */
-.achievement-card::before{
-  content:"";
-  position:absolute;
-  top:0;
-  left:0;
-  width:100%;
-  height:2px;
-  background: linear-gradient(
-    90deg,
-    transparent,
-    rgba(255,70,70,.9),
-    transparent
-  );
-  opacity:.8;
-}
-
-/* Title */
-.achievement-card h4{
-  margin-bottom: .8rem;
-  font-size: 1.08rem;
-  color: var(--text);
-}
-
-/* Description */
-.achievement-card p{
-  color: var(--muted);
-  line-height: 1.7;
-}
-
-/* Optional badge / year text */
-.achievement-card span{
-  display:block;
-  margin-top:.8rem;
-  color:#ff6b6b;
-  font-size:.92rem;
-  font-weight:700;
-}
-
-/* Icon support if used */
-.achievement-icon{
-  font-size:2rem;
-  margin-bottom:1rem;
-}
-
-/* Responsive */
-@media (max-width:680px){
-  .achievement-card{
-    padding:1.5rem;
-  }
-}
-
-
-/* =====================================================
-   RESEARCH
-===================================================== */
-.research-card{
-  text-align:center;
-  text-decoration:none;
-  color:var(--text);
-}
-
-.research-icon{
-  font-size:2.2rem;
-  margin-bottom:1rem;
-}
-
-.publications{
-  max-width:760px;
-  margin:3rem auto 0;
-}
-
-.publications h4{
-  text-align:center;
-  margin-bottom:1rem;
-}
-
-.publications ul{
-  list-style:none;
-}
-
-.publications li{
-  background:var(--card);
-  border:1px solid var(--border);
-  border-radius:16px;
-  padding:1.5rem;
-}
-
-.publications li span{
-  display:block;
-  margin-top:.5rem;
-  color:var(--muted);
-}
-
-/* =====================================================
    LINKEDIN BUTTON
 ===================================================== */
 .linkedin-btn{
@@ -1671,52 +1471,6 @@ section, header, footer {
   z-index: 2;
 }
 
-/* ===============================
-   UNIQUE PROJECT CARD Icon's THEMES
-=============================== */
-
-.project-card[data-project="rag"] .project-icon{
-  animation: floatIcon 3s ease-in-out infinite;
-}
-
-.project-card[data-project="agent"] .project-icon{
-  animation: pulseIcon 2s infinite;
-}
-
-.project-card[data-project="backend"] .project-icon{
-  animation: rotateIcon 6s linear infinite;
-}
-
-.project-card[data-project="healthcare"] .project-icon{
-  animation: heartbeat 1.6s infinite;
-}
-
-
-/* ===============================
-   ICON ANIMATIONS
-=============================== */
-
-/* All project icons */
-.project-card .project-icon{
-  animation: floatProjectIcon 3s ease-in-out infinite;
-  transition: transform .3s ease;
-}
-
-/* Slight extra lift on hover */
-.project-card:hover .project-icon{
-  transform: scale(1.08);
-}
-
-/* Floating motion */
-@keyframes floatProjectIcon{
-  0%,100%{
-    transform: translateY(0px);
-  }
-  50%{
-    transform: translateY(-6px);
-  }
-}
-
 /* =====================================
    UNIQUE CARD GLOW THEMES
    All Sections Now Different
@@ -1955,4 +1709,176 @@ section, header, footer {
     height:52px;
     font-size:1.45rem;
   }
+}
+
+/* =====================================
+   ULTRA PREMIUM RECOMMENDATIONS SECTION
+===================================== */
+
+.recommendations-grid{
+  display:grid;
+  gap:1.6rem;
+  grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+  margin-top:2.5rem;
+}
+
+/* unified premium card system (matches values) */
+.recommendation-card{
+  position:relative;
+  overflow:hidden;
+
+  background:linear-gradient(
+    145deg,
+    rgba(255,255,255,.06),
+    rgba(255,255,255,.03)
+  );
+
+  border:1px solid rgba(255,255,255,.08);
+  border-radius:22px;
+  padding:2rem;
+
+  backdrop-filter:blur(18px);
+
+  box-shadow:0 20px 45px rgba(0,0,0,.22);
+
+  transition:
+    transform .35s ease,
+    box-shadow .35s ease,
+    border-color .35s ease;
+}
+
+/* top glow strip (same as values) */
+.recommendation-card::before{
+  content:"";
+  position:absolute;
+  top:0;
+  left:0;
+  width:100%;
+  height:2px;
+
+  background:linear-gradient(
+    90deg,
+    transparent,
+    var(--accent),
+    transparent
+  );
+
+  opacity:.85;
+}
+
+/* shine sweep effect */
+.recommendation-card::after{
+  content:"";
+  position:absolute;
+  top:-120%;
+  left:-40%;
+  width:70%;
+  height:260%;
+
+  background:linear-gradient(
+    120deg,
+    transparent,
+    rgba(255,255,255,.08),
+    transparent
+  );
+
+  transform:rotate(18deg);
+  transition:.8s ease;
+}
+
+.recommendation-card:hover::after{
+  left:130%;
+}
+
+.recommendation-card:hover{
+  transform:translateY(-10px) scale(1.02);
+
+  border-color:rgba(180,120,255,.22);
+
+  box-shadow:
+    0 0 35px rgba(180,120,255,.28),
+    0 12px 30px rgba(180,120,255,.14),
+    0 18px 38px rgba(0,0,0,.22);
+}
+
+/* headings + text alignment consistency */
+.recommendation-card h4{
+  color:var(--text);
+  margin-bottom:.8rem;
+  font-weight:700;
+  letter-spacing:.2px;
+}
+
+.recommendation-card p{
+  color:var(--muted);
+  line-height:1.75;
+  font-size:.96rem;
+}
+
+/* LinkedIn CTA card special treatment */
+.linkedin-card{
+  display:flex;
+  flex-direction:column;
+  justify-content:space-between;
+}
+
+.linkedin-btn{
+  margin-top:1.2rem;
+  display:inline-flex;
+  align-items:center;
+  gap:.6rem;
+
+  padding:.75rem 1rem;
+  border-radius:12px;
+
+  background:linear-gradient(
+    135deg,
+    rgba(96,165,250,.22),
+    rgba(125,211,252,.14)
+  );
+
+  border:1px solid rgba(125,211,252,.25);
+
+  color:var(--text);
+  text-decoration:none;
+  font-weight:600;
+
+  transition:.3s ease;
+}
+
+.linkedin-btn:hover{
+  transform:translateY(-3px);
+  box-shadow:0 0 20px rgba(125,211,252,.25);
+}
+
+.linkedin-icon{
+  font-weight:800;
+  background:rgba(255,255,255,.1);
+  padding:.2rem .45rem;
+  border-radius:6px;
+}
+
+/* mobile consistency */
+@media (max-width:680px){
+  .recommendation-card{
+    padding:1.5rem;
+    border-radius:18px;
+  }
+}
+.hide {
+  display: none !important;
+}
+
+.value-card {
+  transition: all 0.35s ease;
+}
+
+.hide {
+  opacity: 0;
+  transform: scale(0.95);
+  pointer-events: none;
+}
+
+.skills-block {
+  margin-top: 2rem;
 }

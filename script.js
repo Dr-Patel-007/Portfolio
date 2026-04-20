@@ -326,22 +326,27 @@ document.addEventListener("mousemove", e => {
 ====================================================== */
 function initSkillFilters() {
   const buttons = document.querySelectorAll(".skill-filter");
-  const cards = document.querySelectorAll(".skill-card");
+
+  // IMPORTANT: updated selector
+  const cards = document.querySelectorAll("#skills .value-card");
 
   buttons.forEach(btn => {
     btn.addEventListener("click", () => {
+
       buttons.forEach(b => b.classList.remove("active"));
       btn.classList.add("active");
 
       const filter = btn.dataset.filter;
 
       cards.forEach(card => {
+        const category = card.dataset.category;
+
         const match =
-          filter === "all" ||
-          card.dataset.category === filter;
+          filter === "all" || category === filter;
 
         card.classList.toggle("hide", !match);
       });
+
     });
   });
 }
