@@ -183,7 +183,8 @@ function initPortfolioModal() {
   const projectData = {
     rag: "Designed secure RAG systems using LLMs and vector databases.",
     agent: "Built AI agents using Copilot Studio and workflows.",
-    backend: "Developed scalable Python backend APIs and microservices."
+    backend: "Developed scalable Python backend APIs and microservices.",
+	healthcare: "Developed digital mobile health applications that secured over $1 million in research grant funding."
   };
 
   const experienceData = {
