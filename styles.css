@@ -12,7 +12,7 @@
   --bg-soft:#111522;
   --card:rgba(255,255,255,.06);
   --card-strong:rgba(255,255,255,.08);
-
+  --section-gap: 3.5rem;
   --text:#eef0ff;
   --muted:#a1a5c1;
 
@@ -69,13 +69,23 @@ body{
 .section{
   max-width:1180px;
   margin:auto;
-  padding:5.5rem 2rem;
+  padding:3.5rem 2rem;
 }
 
 .section-title{
   font-size:2.1rem;
   text-align:center;
-  margin-bottom:2rem;
+  margin-bottom:1.2rem;
+}
+
+.section-divider{
+  width:120px;
+  height:3px;
+  margin:2rem auto 0;
+  border-radius:999px;
+}
+.section > *:first-child{
+  margin-top:0;
 }
 
 .section-text{
@@ -99,19 +109,6 @@ body{
   grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
 }
 
-.section-divider{
-  width:120px;
-  height:3px;
-  margin:3rem auto 0;
-  border-radius:999px;
-  background:linear-gradient(
-    90deg,
-    transparent,
-    var(--accent),
-    transparent
-  );
-  opacity:.8;
-}
 
 /* =====================================================
    SCROLL PROGRESS
