@@ -6,22 +6,28 @@
   ====================================== -->
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta
-    name="description"
-    content="Dixit Patel, Ph.D. | Senior Software Engineer - Artificial Intelligence"
-  />
+  <meta name="description" content="Dixit Patel, Ph.D. | Senior Software Engineer - Artificial Intelligence" />
+  <meta name="robots" content="index, follow" />
+
+  <!-- Open Graph / Social Sharing -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Dixit Patel, Ph.D. — Senior AI Engineer" />
+  <meta property="og:description" content="Senior Software Engineer specializing in AI, LLMs, RAG systems, and scalable backend architectures." />
+  <meta property="og:image" content="assets/profile.jpg" />
+  <meta property="og:url" content="https://dixitpatel.dev" />
+  <meta name="twitter:card" content="summary_large_image" />
 
   <title>Dixit Patel, Ph.D. — Senior AI Engineer</title>
+
+  <!-- Favicon -->
+  <link rel="icon" href="assets/favicon.ico" type="image/x-icon" />
 
   <!-- =====================================
        GOOGLE FONTS
   ====================================== -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link
-    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap"
-    rel="stylesheet"
-  />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Space+Grotesk:wght@400;600;700&display=swap" rel="stylesheet" />
 
   <!-- =====================================
        MAIN STYLESHEET
@@ -35,10 +41,10 @@
 </head>
 
 <body>
-  
+
   <!-- NEURAL NETWORK BACKGROUND-->
   <canvas id="neural-bg"></canvas>
-  
+
   <!-- =====================================
        SCROLL PROGRESS BAR
   ====================================== -->
@@ -49,7 +55,7 @@
   <!-- =====================================
        HEADER / PREMIUM NAVBAR
   ====================================== -->
-  <header class="nav">
+  <header class="nav" id="mainNav">
 
     <!-- Brand -->
     <div class="nav-brand">
@@ -59,185 +65,158 @@
       </a>
     </div>
 
-    <nav class="nav-menu" aria-label="Main Navigation">
+    <!-- Hamburger (mobile) -->
+    <button class="nav-hamburger" id="navHamburger" aria-label="Toggle menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
 
-	  <a href="#home">Home</a>
-	  <a href="#about">About</a>
+    <nav class="nav-menu" id="navMenu" aria-label="Main Navigation">
+      <a href="#home">Home</a>
+      <a href="#about">About</a>
+      <a href="#experience">Experience</a>
+      <a href="#education">Education</a>
+      <a href="#skills">Skills</a>
+      <a href="#projects">Projects</a>
+      <a href="#achievements">Achievements</a>
+      <a href="#research">Research</a>
+      <a href="#values">Values</a>
+      <a href="#recommendations">Recs</a>
+      <a href="#contact">Contact</a>
 
-	  <a href="#experience">Experience</a>
-	  <a href="#education">Education</a>
-
-	  <a href="#skills">Skills</a>
-	  <a href="#projects">Projects</a>
-
-	  <a href="#achievements">Achievements</a>
-	  <a href="#research">Research</a>
-
-	  <a href="#values">Values</a>
-	  <a href="#recommendations">Recommendations</a>
-
-	  <a href="#contact">Contact</a>
-
-	  <button id="theme-toggle" aria-label="Toggle Theme">
-		🌙
-	  </button>
-
-	</nav>
+      <button id="theme-toggle" aria-label="Toggle Theme">🌙</button>
+    </nav>
   </header>
 
   <!-- =====================================
-     HERO SECTION
-====================================== -->
-<section id="home" class="hero">
+       HERO SECTION
+  ====================================== -->
+  <section id="home" class="hero">
 
-  <div class="hero-bg"></div>
+    <div class="hero-bg"></div>
 
-  <div class="hero-layout reveal">
+    <!-- Floating 3D orbs -->
+    <div class="orb orb-1"></div>
+    <div class="orb orb-2"></div>
+    <div class="orb orb-3"></div>
 
-    <!-- Profile Image -->
-    <div class="profile-wrapper">
-      <img
-        src="assets/profile.jpg"
-        alt="Dixit Patel"
-        class="profile-image"
-      />
+    <div class="hero-layout reveal">
+
+      <!-- Profile Image -->
+      <div class="profile-wrapper">
+        <div class="profile-ring">
+          <img src="assets/profile.jpg" alt="Dixit Patel — Senior AI Engineer" class="profile-image" />
+        </div>
+        <div class="profile-status">
+          <span class="status-dot"></span> Open to Opportunities
+        </div>
+      </div>
+
+      <!-- Hero Content -->
+      <div class="hero-text">
+
+        <div class="hero-badge">
+          <span class="badge-dot"></span>
+          Ph.D. · Senior AI Engineer · 7+ Years
+        </div>
+
+        <h1>
+          Dixit Patel
+          <span class="name-accent">, Ph.D.</span>
+        </h1>
+
+        <h2>Senior Software Engineer – Artificial Intelligence</h2>
+
+        <p class="typing">
+          <span id="typing-text"></span><span class="type-cursor">|</span>
+        </p>
+
+        <div class="chips">
+          <span>LLMs</span>
+          <span>RAG</span>
+          <span>AI Agents</span>
+          <span>Python</span>
+          <span>Backend Systems</span>
+          <span>API Development</span>
+          <span>Full Stack</span>
+        </div>
+
+        <div class="buttons">
+          <a href="#projects" class="btn primary track" data-event="view_projects">
+            <span class="btn-icon">🧠</span> View Projects
+          </a>
+          <a href="assets/Dixit_Patel_Resume.pdf" class="btn secondary track" data-event="download_resume" download>
+            <span class="btn-icon">📄</span> Download Resume
+          </a>
+        </div>
+
+        <div class="social-links">
+          <a href="https://www.linkedin.com/in/dixit-patel-2050/" target="_blank" rel="noopener noreferrer" class="track social-btn" data-event="linkedin">
+            <span class="social-icon">in</span> LinkedIn
+          </a>
+          <a href="#contact" class="track social-btn" data-event="contact">
+            <span class="social-icon">✉</span> Contact
+          </a>
+        </div>
+
+      </div>
+
+      <!-- AI Terminal -->
+      <div class="hero-console reveal">
+        <div class="console-top">
+          <span></span>
+          <span></span>
+          <span></span>
+          <div class="console-status">
+            <span class="live-dot"></span>
+            LIVE AI TERMINAL
+          </div>
+        </div>
+        <div class="terminal-metrics" id="terminalMetrics"></div>
+        <div class="console-body" id="consoleBody"></div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- =====================================
+       METRICS COUNTERS
+  ====================================== -->
+  <section class="values-section reveal" aria-label="Impact Metrics">
+
+    <div class="section-header">
+      <h3 class="section-title">📊 Impact Metrics</h3>
+      <p class="section-text center">Quantified highlights across engineering, research, and enterprise systems.</p>
     </div>
 
-    <!-- Hero Content -->
-    <div class="hero-text">
+    <div class="values-grid">
 
-      <h1>
-        Dixit Patel
-        <span>, Ph.D.</span>
-      </h1>
-
-      <h2>
-        Senior Software Engineer – Artificial Intelligence
-      </h2>
-
-      <p class="typing">
-        <span id="typing-text"></span>
-      </p>
-
-      <div class="chips">
-        <span>LLMs</span>
-        <span>RAG</span>
-        <span>AI Agents</span>
-        <span>Python</span>
-        <span>Backend Systems</span>
-        <span>API Development</span>
-		<span>Full Stack</span>
+      <div class="value-card tilt-card">
+        <div class="value-icon">⏳</div>
+        <h3 class="counter" data-target="7">0</h3>
+        <p>Years of Experience</p>
       </div>
 
-      <div class="buttons">
-        <a
-          href="#projects"
-          class="btn primary track"
-          data-event="view_projects"
-        >
-          View Projects
-        </a>
-
-        <a
-          href="assets/Dixit_Patel_Resume.pdf"
-          class="btn secondary track"
-          data-event="download_resume"
-          download
-        >
-          Download Resume
-        </a>
+      <div class="value-card tilt-card">
+        <div class="value-icon">🎓</div>
+        <h3 class="counter" data-target="3">0</h3>
+        <p>Graduate Degrees (B.E / M.S / Ph.D)</p>
       </div>
 
-      <div class="social-links">
+      <div class="value-card tilt-card">
+        <div class="value-icon">🏗️</div>
+        <h3 class="counter" data-target="10">0</h3>
+        <p>Enterprise Projects Delivered</p>
+      </div>
 
-        <a
-          href="https://www.linkedin.com/in/dixit-patel-2050/"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="track"
-          data-event="linkedin"
-        >
-          LinkedIn
-        </a>
-
-        <a
-          href="#contact"
-          class="track"
-          data-event="contact"
-        >
-          Contact
-        </a>
-
+      <div class="value-card tilt-card">
+        <div class="value-icon">🔬</div>
+        <h3 class="counter" data-target="8">0</h3>
+        <p>Research Contributions</p>
       </div>
 
     </div>
-	
-	<div class="hero-console reveal">
-	
-	  <div class="console-top">
-        <span></span>
-        <span></span>
-        <span></span>
-
-      <div class="console-status">
-        <span class="live-dot"></span>
-        LIVE AI TERMINAL
-      </div>
-    
-	</div>
-
-    <div class="terminal-metrics" id="terminalMetrics"></div>
-	<div class="console-body" id="consoleBody"></div>
-  
-    </div>
-
-  </div>
-</section>
-
-	<!-- =====================================
-		   METRICS COUNTERS
-	===================================== -->
-	<section class="values-section reveal">
-
-	  <div class="section-header">
-
-		<h3 class="section-title">📊 Impact Metrics</h3>
-
-		<p class="section-text center">
-		  Quantified highlights across engineering, research, and enterprise systems.
-		</p>
-
-	  </div>
-
-	  <div class="values-grid">
-
-		<div class="value-card tilt-card">
-		  <div class="value-icon">⏳</div>
-		  <h3 class="counter" data-target="7">0</h3>
-		  <p>Years of Experience</p>
-		</div>
-
-		<div class="value-card tilt-card">
-		  <div class="value-icon">🎓</div>
-		  <h3 class="counter" data-target="3">0</h3>
-		  <p>Graduate Degrees (B.E / M.S / Ph.D)</p>
-		</div>
-
-		<div class="value-card tilt-card">
-		  <div class="value-icon">🏗️</div>
-		  <h3 class="counter" data-target="10">0</h3>
-		  <p>Enterprise Projects Delivered</p>
-		</div>
-
-		<div class="value-card tilt-card">
-		  <div class="value-icon">🔬</div>
-		  <h3 class="counter" data-target="8">0</h3>
-		  <p>Research Contributions</p>
-		</div>
-
-	  </div>
     <div class="section-divider"></div>
-	</section>
+  </section>
 
   <!-- =====================================
        ABOUT SECTION
@@ -247,683 +226,545 @@
     <h3 class="section-title">👨‍💻 About Me</h3>
 
     <p class="section-text justified">
-      Senior Software Engineer with a strong focus on applied AI systems and
-      scalable software development, combining rigorous academic research
-      experience with hands-on industry delivery. Proven ability to design,
-      build, and deploy production-grade AI-enabled applications using Python
-      tech stack, cloud-based architecture, and modern machine learning and
-      generative AI techniques.
+      Senior Software Engineer with a strong focus on applied AI systems and scalable software development,
+      combining rigorous academic research experience with hands-on industry delivery. Proven ability to
+      design, build, and deploy production-grade AI-enabled applications using Python tech stack,
+      cloud-based architecture, and modern machine learning and generative AI techniques.
     </p>
 
     <p class="section-text justified">
-      Experienced across the full software lifecycle including backend
-      architecture, API development, testing, deployment, data engineering,
-      model integration, LLM systems, and performance optimization.
+      Experienced across the full software lifecycle including backend architecture, API development,
+      testing, deployment, data engineering, model integration, LLM systems, and performance optimization.
     </p>
 
     <p class="section-text justified">
-      Known for ownership, technical depth, and building robust enterprise
-      solutions that generate measurable business value.
+      Known for ownership, technical depth, and building robust enterprise solutions that generate measurable business value.
     </p>
 
     <div class="section-divider"></div>
   </section>
 
-	<!-- =====================================
-		   EXPERIENCE SECTION
-	===================================== -->
-	<section id="experience" class="values-section reveal">
-
-	  <div class="section-header">
-
-		<h3 class="section-title">💼 Professional Experience</h3>
-
-		<p class="section-text center">
-		  Career progression across AI, software engineering, and research roles.
-		</p>
-
-	  </div>
-
-	  <div class="values-grid">
-
-		<div class="value-card tilt-card">
-		  <div class="value-icon">🤖</div>
-		  <h3>Senior Software Engineer – Artificial Intelligence</h3>
-		  <p><strong>L&T Technology Services LLC | Caterpillar Inc.</strong></p>
-		  <p>Mossville, Illinois • May 2025 – Present</p>
-		</div>
-
-		<div class="value-card tilt-card">
-		  <div class="value-icon">💻</div>
-		  <h3>Software Engineer</h3>
-		  <p><strong>Fabricators, Inc.</strong></p>
-		  <p>Chattanooga, Tennessee • Apr 2023 – May 2025</p>
-		</div>
-
-		<div class="value-card tilt-card">
-		  <div class="value-icon">🔬</div>
-		  <h3>Graduate Research Assistant</h3>
-		  <p><strong>Wright State University</strong></p>
-		  <p>Dayton, Ohio • Dec 2018 – Dec 2022</p>
-		</div>
-
-		<div class="value-card tilt-card">
-		  <div class="value-icon">🏢</div>
-		  <h3>Software Engineer</h3>
-		  <p><strong>L&T Technology Services Limited</strong></p>
-		  <p>Navi Mumbai, India • Jun 2016 – Jun 2018</p>
-		</div>
-
-	  </div>
-
-	  <div class="section-divider"></div>
-
-	</section>
-	
-		<!-- =====================================
-		   EDUCATION SECTION
-	===================================== -->
-	<section id="education" class="values-section reveal">
-
-	  <div class="section-header">
-
-		<h3 class="section-title">🎓 Education</h3>
-
-		<p class="section-text center">
-		  Academic foundation and formal training in computer science and engineering.
-		</p>
-
-	  </div>
-
-	  <div class="values-grid">
-
-		<div class="value-card tilt-card">
-		  <div class="value-icon">🎓</div>
-		  <h3>Ph.D. in Computer Science & Engineering</h3>
-		  <p>Wright State University • 2019 – 2022</p>
-		  <p><strong>GPA:</strong> 3.92</p>
-		</div>
-
-		<div class="value-card tilt-card">
-		  <div class="value-icon">🎓</div>
-		  <h3>M.S. in Computer Science</h3>
-		  <p>Wright State University • 2018 – 2022</p>
-		  <p><strong>GPA:</strong> 3.92</p>
-		</div>
-
-		<div class="value-card tilt-card">
-		  <div class="value-icon">🎓</div>
-		  <h3>B.E. in Electronics & Communication Engineering</h3>
-		  <p>Gujarat Technological University • 2011 – 2015</p>
-		  <p><strong>GPA:</strong> 3.52</p>
-		</div>
-
-	  </div>
-
-	  <div class="section-divider"></div>
-
-	</section>
-
-	<!-- =====================================
-		   SKILLS SECTION
-	====================================== -->
-	<section id="skills" class="values-section reveal">
-
-	  <div class="section-header">
-		<h3 class="section-title">🚀 Technical Capabilities</h3>
-	  </div>
-
-	  <!-- FILTER BUTTONS (kept functional, not visual system) -->
-	  <div class="skills-filters">
-		<button class="skill-filter active" data-filter="all">All</button>
-		<button class="skill-filter" data-filter="ai">AI / ML</button>
-		<button class="skill-filter" data-filter="backend">Backend</button>
-		<button class="skill-filter" data-filter="cloud">Cloud</button>
-		<button class="skill-filter" data-filter="data">Data</button>
-		<button class="skill-filter" data-filter="tools">Tools</button>
-	  </div>
-
-	  <!-- SKILL CARDS (NOW FULLY VALUE-CARD SYSTEM) -->
-	  <div class="values-grid">
-
-		<div class="value-card tilt-card" data-category="ai">
-		  <div class="value-icon">🤖</div>
-		  <h3>AI & Machine Learning</h3>
-		  <p>GenAI, LLMs, RAG, AI Agents, Prompt Engineering</p>
-
-		  <p><strong>Tools:</strong></p>
-		  <div class="skill-icons">
-			<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg">
-			<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tensorflow/tensorflow-original.svg">
-			<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/pytorch/pytorch-original.svg">
-		  </div>
-		</div>
-
-		<div class="value-card tilt-card" data-category="backend">
-		  <div class="value-icon">⚙️</div>
-		  <h3>Backend Systems</h3>
-		  <p>REST APIs, Microservices, System Design, DSA</p>
-
-		  <p><strong>Tools:</strong></p>
-		  <div class="skill-icons">
-			<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg">
-			<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg">
-			<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg">
-		  </div>
-		</div>
-
-		<div class="value-card tilt-card" data-category="cloud">
-		  <div class="value-icon">☁️</div>
-		  <h3>Cloud & DevOps</h3>
-		  <p>AWS, Docker, CI/CD, Scalable Architectures</p>
-
-		  <p><strong>Tools:</strong></p>
-		  <div class="skill-icons">
-			<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/amazonwebservices/amazonwebservices-original.svg">
-			<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg">
-			<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/kubernetes/kubernetes-plain.svg">
-		  </div>
-		</div>
-
-		<div class="value-card tilt-card" data-category="data">
-		  <div class="value-icon">🗄️</div>
-		  <h3>Databases & Data</h3>
-		  <p>MySQL, PostgreSQL, MongoDB, ETL Pipelines</p>
-
-		  <p><strong>Tools:</strong></p>
-		  <div class="skill-icons">
-			<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg">
-			<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg">
-			<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg">
-		  </div>
-		</div>
-
-		<div class="value-card tilt-card" data-category="tools">
-		  <div class="value-icon">🛠️</div>
-		  <h3>Frameworks & Tools</h3>
-		  <p>Django, .NET, Git, GitHub, Copilot Studio</p>
-
-		  <p><strong>Tools:</strong></p>
-		  <div class="skill-icons">
-			<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/django/django-plain.svg">
-			<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg">
-			<img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linux/linux-original.svg">
-		  </div>
-		</div>
-
-	  </div>
-
-	<!-- RADAR -->
-	<div class="skills-block">
-
-	  <div class="value-card tilt-card">
-
-		<div class="value-icon">📊</div>
-		<h3>Engineering Strength Matrix</h3>
-
-		<div class="radar-row">
-		  <span>AI Systems</span>
-		  <div class="bar"><div style="width:95%"></div></div>
-		</div>
-
-		<div class="radar-row">
-		  <span>Backend Engineering</span>
-		  <div class="bar"><div style="width:92%"></div></div>
-		</div>
-
-		<div class="radar-row">
-		  <span>Cloud & DevOps</span>
-		  <div class="bar"><div style="width:85%"></div></div>
-		</div>
-
-		<div class="radar-row">
-		  <span>Databases</span>
-		  <div class="bar"><div style="width:88%"></div></div>
-		</div>
-
-		<div class="radar-row">
-		  <span>Architecture</span>
-		  <div class="bar"><div style="width:90%"></div></div>
-		</div>
-
-	  </div>
-
-	</div>
-
-	<!-- ORBIT -->
-	<div class="skills-block">
-
-	  <div class="value-card tilt-card orbit-wrapper">
-
-		<div class="orbit-center">AI Core</div>
-
-		<div class="orbit orbit-1"><span>Python</span></div>
-		<div class="orbit orbit-2"><span>DSA</span></div>
-		<div class="orbit orbit-3"><span>Tools</span></div>
-		<div class="orbit orbit-4"><span>LLMs</span></div>
-		<div class="orbit orbit-5"><span>Databases</span></div>
-
-	  </div>
-
-	</div>
-
-	  <div class="section-divider"></div>
-
-	</section>
-
-	<!-- =====================================
-		   PROJECTS SECTION
-	===================================== -->
-	<section id="projects" class="values-section reveal">
-
-	  <div class="section-header">
-
-		<h3 class="section-title">🧠 Featured Projects</h3>
-
-		<p class="section-text center">
-		  Scalable AI systems, backend platforms, and applied research-driven solutions.
-		</p>
-
-	  </div>
-
-	  <div class="values-grid">
-
-		<div class="value-card tilt-card">
-		  <div class="value-icon">🧠</div>
-		  <h3>Enterprise RAG AI Platform</h3>
-		  <p>
-			Secure natural-language search across enterprise data using vector retrieval, LLM orchestration, and scalable APIs.
-		  </p>
-		  <p><strong>Stack:</strong> LLMs • RAG • Python • APIs</p>
-		</div>
-
-		<div class="value-card tilt-card">
-		  <div class="value-icon">🤖</div>
-		  <h3>AI Agent Automation</h3>
-		  <p>
-			Autonomous multi-step workflows using Microsoft Copilot Studio and intelligent task orchestration.
-		  </p>
-		  <p><strong>Stack:</strong> AI Agents • Automation • Copilot</p>
-		</div>
-
-		<div class="value-card tilt-card">
-		  <div class="value-icon">⚙️</div>
-		  <h3>Scalable Backend Systems</h3>
-		  <p>
-			High-performance backend services focused on reliability, integrations, maintainability, and scale.
-		  </p>
-		  <p><strong>Stack:</strong> Python • Microservices • Cloud</p>
-		</div>
-
-		<div class="value-card tilt-card">
-		  <div class="value-icon">🏥</div>
-		  <h3>Healthcare Mobile Solutions</h3>
-		  <p>
-			Developed digital mobile health applications that secured over $1M in research grant funding.
-		  </p>
-		  <p><strong>Stack:</strong> Mobile Apps • Digital Healthcare • VR</p>
-		</div>
-
-	  </div>
-
-	  <div class="section-divider"></div>
-
-	</section>
-
-	<!-- =====================================
-		   ACHIEVEMENTS SECTION
-	===================================== -->
-	<section id="achievements" class="values-section reveal">
-
-	  <div class="section-header">
-
-		<h3 class="section-title">🏆 Achievements</h3>
-
-		<p class="section-text center">
-		  Milestones, recognitions, and academic excellence across my career.
-		</p>
-
-	  </div>
-
-	  <div class="values-grid">
-
-		<div class="value-card tilt-card">
-		  <div class="value-icon">🏆</div>
-		  <h3>Outstanding Paper Award</h3>
-		  <p>
-			International Conference on Mobile Learning (IADIS), 2022, for research conducted during Ph.D. studies at Wright State University.
-		  </p>
-		</div>
-
-		<div class="value-card tilt-card">
-		  <div class="value-icon">🎯</div>
-		  <h3>Technical Paper Finalist</h3>
-		  <p>
-			Finalist at Technology Conclave – VI organized by L&T Technology Services for Digital Transformation research.
-		  </p>
-		</div>
-
-		<div class="value-card tilt-card">
-		  <div class="value-icon">🎓</div>
-		  <h3>Full Graduate Funding</h3>
-		  <p>
-			Awarded full financial support for both M.S. and Ph.D. programs at Wright State University based on research excellence.
-		  </p>
-		</div>
-
-		<div class="value-card tilt-card">
-		  <div class="value-icon">🔬</div>
-		  <h3>Peer Reviewer Recognition</h3>
-		  <p>
-			Completed 30+ peer reviews with JMIR Publications and Discover Artificial Intelligence journals.
-		  </p>
-		</div>
-
-		<div class="value-card tilt-card">
-		  <div class="value-icon">📜</div>
-		  <h3>BSNL Excellence Certifications</h3>
-		  <p class="justified">
-			Awarded Silver, Gold, and Platinum Certificates under AICTE Employability Enhancement Training Programme.
-		  </p>
-		</div>
-
-	  </div>
-
-	  <div class="section-divider"></div>
-
-	</section>
-
-	<!-- =====================================
-		   RESEARCH SECTION
-	====================================== -->
-	<section id="research" class="values-section reveal">
-
-	  <div class="section-header">
-
-		<h3 class="section-title">🔬 Research & Publications</h3>
-
-		<p class="section-text center">
-		  Academic contributions, publications, and research impact.
-		</p>
-
-	  </div>
-
-	  <div class="values-grid">
-
-		<a
-		  class="value-card tilt-card"
-		  href="https://scholar.google.com/citations?user=Bw-PUssAAAAJ&hl=en"
-		  target="_blank"
-		  rel="noopener noreferrer"
-		>
-		  <div class="value-icon">🔬</div>
-		  <h3>Google Scholar</h3>
-		  <p>Publications, citations, and academic impact across research domains.</p>
-		</a>
-
-		<a
-		  class="value-card tilt-card"
-		  href="https://www.researchgate.net/profile/Dixit-Patel-18"
-		  target="_blank"
-		  rel="noopener noreferrer"
-		>
-		  <div class="value-icon">📘</div>
-		  <h3>ResearchGate</h3>
-		  <p>Research articles, collaborations, and academic networking contributions.</p>
-		</a>
-
-		<div class="value-card tilt-card">
-
-		  <div class="value-icon">🏅</div>
-		  <h3>Selected Publication</h3>
-
-		  <p>
-			Outstanding Paper Award – IADIS 2022, recognized for research excellence and contribution.
-		  </p>
-
-		</div>
-
-	  </div>
-
-	  <div class="section-divider"></div>
-
-	</section>
-  
-	<!-- =====================================
-		 ENGINEERING PRINCIPLES & PROFESSIONAL VALUES
-	===================================== -->
-
-	<section id="values" class="values-section reveal">
-
-	  <div class="section-header">
-
-		<h3 class="section-title">
-		  ⚙️ Engineering Principles & Professional Values
-		</h3>
-
-		<p class="section-text center">
-		  How I approach work, teams, and long-term impact.
-		</p>
-
-	  </div>
-
-	  <div class="values-grid">
-
-		<div class="value-card tilt-card">
-		  <div class="value-icon">🎯</div>
-		  <h3>Commitment</h3>
-		  <p>Dedicated to delivering high-quality results and achieving goals.</p>
-		</div>
-
-		<div class="value-card tilt-card">
-		  <div class="value-icon">🤝</div>
-		  <h3>Collaboration</h3>
-		  <p>Promote teamwork, alignment, and shared success.</p>
-		</div>
-
-		<div class="value-card tilt-card">
-		  <div class="value-icon">🛡️</div>
-		  <h3>Integrity</h3>
-		  <p>Operate with honesty, ethics, and transparency.</p>
-		</div>
-
-		<div class="value-card tilt-card">
-		  <div class="value-icon">💡</div>
-		  <h3>Innovation</h3>
-		  <p>Adopt emerging technologies and improve continuously.</p>
-		</div>
-
-		<div class="value-card tilt-card">
-		  <div class="value-icon">🌊</div>
-		  <h3>Adaptability</h3>
-		  <p>Stay resilient and effective through changing priorities.</p>
-		</div>
-
-		<div class="value-card tilt-card">
-		  <div class="value-icon">🚀</div>
-		  <h3>Ownership</h3>
-		  <p>Take responsibility for outcomes with accountability.</p>
-		</div>
-
-		<div class="value-card tilt-card">
-		  <div class="value-icon">❤️</div>
-		  <h3>Empathy</h3>
-		  <p>Build trust through respectful and thoughtful communication.</p>
-		</div>
-
-	  </div>
-
-	  <div class="section-divider"></div>
-
-	</section>
-
-	<!-- =====================================
-		   RECOMMENDATIONS SECTION
-	====================================== -->
-	<section id="recommendations" class="values-section reveal">
-
-	  <div class="section-header">
-
-		<h3 class="section-title">🤝 Recommendations</h3>
-
-		<p class="section-text center">
-		  Professional recognition, leadership impact, and peer endorsements.
-		</p>
-
-	  </div>
-
-	  <div class="values-grid">
-
-		<div class="value-card tilt-card">
-		  <div class="value-icon">🤝</div>
-		  <h3>Professional Endorsements</h3>
-		  <p>Recommendations available from colleagues, collaborators, and industry professionals.</p>
-		</div>
-
-		<div class="value-card tilt-card">
-		  <div class="value-icon">🌟</div>
-		  <h3>Leadership & Collaboration</h3>
-		  <p>Recognized for ownership, mentorship, teamwork, and dependable delivery of AI solutions.</p>
-		</div>
-
-		<div class="value-card tilt-card linkedin-card">
-
-		  <div class="value-icon">💼</div>
-		  <h3>LinkedIn Recommendations</h3>
-
-		  <p>Explore verified testimonials and endorsements from professional connections.</p>
-
-		  <a
-			href="https://www.linkedin.com/in/dixit-patel-2050/"
-			target="_blank"
-			rel="noopener noreferrer"
-			class="linkedin-btn"
-		  >
-			<span class="linkedin-icon">in</span>
-			Visit LinkedIn
-		  </a>
-
-		</div>
-
-	  </div>
-
-	  <div class="section-divider"></div>
-
-	</section>
+  <!-- =====================================
+       EXPERIENCE SECTION
+  ====================================== -->
+  <section id="experience" class="values-section reveal">
+
+    <div class="section-header">
+      <h3 class="section-title">💼 Professional Experience</h3>
+      <p class="section-text center">Career progression across AI, software engineering, and research roles.</p>
+    </div>
+
+    <div class="values-grid">
+
+      <div class="value-card tilt-card experience" data-exp="caterpillar">
+        <div class="value-icon">🤖</div>
+        <h3>Senior Software Engineer – Artificial Intelligence</h3>
+        <p><strong>L&amp;T Technology Services LLC | Caterpillar Inc.</strong></p>
+        <p>Mossville, Illinois • May 2025 – Present</p>
+        <div class="card-tag">Current</div>
+      </div>
+
+      <div class="value-card tilt-card experience" data-exp="fabricators">
+        <div class="value-icon">💻</div>
+        <h3>Software Engineer</h3>
+        <p><strong>Fabricators, Inc.</strong></p>
+        <p>Chattanooga, Tennessee • Apr 2023 – May 2025</p>
+      </div>
+
+      <div class="value-card tilt-card experience" data-exp="wright">
+        <div class="value-icon">🔬</div>
+        <h3>Graduate Research Assistant</h3>
+        <p><strong>Wright State University</strong></p>
+        <p>Dayton, Ohio • Dec 2018 – Dec 2022</p>
+      </div>
+
+      <div class="value-card tilt-card experience" data-exp="lnt">
+        <div class="value-icon">🏢</div>
+        <h3>Software Engineer</h3>
+        <p><strong>L&amp;T Technology Services Limited</strong></p>
+        <p>Navi Mumbai, India • Jun 2016 – Jun 2018</p>
+      </div>
+
+    </div>
+
+    <div class="section-divider"></div>
+  </section>
+
+  <!-- =====================================
+       EDUCATION SECTION
+  ====================================== -->
+  <section id="education" class="values-section reveal">
+
+    <div class="section-header">
+      <h3 class="section-title">🎓 Education</h3>
+      <p class="section-text center">Academic foundation and formal training in computer science and engineering.</p>
+    </div>
+
+    <div class="values-grid">
+
+      <div class="value-card tilt-card">
+        <div class="value-icon">🎓</div>
+        <h3>Ph.D. in Computer Science & Engineering</h3>
+        <p>Wright State University • 2019 – 2022</p>
+        <p><strong>GPA:</strong> 3.92</p>
+        <div class="card-tag">Doctorate</div>
+      </div>
+
+      <div class="value-card tilt-card">
+        <div class="value-icon">🎓</div>
+        <h3>M.S. in Computer Science</h3>
+        <p>Wright State University • 2018 – 2022</p>
+        <p><strong>GPA:</strong> 3.92</p>
+      </div>
+
+      <div class="value-card tilt-card">
+        <div class="value-icon">🎓</div>
+        <h3>B.E. in Electronics & Communication Engineering</h3>
+        <p>Gujarat Technological University • 2011 – 2015</p>
+        <p><strong>GPA:</strong> 3.52</p>
+      </div>
+
+    </div>
+
+    <div class="section-divider"></div>
+  </section>
+
+  <!-- =====================================
+       SKILLS SECTION
+  ====================================== -->
+  <section id="skills" class="values-section reveal">
+
+    <div class="section-header">
+      <h3 class="section-title">🚀 Technical Capabilities</h3>
+    </div>
+
+    <!-- FILTER BUTTONS -->
+    <div class="skills-filters" role="group" aria-label="Filter skills by category">
+      <button class="skill-filter active" data-filter="all">All</button>
+      <button class="skill-filter" data-filter="ai">AI / ML</button>
+      <button class="skill-filter" data-filter="backend">Backend</button>
+      <button class="skill-filter" data-filter="cloud">Cloud</button>
+      <button class="skill-filter" data-filter="data">Data</button>
+      <button class="skill-filter" data-filter="tools">Tools</button>
+    </div>
+
+    <!-- SKILL CARDS -->
+    <div class="values-grid">
+
+      <div class="value-card tilt-card" data-category="ai">
+        <div class="value-icon">🤖</div>
+        <h3>AI & Machine Learning</h3>
+        <p>GenAI, LLMs, RAG, AI Agents, Prompt Engineering</p>
+        <p><strong>Tools:</strong></p>
+        <div class="skill-icons">
+          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg" alt="Python" title="Python" />
+          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tensorflow/tensorflow-original.svg" alt="TensorFlow" title="TensorFlow" />
+          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/pytorch/pytorch-original.svg" alt="PyTorch" title="PyTorch" />
+        </div>
+      </div>
+
+      <div class="value-card tilt-card" data-category="backend">
+        <div class="value-icon">⚙️</div>
+        <h3>Backend Systems</h3>
+        <p>REST APIs, Microservices, System Design, DSA</p>
+        <p><strong>Tools:</strong></p>
+        <div class="skill-icons">
+          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg" alt="Node.js" title="Node.js" />
+          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" alt="JavaScript" title="JavaScript" />
+          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg" alt="Docker" title="Docker" />
+        </div>
+      </div>
+
+      <div class="value-card tilt-card" data-category="cloud">
+        <div class="value-icon">☁️</div>
+        <h3>Cloud & DevOps</h3>
+        <p>AWS, Docker, CI/CD, Scalable Architectures</p>
+        <p><strong>Tools:</strong></p>
+        <div class="skill-icons">
+          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/amazonwebservices/amazonwebservices-plain-wordmark.svg" alt="AWS" title="AWS" />
+          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg" alt="Docker" title="Docker" />
+          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/kubernetes/kubernetes-plain.svg" alt="Kubernetes" title="Kubernetes" />
+        </div>
+      </div>
+
+      <div class="value-card tilt-card" data-category="data">
+        <div class="value-icon">🗄️</div>
+        <h3>Databases & Data</h3>
+        <p>MySQL, PostgreSQL, MongoDB, ETL Pipelines</p>
+        <p><strong>Tools:</strong></p>
+        <div class="skill-icons">
+          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg" alt="MySQL" title="MySQL" />
+          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg" alt="PostgreSQL" title="PostgreSQL" />
+          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg" alt="MongoDB" title="MongoDB" />
+        </div>
+      </div>
+
+      <div class="value-card tilt-card" data-category="tools">
+        <div class="value-icon">🛠️</div>
+        <h3>Frameworks & Tools</h3>
+        <p>Django, .NET, Git, GitHub, Copilot Studio</p>
+        <p><strong>Tools:</strong></p>
+        <div class="skill-icons">
+          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/django/django-plain.svg" alt="Django" title="Django" />
+          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg" alt="Git" title="Git" />
+          <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linux/linux-original.svg" alt="Linux" title="Linux" />
+        </div>
+      </div>
+
+    </div>
+
+    <!-- ENGINEERING STRENGTH MATRIX -->
+    <div class="skills-block">
+      <div class="value-card tilt-card">
+        <div class="value-icon">📊</div>
+        <h3>Engineering Strength Matrix</h3>
+
+        <div class="radar-row">
+          <span>AI Systems</span>
+          <div class="bar"><div style="width:95%"></div></div>
+        </div>
+        <div class="radar-row">
+          <span>Backend Engineering</span>
+          <div class="bar"><div style="width:92%"></div></div>
+        </div>
+        <div class="radar-row">
+          <span>Cloud & DevOps</span>
+          <div class="bar"><div style="width:85%"></div></div>
+        </div>
+        <div class="radar-row">
+          <span>Databases</span>
+          <div class="bar"><div style="width:88%"></div></div>
+        </div>
+        <div class="radar-row">
+          <span>Architecture</span>
+          <div class="bar"><div style="width:90%"></div></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ORBIT VISUALIZATION -->
+    <div class="skills-block">
+      <div class="value-card tilt-card orbit-wrapper">
+        <div class="orbit-center">AI Core</div>
+        <div class="orbit orbit-1"><span>Python</span></div>
+        <div class="orbit orbit-2"><span>DSA</span></div>
+        <div class="orbit orbit-3"><span>Tools</span></div>
+        <div class="orbit orbit-4"><span>LLMs</span></div>
+        <div class="orbit orbit-5"><span>Databases</span></div>
+      </div>
+    </div>
+
+    <div class="section-divider"></div>
+  </section>
+
+  <!-- =====================================
+       PROJECTS SECTION
+  ====================================== -->
+  <section id="projects" class="values-section reveal">
+
+    <div class="section-header">
+      <h3 class="section-title">🧠 Featured Projects</h3>
+      <p class="section-text center">Scalable AI systems, backend platforms, and applied research-driven solutions.</p>
+    </div>
+
+    <div class="values-grid">
+
+      <div class="value-card tilt-card project" data-project="rag">
+        <div class="value-icon">🧠</div>
+        <h3>Enterprise RAG AI Platform</h3>
+        <p>Secure natural-language search across enterprise data using vector retrieval, LLM orchestration, and scalable APIs.</p>
+        <p><strong>Stack:</strong> LLMs • RAG • Python • APIs</p>
+        <div class="card-cta">Click to learn more →</div>
+      </div>
+
+      <div class="value-card tilt-card project" data-project="agent">
+        <div class="value-icon">🤖</div>
+        <h3>AI Agent Automation</h3>
+        <p>Autonomous multi-step workflows using Microsoft Copilot Studio and intelligent task orchestration.</p>
+        <p><strong>Stack:</strong> AI Agents • Automation • Copilot</p>
+        <div class="card-cta">Click to learn more →</div>
+      </div>
+
+      <div class="value-card tilt-card project" data-project="backend">
+        <div class="value-icon">⚙️</div>
+        <h3>Scalable Backend Systems</h3>
+        <p>High-performance backend services focused on reliability, integrations, maintainability, and scale.</p>
+        <p><strong>Stack:</strong> Python • Microservices • Cloud</p>
+        <div class="card-cta">Click to learn more →</div>
+      </div>
+
+      <div class="value-card tilt-card project" data-project="healthcare">
+        <div class="value-icon">🏥</div>
+        <h3>Healthcare Mobile Solutions</h3>
+        <p>Developed digital mobile health applications that secured over $1M in research grant funding.</p>
+        <p><strong>Stack:</strong> Mobile Apps • Digital Healthcare • VR</p>
+        <div class="card-cta">Click to learn more →</div>
+      </div>
+
+    </div>
+
+    <div class="section-divider"></div>
+  </section>
+
+  <!-- =====================================
+       ACHIEVEMENTS SECTION
+  ====================================== -->
+  <section id="achievements" class="values-section reveal">
+
+    <div class="section-header">
+      <h3 class="section-title">🏆 Achievements</h3>
+      <p class="section-text center">Milestones, recognitions, and academic excellence across my career.</p>
+    </div>
+
+    <div class="values-grid">
+
+      <div class="value-card tilt-card">
+        <div class="value-icon">🏆</div>
+        <h3>Outstanding Paper Award</h3>
+        <p>International Conference on Mobile Learning (IADIS), 2022, for research conducted during Ph.D. studies at Wright State University.</p>
+      </div>
+
+      <div class="value-card tilt-card">
+        <div class="value-icon">🎯</div>
+        <h3>Technical Paper Finalist</h3>
+        <p>Finalist at Technology Conclave – VI organized by L&amp;T Technology Services for Digital Transformation research.</p>
+      </div>
+
+      <div class="value-card tilt-card">
+        <div class="value-icon">🎓</div>
+        <h3>Full Graduate Funding</h3>
+        <p>Awarded full financial support for both M.S. and Ph.D. programs at Wright State University based on research excellence.</p>
+      </div>
+
+      <div class="value-card tilt-card">
+        <div class="value-icon">🔬</div>
+        <h3>Peer Reviewer Recognition</h3>
+        <p>Completed 30+ peer reviews with JMIR Publications and Discover Artificial Intelligence journals.</p>
+      </div>
+
+      <div class="value-card tilt-card">
+        <div class="value-icon">📜</div>
+        <h3>BSNL Excellence Certifications</h3>
+        <p>Awarded Silver, Gold, and Platinum Certificates under AICTE Employability Enhancement Training Programme.</p>
+      </div>
+
+    </div>
+
+    <div class="section-divider"></div>
+  </section>
+
+  <!-- =====================================
+       RESEARCH SECTION
+  ====================================== -->
+  <section id="research" class="values-section reveal">
+
+    <div class="section-header">
+      <h3 class="section-title">🔬 Research & Publications</h3>
+      <p class="section-text center">Academic contributions, publications, and research impact.</p>
+    </div>
+
+    <div class="values-grid">
+
+      <a class="value-card tilt-card" href="https://scholar.google.com/citations?user=Bw-PUssAAAAJ&hl=en" target="_blank" rel="noopener noreferrer">
+        <div class="value-icon">🔬</div>
+        <h3>Google Scholar</h3>
+        <p>Publications, citations, and academic impact across research domains.</p>
+        <div class="card-cta">View Profile →</div>
+      </a>
+
+      <a class="value-card tilt-card" href="https://www.researchgate.net/profile/Dixit-Patel-18" target="_blank" rel="noopener noreferrer">
+        <div class="value-icon">📘</div>
+        <h3>ResearchGate</h3>
+        <p>Research articles, collaborations, and academic networking contributions.</p>
+        <div class="card-cta">View Profile →</div>
+      </a>
+
+      <div class="value-card tilt-card">
+        <div class="value-icon">🏅</div>
+        <h3>Selected Publication</h3>
+        <p>Outstanding Paper Award – IADIS 2022, recognized for research excellence and contribution.</p>
+      </div>
+
+    </div>
+
+    <div class="section-divider"></div>
+  </section>
+
+  <!-- =====================================
+       ENGINEERING PRINCIPLES & VALUES
+  ====================================== -->
+  <section id="values" class="values-section reveal">
+
+    <div class="section-header">
+      <h3 class="section-title">⚙️ Engineering Principles & Professional Values</h3>
+      <p class="section-text center">How I approach work, teams, and long-term impact.</p>
+    </div>
+
+    <div class="values-grid">
+
+      <div class="value-card tilt-card">
+        <div class="value-icon">🎯</div>
+        <h3>Commitment</h3>
+        <p>Dedicated to delivering high-quality results and achieving goals.</p>
+      </div>
+
+      <div class="value-card tilt-card">
+        <div class="value-icon">🤝</div>
+        <h3>Collaboration</h3>
+        <p>Promote teamwork, alignment, and shared success.</p>
+      </div>
+
+      <div class="value-card tilt-card">
+        <div class="value-icon">🛡️</div>
+        <h3>Integrity</h3>
+        <p>Operate with honesty, ethics, and transparency.</p>
+      </div>
+
+      <div class="value-card tilt-card">
+        <div class="value-icon">💡</div>
+        <h3>Innovation</h3>
+        <p>Adopt emerging technologies and improve continuously.</p>
+      </div>
+
+      <div class="value-card tilt-card">
+        <div class="value-icon">🌊</div>
+        <h3>Adaptability</h3>
+        <p>Stay resilient and effective through changing priorities.</p>
+      </div>
+
+      <div class="value-card tilt-card">
+        <div class="value-icon">🚀</div>
+        <h3>Ownership</h3>
+        <p>Take responsibility for outcomes with accountability.</p>
+      </div>
+
+      <div class="value-card tilt-card">
+        <div class="value-icon">❤️</div>
+        <h3>Empathy</h3>
+        <p>Build trust through respectful and thoughtful communication.</p>
+      </div>
+
+    </div>
+
+    <div class="section-divider"></div>
+  </section>
+
+  <!-- =====================================
+       RECOMMENDATIONS SECTION
+  ====================================== -->
+  <section id="recommendations" class="values-section reveal">
+
+    <div class="section-header">
+      <h3 class="section-title">🤝 Recommendations</h3>
+      <p class="section-text center">Professional recognition, leadership impact, and peer endorsements.</p>
+    </div>
+
+    <div class="values-grid">
+
+      <div class="value-card tilt-card">
+        <div class="value-icon">🤝</div>
+        <h3>Professional Endorsements</h3>
+        <p>Recommendations available from colleagues, collaborators, and industry professionals.</p>
+      </div>
+
+      <div class="value-card tilt-card">
+        <div class="value-icon">🌟</div>
+        <h3>Leadership & Collaboration</h3>
+        <p>Recognized for ownership, mentorship, teamwork, and dependable delivery of AI solutions.</p>
+      </div>
+
+      <div class="value-card tilt-card linkedin-card">
+        <div class="value-icon">💼</div>
+        <h3>LinkedIn Recommendations</h3>
+        <p>Explore verified testimonials and endorsements from professional connections.</p>
+        <a href="https://www.linkedin.com/in/dixit-patel-2050/" target="_blank" rel="noopener noreferrer" class="linkedin-btn">
+          <span class="linkedin-icon">in</span>
+          Visit LinkedIn
+        </a>
+      </div>
+
+    </div>
+
+    <div class="section-divider"></div>
+  </section>
 
   <!-- =====================================
        CONTACT SECTION
   ====================================== -->
   <section id="contact" class="section reveal contact-section">
 
-    <h3 class="section-title center">📬 Let’s Connect</h3>
+    <h3 class="section-title center">📬 Let's Connect</h3>
 
-    <form id="contact-form" class="contact-form">
+    <form id="contact-form" class="contact-form" novalidate>
 
       <div class="form-field">
         <label for="name">Name</label>
-        <input id="name" type="text" name="name" required />
+        <input id="name" type="text" name="name" required autocomplete="name" placeholder="Your name" />
       </div>
 
       <div class="form-field">
         <label for="email">Email</label>
-        <input id="email" type="email" name="email" required />
+        <input id="email" type="email" name="email" required autocomplete="email" placeholder="your@email.com" />
       </div>
 
       <div class="form-field">
         <label for="message">Message</label>
-        <textarea id="message" name="message" rows="5" required></textarea>
+        <textarea id="message" name="message" rows="5" required placeholder="Your message..."></textarea>
       </div>
 
       <button class="btn primary" type="submit">
-        Send Message
+        <span class="btn-icon">🚀</span> Send Message
       </button>
 
-      <p id="form-status"></p>
+      <p id="form-status" role="status" aria-live="polite"></p>
 
     </form>
 
     <div class="contact-direct">
       Or email directly:
-      <a href="mailto:dbpatel8754@gmail.com">
-        dbpatel8754@gmail.com
-      </a>
+      <a href="mailto:dbpatel8754@gmail.com">dbpatel8754@gmail.com</a>
     </div>
-  
-	<div class="section-divider"></div>
 
+    <div class="section-divider"></div>
   </section>
 
   <!-- =====================================
        MODAL
   ====================================== -->
-  <div id="modal" class="modal">
-
+  <div id="modal" class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title">
     <div class="modal-content">
-
-      <button
-        id="modal-close"
-        type="button"
-        aria-label="Close modal"
-      >
-        &times;
-      </button>
-
+      <button id="modal-close" type="button" aria-label="Close modal">&times;</button>
       <h3 id="modal-title"></h3>
       <p id="modal-body"></p>
-
     </div>
   </div>
-  
-	<!-- =====================================
-		 AI ASSISTANT BUBBLE
-	====================================== -->
-	<div class="ai-bubble" id="aiBubble">
 
-	  <button class="ai-toggle" id="aiToggle">
-		✦
-	  </button>
+  <!-- =====================================
+       AI ASSISTANT BUBBLE
+  ====================================== -->
+  <div class="ai-bubble" id="aiBubble">
 
-	  <div class="ai-panel" id="aiPanel">
+    <button class="ai-toggle" id="aiToggle" aria-label="Open AI navigation assistant" aria-expanded="false">
+      ✦
+    </button>
 
-		<h4>AI Assistant</h4>
-		<p>Explore Dixit's profile:</p>
+    <div class="ai-panel" id="aiPanel" role="menu">
+      <h4>AI Assistant</h4>
+      <p>Explore Dixit's profile:</p>
+      <button class="ai-action" data-link="#experience" role="menuitem">Experience</button>
+      <button class="ai-action" data-link="#education" role="menuitem">Education</button>
+      <button class="ai-action" data-link="#skills" role="menuitem">Skills</button>
+      <button class="ai-action" data-link="#projects" role="menuitem">Projects</button>
+      <button class="ai-action" data-link="#achievements" role="menuitem">Achievements</button>
+      <button class="ai-action" data-link="#research" role="menuitem">Research</button>
+      <button class="ai-action" data-link="assets/Dixit_Patel_Resume.pdf" role="menuitem">Resume</button>
+      <button class="ai-action" data-link="#contact" role="menuitem">Contact</button>
+    </div>
 
-		<button class="ai-action" data-link="#experience">
-		  Experience
-		</button>
+  </div>
 
-		<button class="ai-action" data-link="#education">
-		  Education
-		</button>
-
-		<button class="ai-action" data-link="#skills">
-		  Skills
-		</button>
-
-		<button class="ai-action" data-link="#projects">
-		  Projects
-		</button>
-
-		<button class="ai-action" data-link="#achievements">
-		  Achievements
-		</button>
-
-		<button class="ai-action" data-link="#research">
-		  Research
-		</button>
-
-		<button class="ai-action" data-link="assets/Dixit_Patel_Resume.pdf">
-		  Resume
-		</button>
-
-		<button class="ai-action" data-link="#contact">
-		  Contact
-		</button>
-
-	  </div>
-
-	</div>
+  <!-- Back to top button -->
+  <button class="back-to-top" id="backToTop" aria-label="Back to top">↑</button>
 
   <!-- =====================================
        MAIN SCRIPT
