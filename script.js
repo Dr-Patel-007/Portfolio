@@ -327,23 +327,102 @@ function initPortfolioModal() {
     backend:    "Improved algorithmic and backend performance in a manufacturing software role by leveraging efficient data structures, resulting in approximately 33% higher execution efficiency along with better system responsiveness, reliability, and user productivity.",
     healthcare: "Designed and developed mobile health applications for healthcare professionals that supported real-world clinical workflows. These solutions exceeded client expectations and helped secure over $1 million in research grant funding for subsequent project phases."
   };
+	
+	const experienceData = {
+		caterpillar: {
+			title: "Senior Software Engineer - AI",
+			details: [
+				"AI Solution Engineering: Developed scalable AI software using Python, cloud infrastructure, and modern Generative AI to optimize business workflows.",
+				
+				"RAG Implementation: Led the design of secure, RAG-based web applications, enabling efficient natural-language querying of enterprise data.",
 
-  const experienceData = {
-    caterpillar: "Led enterprise AI initiatives at Caterpillar Inc. through L&T Technology Services, building and deploying LLM-powered systems, RAG pipelines, and AI automation tools that streamlined decision-making across engineering teams.",
-    fabricators: "Improved backend performance by approximately 33% through efficient data structures and algorithmic improvements. Delivered production-ready software features and maintained high system reliability.",
-    wright:      "Conducted funded Ph.D. research in AI and mobile health systems, building clinical applications that helped secure $1M+ in research grants. Co-authored peer-reviewed publications and received the Outstanding Paper Award at IADIS 2022.",
-    lnt:         "Worked on enterprise software engineering projects, contributed to Digital Transformation research as a Technical Paper Finalist, and developed scalable software components in a fast-paced consulting environment."
-  };
+				"LLM Integration: Architected robust production pipelines for LLMs, ensuring secure backend integration and controlled AI interactions.",
 
-  function openModal(card) {
-    const key = card.dataset.project || card.dataset.exp;
-    const isProject = card.classList.contains("project");
-    titleEl.textContent = card.querySelector("h3,h4")?.textContent || "Details";
-    bodyEl.textContent  = isProject ? (projectData[key] || "") : (experienceData[key] || "");
-    modal.style.display = "flex";
-    document.body.style.overflow = "hidden";
-    setTimeout(() => closeBtn.focus(), 50);
-  }
+				"AI Automation: Built intelligent agents in Microsoft Copilot Studio to automate complex tasks and streamline operations.",
+
+				"Quality & Validation: Owned end-to-end testing, validation, and performance benchmarking for AI applications prior to rollout.",
+
+				"Cross-Functional Leadership: Partnered with stakeholders and engineering teams to translate business needs into scalable, high-impact technical designs.",
+
+				"Engineering Excellence: Championed continuous improvement, code quality, and best practices across the development lifecycle.",
+
+				"Applied Research: Remained at the forefront of GenAI and LLM advancements, proactively identifying opportunities to introduce new capabilities."
+			]
+		},
+
+		fabricators: {
+			title: "Software Engineer",
+			details: [
+				"Backend Optimization: Designed and implemented Python-based solutions for manufacturing, significantly enhancing system efficiency, reliability, and maintainability.",
+				"Performance Engineering: Engineered algorithmic and data-structure improvements that increased execution performance by ~33%, prioritizing scalable design.",
+				"API & Service Integration: Developed robust RESTful services using Python, JSON, and MySQL to ensure reliable data exchange across internal platforms.",
+				"Data Workflow Management: Built structured data processing and validation pipelines to support operational analytics and informed decision-making.",
+				"Quality Assurance: Conducted rigorous peer code reviews and enforced coding standards to ensure high-quality, production-ready software.",
+				"DevOps & Collaboration: Managed source control via Git/GitHub, facilitating efficient team collaboration and continuous integration.",
+				"Engineering Fundamentals: Applied advanced OOD, data structures, and algorithms across the full development lifecycle to build robust, extensible solutions."
+			]
+		},
+
+		wright: {
+			title: "Graduate Research Assistant",
+			details: [
+				"Mobile Applications' Development: Led the development of mobile healthcare applications using Python and C# to optimize clinical workflows and improve patient care delivery.",
+				"Research-to-Production: Translated complex research concepts into high-quality software, exceeding client expectations and securing over $1M in grant funding for project expansion.",
+				"Quality Assurance: Designed and implemented comprehensive unit test suites, ensuring the robustness, reliability, and long-term maintainability of deployed systems.",
+				"Backend & Database Architecture: Built secure backend components and integrated MySQL databases to support efficient data storage, retrieval, and application logic.",
+				"Engineering Principles: Applied OOD, modular architecture, and efficient data structures to build scalable, extensible healthcare applications.",
+				"Stakeholder Collaboration: Partnered with multidisciplinary teams and external stakeholders to align technical development with overarching project goals.",
+				"Mentorship: Provided technical guidance to junior team members, fostering a collaborative and productive research and development environment."
+			]
+		},
+
+		lnt: {
+			title: "Software Engineer",
+			details: [
+				"Enterprise Software Development: Contributed to end-to-end feature delivery for customized enterprise solutions using a Python-based technology stack.",
+				"Feature Engineering: Partnered with senior engineers to implement and enhance application features, ensuring strict adherence to system requirements and performance targets.",
+				"AI Proof-of-Concept: Designed and developed an AI model-based POC for automated product quality control, leveraging Python libraries for complex data analysis.",
+				"Computer Vision Optimization: Developed and validated computer vision models to significantly improve defect detection accuracy and product quality assessment.",
+				"Testing & Documentation: Executed comprehensive software testing, validation, and documentation to ensure high-quality, reliable, and production-ready codebases."
+			]
+		}
+	};
+	
+	function openModal(card) {
+		const key = card.dataset.project || card.dataset.exp;
+		const isProject = card.classList.contains("project");
+		
+		// Retrieve the data object based on the type
+		const data = isProject ? projectData[key] : experienceData[key];
+
+		// Set the title
+		titleEl.textContent = data?.title || card.querySelector("h3,h4")?.textContent || "Details";
+
+		// Clear existing body content
+		bodyEl.innerHTML = ""; 
+
+		// If the data has a 'details' array, create a list
+		if (data && Array.isArray(data.details)) {
+			const list = document.createElement("ul");
+			list.style.listStyleType = "disc"; // Ensure bullets are visible
+			list.style.paddingLeft = "20px";
+			
+			data.details.forEach(point => {
+				const li = document.createElement("li");
+				li.textContent = point;
+				li.style.marginBottom = "0.5rem"; // Add some spacing between bullets
+				list.appendChild(li);
+			});
+			bodyEl.appendChild(list);
+		} else {
+			// Fallback if it's just a simple string
+			bodyEl.textContent = data || "";
+		}
+
+		modal.style.display = "flex";
+		document.body.style.overflow = "hidden";
+		setTimeout(() => closeBtn.focus(), 50);
+	}
 
   function closeModal() {
     modal.style.display = "none";
