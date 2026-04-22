@@ -1118,6 +1118,9 @@ section, header, footer, .modal,
   max-width: 820px;
 }
 
+.justified {
+  text-align: justify;
+}
 .about-body { margin-top: 1rem; }
 
 /* Divider */
