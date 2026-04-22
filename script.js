@@ -78,10 +78,14 @@ function initCursorGlow() {
 function initTypingAnimation() {
   const roles = [
     "Senior Software Engineer – AI",
-    "LLM Systems Architect",
-    "RAG Pipeline Engineer",
-    "Python Backend Expert",
-    "AI Research Practitioner"
+    "Senior AI Engineer",
+	"Applied AI Engineer",
+	"AI Research Scientist",
+	"Generative AI Engineer",
+    "Python Expert",
+	"AI Platform Engineer",
+	"Senior Full-Stack Engineer",
+	"AI Solutions Architect"
   ];
 
   const target = document.getElementById("typing-text");

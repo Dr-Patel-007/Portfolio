@@ -527,7 +527,7 @@ section, header, footer, .modal,
     var(--accent-green) 60%,
     var(--accent) 100%
   );
-  animation: ringRotate 5s linear infinite;
+  /*animation: ringRotate 5s linear infinite;*/
 }
 
 @keyframes ringRotate {
@@ -536,7 +536,12 @@ section, header, footer, .modal,
 
 .profile-ring-inner {
   border-radius: 50%;
-  background: var(--bg);
+  /*background: var(--bg);*/
+  background: linear-gradient(
+    145deg,
+    rgba(255,255,255,0.08),
+    rgba(255,255,255,0.02)
+  );
   padding: 5px;
 }
 
