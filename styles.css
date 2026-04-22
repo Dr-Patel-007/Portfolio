@@ -1798,6 +1798,15 @@ section, header, footer, .modal,
   font-size: .96rem;
 }
 
+/* Modal content justified for opened experience/project cards */
+#modal-body,
+#modal-body p,
+#modal-body li,
+#modal-body ul {
+  text-align: justify;
+  text-justify: inter-word;
+}
+
 /* =====================================================
    AI BUBBLE
 ===================================================== */
