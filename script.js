@@ -1,25 +1,23 @@
-/* ======================================================
-   Dixit Patel Portfolio Website
-   script.js — Fixed & Upgraded Production Version
-====================================================== */
+/* =====================================================
+   Dixit Patel Portfolio — Premium JS
+   script.js — Upgraded, fully responsive, bug-fixed
+===================================================== */
 
-/* ======================================================
-   EMAILJS INITIALIZATION
-   ⚠️ Replace "YOUR_PUBLIC_KEY" with your actual EmailJS public key
-====================================================== */
+/* EmailJS init */
 if (typeof emailjs !== "undefined") {
-  emailjs.init("YOUR_PUBLIC_KEY"); // TODO: Replace with real key
+  emailjs.init("YOUR_PUBLIC_KEY"); // TODO: replace
 }
 
-/* ======================================================
-   DOM READY — all inits run here
-====================================================== */
+/* =====================================================
+   DOM READY
+===================================================== */
 document.addEventListener("DOMContentLoaded", () => {
-  initCursorGlow();         // FIX: moved inside DOMContentLoaded
+  initCursorGlow();
   initTypingAnimation();
   initRevealAnimations();
   initScrollProgress();
   initNavShrink();
+  initMobileNav();
   initThemeToggle();
   initPortfolioModal();
   initContactForm();
@@ -30,87 +28,91 @@ document.addEventListener("DOMContentLoaded", () => {
   initCounters();
   initAIBubble();
   initBackToTop();
-  initMobileNav();
   initParticles();
   initAITerminal();
   initNeuralBackground();
+  initCardEntrance();
 });
 
-/* ======================================================
-   AI NEURAL SYSTEM GLOBAL STATE
-====================================================== */
-const AI_NEURAL = {
+/* =====================================================
+   GLOBAL STATE
+===================================================== */
+const NEURAL = {
   mouse: { x: window.innerWidth / 2, y: window.innerHeight / 2 },
   scrollY: 0,
-  recruiterMode: 0,
   pulse: 0
 };
 
-/* ======================================================
-   CURSOR GLOW — FIX: now inside DOMContentLoaded
-====================================================== */
+/* =====================================================
+   CURSOR GLOW
+===================================================== */
 function initCursorGlow() {
-  // Skip on touch devices
   if (window.matchMedia("(pointer: coarse)").matches) return;
 
   const glow = document.createElement("div");
   glow.className = "cursor-glow";
   document.body.appendChild(glow);
 
+  let raf;
+  let tx = window.innerWidth / 2, ty = window.innerHeight / 2;
+  let cx = tx, cy = ty;
+
   document.addEventListener("mousemove", e => {
-    glow.style.left = e.clientX + "px";
-    glow.style.top = e.clientY + "px";
+    tx = e.clientX;
+    ty = e.clientY;
   });
+
+  function animate() {
+    cx += (tx - cx) * 0.15;
+    cy += (ty - cy) * 0.15;
+    glow.style.left = cx + "px";
+    glow.style.top  = cy + "px";
+    raf = requestAnimationFrame(animate);
+  }
+  animate();
 }
 
-/* ======================================================
-   HERO TYPING ANIMATION — FIX: charIndex underrun fixed
-====================================================== */
+/* =====================================================
+   TYPING ANIMATION
+===================================================== */
 function initTypingAnimation() {
   const roles = [
-    "Senior Software Engineer - AI",
-    "Senior AI Engineer",
-    "Python Developer",
+    "Senior Software Engineer – AI",
     "LLM Systems Architect",
-    "Backend Engineer"
+    "RAG Pipeline Engineer",
+    "Python Backend Expert",
+    "AI Research Practitioner"
   ];
 
   const target = document.getElementById("typing-text");
   if (!target) return;
 
-  let roleIndex = 0;
-  let charIndex = 0;
-  let deleting = false;
-
-  // Respect reduced-motion preference
   if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
     target.textContent = roles[0];
     return;
   }
 
+  let roleIndex = 0, charIndex = 0, deleting = false;
+
   function loop() {
     const role = roles[roleIndex];
     target.textContent = role.substring(0, charIndex);
 
-    if (!deleting) {
-      charIndex++;
-    } else {
-      charIndex--;
-    }
+    if (!deleting) charIndex++;
+    else charIndex--;
 
-    let speed = deleting ? 45 : 90;
+    let speed = deleting ? 42 : 85;
 
     if (!deleting && charIndex > role.length) {
       deleting = true;
-      speed = 1400;
+      speed = 1600;
     }
 
-    // FIX: was `charIndex < 0`, now `charIndex <= 0`
     if (deleting && charIndex <= 0) {
       deleting = false;
-      charIndex = 0; // explicit reset
+      charIndex = 0;
       roleIndex = (roleIndex + 1) % roles.length;
-      speed = 400;
+      speed = 500;
     }
 
     setTimeout(loop, speed);
@@ -119,9 +121,9 @@ function initTypingAnimation() {
   loop();
 }
 
-/* ======================================================
+/* =====================================================
    COUNTERS
-====================================================== */
+===================================================== */
 function initCounters() {
   if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
     document.querySelectorAll(".counter").forEach(el => {
@@ -130,377 +132,337 @@ function initCounters() {
     return;
   }
 
-  const counters = document.querySelectorAll(".counter");
-
   const observer = new IntersectionObserver(entries => {
     entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        const el = entry.target;
-        const target = +el.dataset.target;
-        let count = 0;
-        const speed = Math.max(target / 70, 0.1);
-
-        const update = () => {
-          count += speed;
-          if (count < target) {
-            el.textContent = Math.ceil(count);
-            requestAnimationFrame(update);
-          } else {
-            el.textContent = target + "+";
-          }
-        };
-
-        update();
-        observer.unobserve(el);
-      }
+      if (!entry.isIntersecting) return;
+      const el = entry.target;
+      const target = +el.dataset.target;
+      let count = 0;
+      const speed = Math.max(target / 65, 0.08);
+      const tick = () => {
+        count += speed;
+        if (count < target) {
+          el.textContent = Math.ceil(count);
+          requestAnimationFrame(tick);
+        } else {
+          el.textContent = target + "+";
+        }
+      };
+      tick();
+      observer.unobserve(el);
     });
-  }, { threshold: 0.45 });
+  }, { threshold: 0.5 });
 
-  counters.forEach(c => observer.observe(c));
+  document.querySelectorAll(".counter").forEach(c => observer.observe(c));
 }
 
-/* ======================================================
-   REVEAL ANIMATION
-====================================================== */
+/* =====================================================
+   REVEAL ANIMATIONS
+===================================================== */
 function initRevealAnimations() {
   if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
     document.querySelectorAll(".reveal").forEach(el => el.classList.add("show"));
     return;
   }
 
-  const elements = document.querySelectorAll(".reveal");
-
   const observer = new IntersectionObserver(entries => {
     entries.forEach(entry => {
       if (entry.isIntersecting) {
         entry.target.classList.add("show");
-        observer.unobserve(entry.target); // unobserve once shown
+        observer.unobserve(entry.target);
       }
     });
-  }, { threshold: 0.1 });
+  }, { threshold: 0.08 });
 
-  elements.forEach(el => observer.observe(el));
+  document.querySelectorAll(".reveal").forEach(el => observer.observe(el));
 }
 
-/* ======================================================
+/* =====================================================
+   CARD ENTRANCE (staggered)
+===================================================== */
+function initCardEntrance() {
+  if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (!entry.isIntersecting) return;
+      const parent = entry.target;
+      const cards = parent.querySelectorAll(".card");
+      cards.forEach((card, i) => {
+        card.style.opacity = "0";
+        card.style.transform = "translateY(24px)";
+        card.style.transition = "opacity .6s ease, transform .6s ease";
+        setTimeout(() => {
+          card.style.opacity = "";
+          card.style.transform = "";
+        }, i * 80);
+      });
+      observer.unobserve(parent);
+    });
+  }, { threshold: 0.05 });
+
+  document.querySelectorAll(".cards-grid").forEach(grid => {
+    observer.observe(grid);
+  });
+}
+
+/* =====================================================
    SCROLL PROGRESS
-====================================================== */
+===================================================== */
 function initScrollProgress() {
-  const progress = document.getElementById("scroll-progress");
-  if (!progress) return;
-
-  const update = () => {
-    const height = document.documentElement.scrollHeight - window.innerHeight;
-    const percent = (window.scrollY / height) * 100;
-    progress.style.width = Math.min(percent, 100) + "%";
-  };
-
-  window.addEventListener("scroll", update, { passive: true });
+  const bar = document.getElementById("scroll-progress");
+  if (!bar) return;
+  window.addEventListener("scroll", () => {
+    const h = document.documentElement.scrollHeight - window.innerHeight;
+    bar.style.width = Math.min((window.scrollY / h) * 100, 100) + "%";
+  }, { passive: true });
 }
 
-/* ======================================================
-   NAV SHRINK ON SCROLL — FIX: was defined in CSS but never toggled
-====================================================== */
+/* =====================================================
+   NAV SHRINK
+===================================================== */
 function initNavShrink() {
   const nav = document.getElementById("mainNav");
   if (!nav) return;
-
   window.addEventListener("scroll", () => {
     nav.classList.toggle("shrink", window.scrollY > 60);
   }, { passive: true });
 }
 
-/* ======================================================
-   MOBILE NAV HAMBURGER
-====================================================== */
+/* =====================================================
+   MOBILE NAV — FIXED
+===================================================== */
 function initMobileNav() {
   const hamburger = document.getElementById("navHamburger");
   const menu = document.getElementById("navMenu");
   if (!hamburger || !menu) return;
 
-  hamburger.addEventListener("click", () => {
-    const isOpen = menu.classList.toggle("open");
-    hamburger.setAttribute("aria-expanded", String(isOpen));
-    hamburger.classList.toggle("active", isOpen);
+  function openMenu() {
+    menu.classList.add("open");
+    hamburger.classList.add("open");
+    hamburger.setAttribute("aria-expanded", "true");
+    document.body.style.overflow = "hidden";
+  }
+
+  function closeMenu() {
+    menu.classList.remove("open");
+    hamburger.classList.remove("open");
+    hamburger.setAttribute("aria-expanded", "false");
+    document.body.style.overflow = "";
+  }
+
+  hamburger.addEventListener("click", (e) => {
+    e.stopPropagation();
+    menu.classList.contains("open") ? closeMenu() : openMenu();
   });
 
-  // Close menu when a link is clicked
-  menu.querySelectorAll("a").forEach(link => {
-    link.addEventListener("click", () => {
-      menu.classList.remove("open");
-      hamburger.setAttribute("aria-expanded", "false");
-      hamburger.classList.remove("active");
-    });
+  // Close when link clicked
+  menu.querySelectorAll(".nav-link").forEach(link => {
+    link.addEventListener("click", closeMenu);
+  });
+
+  // Close on Escape
+  document.addEventListener("keydown", e => {
+    if (e.key === "Escape" && menu.classList.contains("open")) closeMenu();
+  });
+
+  // Close on outside click
+  document.addEventListener("click", e => {
+    if (
+      menu.classList.contains("open") &&
+      !menu.contains(e.target) &&
+      !hamburger.contains(e.target)
+    ) {
+      closeMenu();
+    }
+  });
+
+  // Ensure hamburger resets on resize to desktop
+  const mq = window.matchMedia("(min-width: 901px)");
+  mq.addEventListener("change", e => {
+    if (e.matches) closeMenu();
   });
 }
 
-/* ======================================================
-   THEME TOGGLE — FIX: persists to localStorage
-====================================================== */
+/* =====================================================
+   THEME TOGGLE
+===================================================== */
 function initThemeToggle() {
   const toggle = document.getElementById("theme-toggle");
   if (!toggle) return;
 
-  // Restore saved theme
-  const saved = localStorage.getItem("portfolio-theme");
-  if (saved) {
-    document.body.dataset.theme = saved;
-    toggle.textContent = saved === "light" ? "☀️" : "🌙";
+  const saved = localStorage.getItem("dp-theme");
+  if (saved === "light") {
+    document.body.dataset.theme = "light";
+    toggle.textContent = "☀️";
   }
 
   toggle.addEventListener("click", () => {
-    const body = document.body;
-    const isLight = body.dataset.theme === "light";
-
-    body.dataset.theme = isLight ? "" : "light";
+    const isLight = document.body.dataset.theme === "light";
+    document.body.dataset.theme = isLight ? "" : "light";
     toggle.textContent = isLight ? "🌙" : "☀️";
-
-    // FIX: persist preference
-    localStorage.setItem("portfolio-theme", body.dataset.theme);
+    localStorage.setItem("dp-theme", isLight ? "" : "light");
   });
 }
 
-/* ======================================================
-   MODAL SYSTEM
-====================================================== */
+/* =====================================================
+   MODAL
+===================================================== */
 function initPortfolioModal() {
-  const modal = document.getElementById("modal");
-  const title = document.getElementById("modal-title");
-  const body = document.getElementById("modal-body");
+  const modal    = document.getElementById("modal");
+  const titleEl  = document.getElementById("modal-title");
+  const bodyEl   = document.getElementById("modal-body");
   const closeBtn = document.getElementById("modal-close");
+  const backdrop = modal?.querySelector(".modal-backdrop");
 
-  if (!modal || !title || !body || !closeBtn) return;
+  if (!modal || !titleEl || !bodyEl || !closeBtn) return;
 
   const projectData = {
-    rag: "Designed AI-powered solutions and Retrieval-Augmented Generation (RAG) applications that improved secure access to enterprise data through security-trimmed retrieval, ensuring users only accessed authorized information while speeding up decision-making and reducing the time spent searching for critical data.",
-    agent: "Built intelligent AI automation agents using Copilot Studio and workflows that simplified multi-step business processes, reducing repetitive manual work and improving overall operational efficiency.",
-    backend: "Improved algorithmic and backend performance in a manufacturing software role by leveraging efficient data structures, resulting in approximately 33% higher execution efficiency along with better system responsiveness, reliability, and user productivity.",
+    rag:        "Designed AI-powered solutions and Retrieval-Augmented Generation (RAG) applications that improved secure access to enterprise data through security-trimmed retrieval, ensuring users only accessed authorized information while speeding up decision-making and reducing the time spent searching for critical data.",
+    agent:      "Built intelligent AI automation agents using Copilot Studio and workflows that simplified multi-step business processes, reducing repetitive manual work and improving overall operational efficiency.",
+    backend:    "Improved algorithmic and backend performance in a manufacturing software role by leveraging efficient data structures, resulting in approximately 33% higher execution efficiency along with better system responsiveness, reliability, and user productivity.",
     healthcare: "Designed and developed mobile health applications for healthcare professionals that supported real-world clinical workflows. These solutions exceeded client expectations and helped secure over $1 million in research grant funding for subsequent project phases."
   };
 
   const experienceData = {
     caterpillar: "Led enterprise AI initiatives at Caterpillar Inc. through L&T Technology Services, building and deploying LLM-powered systems, RAG pipelines, and AI automation tools that streamlined decision-making across engineering teams.",
     fabricators: "Improved backend performance by approximately 33% through efficient data structures and algorithmic improvements. Delivered production-ready software features and maintained high system reliability.",
-    wright: "Conducted funded Ph.D. research in AI and mobile health systems, building clinical applications that helped secure $1M+ in research grants. Co-authored peer-reviewed publications and received the Outstanding Paper Award at IADIS 2022.",
-    lnt: "Worked on enterprise software engineering projects, contributed to Digital Transformation research as a Technical Paper Finalist, and developed scalable software components in a fast-paced consulting environment."
+    wright:      "Conducted funded Ph.D. research in AI and mobile health systems, building clinical applications that helped secure $1M+ in research grants. Co-authored peer-reviewed publications and received the Outstanding Paper Award at IADIS 2022.",
+    lnt:         "Worked on enterprise software engineering projects, contributed to Digital Transformation research as a Technical Paper Finalist, and developed scalable software components in a fast-paced consulting environment."
   };
 
-  document.querySelectorAll(".project, .experience").forEach(card => {
-    card.style.cursor = "pointer";
-    card.setAttribute("tabindex", "0");
-    card.setAttribute("role", "button");
-
-    const openModal = () => {
-      const key = card.dataset.project || card.dataset.exp;
-      const isProject = card.classList.contains("project");
-
-      title.textContent = card.querySelector("h3,h4")?.textContent || "Details";
-      body.textContent = isProject ? projectData[key] : experienceData[key];
-
-      modal.style.display = "flex";
-      document.body.style.overflow = "hidden";
-      closeBtn.focus();
-    };
-
-    card.addEventListener("click", openModal);
-    card.addEventListener("keydown", e => {
-      if (e.key === "Enter" || e.key === " ") {
-        e.preventDefault();
-        openModal();
-      }
-    });
-  });
+  function openModal(card) {
+    const key = card.dataset.project || card.dataset.exp;
+    const isProject = card.classList.contains("project");
+    titleEl.textContent = card.querySelector("h3,h4")?.textContent || "Details";
+    bodyEl.textContent  = isProject ? (projectData[key] || "") : (experienceData[key] || "");
+    modal.style.display = "flex";
+    document.body.style.overflow = "hidden";
+    setTimeout(() => closeBtn.focus(), 50);
+  }
 
   function closeModal() {
     modal.style.display = "none";
     document.body.style.overflow = "";
   }
 
+  document.querySelectorAll(".card.experience, .card.project").forEach(card => {
+    card.addEventListener("click", () => openModal(card));
+    card.addEventListener("keydown", e => {
+      if (e.key === "Enter" || e.key === " ") { e.preventDefault(); openModal(card); }
+    });
+    card.setAttribute("tabindex", "0");
+    card.setAttribute("role", "button");
+  });
+
   closeBtn.addEventListener("click", closeModal);
-  modal.addEventListener("click", e => { if (e.target === modal) closeModal(); });
+  backdrop?.addEventListener("click", closeModal);
   document.addEventListener("keydown", e => { if (e.key === "Escape") closeModal(); });
 }
 
-/* ======================================================
-   NAV HIGHLIGHT
-====================================================== */
+/* =====================================================
+   SMOOTH NAV HIGHLIGHT
+===================================================== */
 function initSmoothNavHighlight() {
   const sections = document.querySelectorAll("section[id]");
-  const links = document.querySelectorAll(".nav-menu a");
-
+  const links    = document.querySelectorAll(".nav-link");
   if (!sections.length || !links.length) return;
 
-  const update = () => {
+  window.addEventListener("scroll", () => {
     let current = "";
-    sections.forEach(section => {
-      const top = section.offsetTop - 160;
-      if (window.scrollY >= top && window.scrollY < top + section.offsetHeight) {
-        current = section.id;
-      }
+    sections.forEach(sec => {
+      if (window.scrollY >= sec.offsetTop - 140) current = sec.id;
     });
-
     links.forEach(link => {
       link.classList.toggle("active", link.getAttribute("href") === "#" + current);
     });
-  };
-
-  window.addEventListener("scroll", update, { passive: true });
+  }, { passive: true });
 }
 
-/* ======================================================
-   TRACKING — connected to gtag if available
-====================================================== */
+/* =====================================================
+   TRACKING
+===================================================== */
 function initTracking() {
   document.querySelectorAll(".track").forEach(item => {
     item.addEventListener("click", () => {
-      const event = item.dataset.event;
-      // Google Analytics event (if configured)
       if (typeof gtag === "function") {
-        gtag("event", event, { event_category: "portfolio_interaction" });
+        gtag("event", item.dataset.event, { event_category: "portfolio" });
       }
-      // Dev log (remove in production)
-      // console.log("Tracked:", event);
     });
   });
 }
 
-/* ======================================================
-   BACK TO TOP BUTTON
-====================================================== */
+/* =====================================================
+   BACK TO TOP
+===================================================== */
 function initBackToTop() {
   const btn = document.getElementById("backToTop");
   if (!btn) return;
-
   window.addEventListener("scroll", () => {
     btn.classList.toggle("visible", window.scrollY > 400);
   }, { passive: true });
-
-  btn.addEventListener("click", () => {
-    window.scrollTo({ top: 0, behavior: "smooth" });
-  });
+  btn.addEventListener("click", () => window.scrollTo({ top: 0, behavior: "smooth" }));
 }
 
-/* ======================================================
-   PARTICLES — FIX: resize reinitializes positions
-====================================================== */
-function initParticles() {
-  const canvas = document.getElementById("particle-canvas");
-  if (!canvas) return;
-
-  // Disable on mobile for performance
-  if (window.innerWidth < 768) return;
-
-  const ctx = canvas.getContext("2d");
-
-  let width, height, particles;
-
-  function setup() {
-    width = canvas.width = window.innerWidth;
-    height = canvas.height = window.innerHeight;
-
-    // FIX: particles re-created on resize so positions fit new dimensions
-    particles = Array.from({ length: 60 }, () => ({
-      x: Math.random() * width,
-      y: Math.random() * height,
-      vx: (Math.random() - 0.5) * 0.3,
-      vy: (Math.random() - 0.5) * 0.3
-    }));
-  }
-
-  setup();
-
-  function animate() {
-    ctx.clearRect(0, 0, width, height);
-
-    particles.forEach(p => {
-      p.x += p.vx;
-      p.y += p.vy;
-
-      if (p.x < 0 || p.x > width) p.vx *= -1;
-      if (p.y < 0 || p.y > height) p.vy *= -1;
-
-      ctx.beginPath();
-      ctx.arc(p.x, p.y, 1.5, 0, Math.PI * 2);
-      ctx.fillStyle = "rgba(125,211,252,0.5)";
-      ctx.fill();
-    });
-
-    requestAnimationFrame(animate);
-  }
-
-  animate();
-
-  // FIX: debounced resize re-initializes particle positions
-  let resizeTimer;
-  window.addEventListener("resize", () => {
-    clearTimeout(resizeTimer);
-    resizeTimer = setTimeout(setup, 150);
-  });
-}
-
-/* ======================================================
+/* =====================================================
    SKILL FILTERS
-====================================================== */
+===================================================== */
 function initSkillFilters() {
   const buttons = document.querySelectorAll(".skill-filter");
-  const cards = document.querySelectorAll("#skills .value-card[data-category]");
+  const cards   = document.querySelectorAll("#skills .card[data-category]");
 
   buttons.forEach(btn => {
     btn.addEventListener("click", () => {
       buttons.forEach(b => b.classList.remove("active"));
       btn.classList.add("active");
-
       const filter = btn.dataset.filter;
-
       cards.forEach(card => {
-        const match = filter === "all" || card.dataset.category === filter;
-        card.classList.toggle("hide", !match);
+        const show = filter === "all" || card.dataset.category === filter;
+        card.style.display = show ? "" : "none";
       });
     });
   });
 }
 
-/* ======================================================
-   TILT CARDS (3D effect)
-====================================================== */
+/* =====================================================
+   TILT CARDS — 3D
+===================================================== */
 function initTiltCards() {
-  if (window.matchMedia("(pointer: coarse)").matches) return; // Skip on touch
+  if (window.matchMedia("(pointer: coarse)").matches) return;
 
   document.querySelectorAll(".tilt-card").forEach(card => {
     card.addEventListener("mousemove", e => {
-      const rect = card.getBoundingClientRect();
-      const x = e.clientX - rect.left;
-      const y = e.clientY - rect.top;
+      const r = card.getBoundingClientRect();
+      const x = e.clientX - r.left;
+      const y = e.clientY - r.top;
 
-      const rotateX = -(y - rect.height / 2) / 14;
-      const rotateY = (x - rect.width / 2) / 14;
+      const rx = -(y - r.height / 2) / 16;
+      const ry =  (x - r.width  / 2) / 16;
 
-      // Update spotlight position CSS var
-      card.style.setProperty("--x", `${(x / rect.width) * 100}%`);
-      card.style.setProperty("--y", `${(y / rect.height) * 100}%`);
-
+      card.style.setProperty("--mx", `${(x / r.width)  * 100}%`);
+      card.style.setProperty("--my", `${(y / r.height) * 100}%`);
       card.style.transform =
-        `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-6px) scale(1.02)`;
+        `perspective(1000px) rotateX(${rx}deg) rotateY(${ry}deg) translateY(-6px) scale(1.015)`;
     });
 
     card.addEventListener("mouseleave", () => {
       card.style.transform = "";
-      card.style.removeProperty("--x");
-      card.style.removeProperty("--y");
+      card.style.removeProperty("--mx");
+      card.style.removeProperty("--my");
     });
   });
 }
 
-/* ======================================================
+/* =====================================================
    AI BUBBLE
-====================================================== */
+===================================================== */
 function initAIBubble() {
   const toggle = document.getElementById("aiToggle");
-  const panel = document.getElementById("aiPanel");
-
+  const panel  = document.getElementById("aiPanel");
   if (!toggle || !panel) return;
 
-  toggle.addEventListener("click", () => {
+  toggle.addEventListener("click", e => {
+    e.stopPropagation();
     const isOpen = panel.classList.toggle("open");
     toggle.setAttribute("aria-expanded", String(isOpen));
   });
@@ -508,13 +470,12 @@ function initAIBubble() {
   document.querySelectorAll(".ai-action").forEach(btn => {
     btn.addEventListener("click", () => {
       const link = btn.dataset.link;
-
+      if (!link) return;
       if (link.endsWith(".pdf")) {
         window.open(link, "_blank");
       } else {
         document.querySelector(link)?.scrollIntoView({ behavior: "smooth" });
       }
-
       panel.classList.remove("open");
       toggle.setAttribute("aria-expanded", "false");
     });
@@ -528,28 +489,21 @@ function initAIBubble() {
   });
 }
 
-/* ======================================================
+/* =====================================================
    AI TERMINAL
-====================================================== */
+===================================================== */
 function initAITerminal() {
   const terminal = document.getElementById("consoleBody");
-  const metrics = document.getElementById("terminalMetrics");
-
+  const metrics  = document.getElementById("terminalMetrics");
   if (!terminal || !metrics) return;
 
-  terminal.style.overflowY = "auto";
-  terminal.style.maxHeight = "320px";
-
-  /* Live Metrics */
+  // Live metrics
   function updateMetrics() {
-    const cpu = Math.floor(28 + Math.random() * 45);
-    const ram = Math.floor(42 + Math.random() * 45);
-    const ping = Math.floor(8 + Math.random() * 24);
+    const cpu    = Math.floor(28 + Math.random() * 45);
+    const ram    = Math.floor(42 + Math.random() * 45);
+    const ping   = Math.floor(6  + Math.random() * 22);
     const agents = 1 + Math.floor(Math.random() * 5);
-
-    const time = new Date().toLocaleTimeString([], {
-      hour: "2-digit", minute: "2-digit", second: "2-digit"
-    });
+    const time   = new Date().toLocaleTimeString([], { hour:"2-digit", minute:"2-digit", second:"2-digit" });
 
     metrics.innerHTML = `
       <div class="metric-box">CPU<br><strong>${cpu}%</strong></div>
@@ -562,28 +516,26 @@ function initAITerminal() {
   }
 
   updateMetrics();
-  setInterval(updateMetrics, 1000);
+  setInterval(updateMetrics, 1200);
 
-  /* Command Sequences */
   const sequences = [
-    { cmd: "initialize portfolio", result: "Senior AI Engineer profile loaded" },
-    { cmd: "load experience", result: "7+ years engineering modules ready" },
-    { cmd: "scan skills", result: "LLMs | RAG | Python | Backend | Cloud" },
-    { cmd: "fetch projects", result: "Enterprise systems synchronized" },
-    { cmd: "detect visitor", result: "Recruiter traffic identified" },
-    { cmd: "opportunity status", result: "READY FOR INTERVIEW" },
-    { cmd: "system health", result: "All services operational" }
+    { cmd: "initialize portfolio",  result: "Senior AI Engineer profile loaded" },
+    { cmd: "load experience",       result: "7+ years engineering modules ready" },
+    { cmd: "scan skills",           result: "LLMs | RAG | Python | Backend | Cloud" },
+    { cmd: "fetch projects",        result: "Enterprise systems synchronized" },
+    { cmd: "detect visitor",        result: "Recruiter traffic identified" },
+    { cmd: "run ml_inference --benchmark", result: "Throughput: 2,400 tokens/sec" },
+    { cmd: "opportunity status",    result: "READY FOR INTERVIEW" },
+    { cmd: "system health --check", result: "All services nominal" }
   ];
 
-  let index = 0;
+  let idx = 0;
 
   function typeLine(text, done) {
     const line = document.createElement("div");
     line.className = "console-line";
     terminal.appendChild(line);
-
     let i = 0;
-
     function type() {
       if (i <= text.length) {
         line.innerHTML =
@@ -592,21 +544,20 @@ function initAITerminal() {
           `<span class="console-cursor">_</span>`;
         i++;
         terminal.scrollTop = terminal.scrollHeight;
-        setTimeout(type, 35);
+        setTimeout(type, 32);
       } else {
         line.innerHTML = `<span class="prompt">DIXIT@AI:~$ </span>` + text;
         done();
       }
     }
-
     type();
   }
 
   function printResult(text) {
-    const result = document.createElement("div");
-    result.className = "console-line result-line";
-    result.textContent = `  › ${text}`;
-    terminal.appendChild(result);
+    const r = document.createElement("div");
+    r.className = "console-line result-line";
+    r.textContent = `  › ${text}`;
+    terminal.appendChild(r);
 
     const bar = document.createElement("div");
     bar.className = "loadbar";
@@ -617,37 +568,34 @@ function initAITerminal() {
   }
 
   function run() {
-    if (index >= sequences.length) {
+    if (idx >= sequences.length) {
       setTimeout(() => {
         terminal.innerHTML = "";
-        index = 0;
+        idx = 0;
         run();
-      }, 2000);
+      }, 2400);
       return;
     }
-
-    const item = sequences[index];
-
+    const item = sequences[idx];
     typeLine(item.cmd, () => {
       setTimeout(() => {
         printResult(item.result);
-        index++;
-        setTimeout(run, 800);
-      }, 250);
+        idx++;
+        setTimeout(run, 900);
+      }, 200);
     });
   }
 
   run();
 }
 
-/* ======================================================
-   CONTACT FORM — FIX: proper email regex + finally block
-====================================================== */
+/* =====================================================
+   CONTACT FORM
+===================================================== */
 function initContactForm() {
-  const form = document.getElementById("contact-form");
-  const status = document.getElementById("form-status");
+  const form      = document.getElementById("contact-form");
+  const status    = document.getElementById("form-status");
   const submitBtn = form?.querySelector("button[type='submit']");
-
   if (!form || !status || !submitBtn) return;
 
   const inputs = form.querySelectorAll("input, textarea");
@@ -659,155 +607,115 @@ function initContactForm() {
 
   function validateField(field) {
     const wrapper = field.closest(".form-field");
-    let error = wrapper.querySelector(".error-msg");
-
-    if (!error) {
-      error = document.createElement("div");
-      error.className = "error-msg";
-      wrapper.appendChild(error);
+    let err = wrapper.querySelector(".error-msg");
+    if (!err) {
+      err = document.createElement("div");
+      err.className = "error-msg";
+      wrapper.appendChild(err);
     }
 
     if (!field.value.trim()) {
-      error.textContent = "This field is required";
+      err.textContent = "This field is required";
       field.classList.add("input-error");
       return false;
     }
 
-    // FIX: proper email regex instead of just checking for "@"
     if (field.type === "email") {
-      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-      if (!emailRegex.test(field.value)) {
-        error.textContent = "Enter a valid email address";
+      const emailRe = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!emailRe.test(field.value)) {
+        err.textContent = "Enter a valid email address";
         field.classList.add("input-error");
         return false;
       }
     }
 
-    error.textContent = "";
-    error.remove();
+    err.textContent = "";
+    err.remove?.();
     field.classList.remove("input-error");
     return true;
   }
 
-  function validateForm() {
-    let ok = true;
-    inputs.forEach(i => { if (!validateField(i)) ok = false; });
-    return ok;
-  }
-
   inputs.forEach(input => {
-    input.addEventListener("input", () => validateField(input));
     input.addEventListener("blur", () => validateField(input));
+    input.addEventListener("input", () => {
+      if (input.classList.contains("input-error")) validateField(input);
+    });
   });
 
-  form.addEventListener("submit", async (e) => {
+  form.addEventListener("submit", async e => {
     e.preventDefault();
-
-    if (!validateForm()) {
-      setStatus("Please fix the errors above before sending.", "error");
-      return;
-    }
+    let valid = true;
+    inputs.forEach(i => { if (!validateField(i)) valid = false; });
+    if (!valid) { setStatus("Please fix the errors above.", "error"); return; }
 
     submitBtn.disabled = true;
     submitBtn.classList.add("loading");
-    setStatus("Encrypting message...", "loading");
+    setStatus("Sending message…", "loading");
 
-    const formData = Object.fromEntries(new FormData(form).entries());
+    const data = Object.fromEntries(new FormData(form).entries());
 
     try {
       if (typeof emailjs !== "undefined") {
-        setStatus("Sending secure transmission...", "loading");
-
-        await emailjs.send(
-          "SERVICE_ID",   // TODO: Replace with your EmailJS service ID
-          "TEMPLATE_ID",  // TODO: Replace with your EmailJS template ID
-          formData
-        );
-
-        setStatus("✔ Message delivered successfully!", "success");
+        await emailjs.send("SERVICE_ID", "TEMPLATE_ID", data);
+        setStatus("✔ Message sent successfully!", "success");
         form.reset();
-
       } else {
-        setStatus("Email service is not configured.", "error");
+        setStatus("Email service not configured.", "error");
       }
-
     } catch (err) {
-      setStatus("Transmission failed. Please try again or email directly.", "error");
-      console.error("EmailJS error:", err);
-
+      setStatus("Failed to send. Please email directly.", "error");
+      console.error("EmailJS:", err);
     } finally {
-      // FIX: use finally so button always re-enables
       submitBtn.disabled = false;
       submitBtn.classList.remove("loading");
-
-      setTimeout(() => {
-        status.textContent = "";
-        status.className = "";
-      }, 5000);
+      setTimeout(() => { status.textContent = ""; status.className = ""; }, 6000);
     }
   });
 }
 
-/* ======================================================
-   NEURAL BACKGROUND — FIX: resize reinitializes node positions
-====================================================== */
+/* =====================================================
+   NEURAL BACKGROUND
+===================================================== */
 function initNeuralBackground() {
   const canvas = document.getElementById("neural-bg");
   if (!canvas) return;
-
-  // Skip on mobile
   if (window.innerWidth < 768) return;
 
   const ctx = canvas.getContext("2d");
-
-  let width, height, deepNodes, activeNodes;
-  let animFrameId;
+  let width, height, deepNodes, activeNodes, animId;
 
   function setup() {
-    width = canvas.width = window.innerWidth;
+    width  = canvas.width  = window.innerWidth;
     height = canvas.height = window.innerHeight;
 
-    // FIX: nodes re-initialized on resize
-    deepNodes = Array.from({ length: 90 }, () => ({
-      x: Math.random() * width,
-      y: Math.random() * height,
-      vx: (Math.random() - 0.5) * 0.25,
-      vy: (Math.random() - 0.5) * 0.25
+    deepNodes = Array.from({ length: 80 }, () => ({
+      x: Math.random() * width, y: Math.random() * height,
+      vx: (Math.random() - .5) * .22, vy: (Math.random() - .5) * .22
     }));
 
-    activeNodes = Array.from({ length: 45 }, () => ({
-      x: Math.random() * width,
-      y: Math.random() * height,
-      vx: (Math.random() - 0.5) * 0.9,
-      vy: (Math.random() - 0.5) * 0.9
+    activeNodes = Array.from({ length: 40 }, () => ({
+      x: Math.random() * width, y: Math.random() * height,
+      vx: (Math.random() - .5) * .85, vy: (Math.random() - .5) * .85
     }));
   }
 
   setup();
 
-  window.addEventListener("mousemove", (e) => {
-    AI_NEURAL.mouse.x = e.clientX;
-    AI_NEURAL.mouse.y = e.clientY;
+  window.addEventListener("mousemove", e => {
+    NEURAL.mouse.x = e.clientX;
+    NEURAL.mouse.y = e.clientY;
   }, { passive: true });
 
-  window.addEventListener("scroll", () => {
-    AI_NEURAL.scrollY = window.scrollY;
-    if (window.scrollY < window.innerHeight * 0.8) AI_NEURAL.recruiterMode = 2;
-    else if (window.scrollY < window.innerHeight * 1.5) AI_NEURAL.recruiterMode = 1;
-    else AI_NEURAL.recruiterMode = 0;
-  }, { passive: true });
+  // Pulse
+  (function tick() {
+    NEURAL.pulse += .025;
+    requestAnimationFrame(tick);
+  })();
 
-  /* Pulse */
-  function updatePulse() {
-    AI_NEURAL.pulse += 0.03;
-    requestAnimationFrame(updatePulse);
-  }
-  updatePulse();
-
-  function drawLine(a, b, dist, intensity, color) {
-    const opacity = (1 - dist / 160) * intensity;
-    ctx.strokeStyle = color.replace("ALPHA", opacity.toFixed(3));
-    ctx.lineWidth = 0.8;
+  function drawLine(a, b, dist, intensity, r, g, b_val) {
+    const alpha = (1 - dist / 160) * intensity;
+    ctx.strokeStyle = `rgba(${r},${g},${b_val},${alpha.toFixed(3)})`;
+    ctx.lineWidth = .7;
     ctx.beginPath();
     ctx.moveTo(a.x, a.y);
     ctx.lineTo(b.x, b.y);
@@ -815,68 +723,103 @@ function initNeuralBackground() {
   }
 
   function updateNode(n) {
-    n.x += n.vx;
-    n.y += n.vy;
-    if (n.x < 0 || n.x > width) n.vx *= -1;
+    n.x += n.vx; n.y += n.vy;
+    if (n.x < 0 || n.x > width)  n.vx *= -1;
     if (n.y < 0 || n.y > height) n.vy *= -1;
   }
 
   function animate() {
-    animFrameId = requestAnimationFrame(animate);
+    animId = requestAnimationFrame(animate);
     ctx.clearRect(0, 0, width, height);
 
-    const pulseBoost = 1 + Math.sin(AI_NEURAL.pulse) * 0.15;
-    const recruiterBoost = AI_NEURAL.recruiterMode;
+    const pb = 1 + Math.sin(NEURAL.pulse) * .12;
 
-    // Layer 1 — deep
     deepNodes.forEach((n, i) => {
       updateNode(n);
-      ctx.fillStyle = "rgba(120,255,200,0.22)";
+      ctx.fillStyle = "rgba(120,255,200,0.18)";
       ctx.beginPath();
-      ctx.arc(n.x, n.y, 1.6, 0, Math.PI * 2);
+      ctx.arc(n.x, n.y, 1.5, 0, Math.PI * 2);
       ctx.fill();
-
       for (let j = i + 1; j < deepNodes.length; j++) {
         const m = deepNodes[j];
         const dx = n.x - m.x, dy = n.y - m.y;
-        const dist = Math.sqrt(dx * dx + dy * dy);
-        if (dist < 150) drawLine(n, m, dist, 0.25 * pulseBoost, "rgba(0,255,180,ALPHA)");
+        const d = Math.hypot(dx, dy);
+        if (d < 140) drawLine(n, m, d, .22 * pb, 0, 255, 180);
       }
     });
 
-    // Layer 2 — active
     activeNodes.forEach((n, i) => {
       updateNode(n);
-      const glow = recruiterBoost ? 0.9 : 0.5;
-      ctx.fillStyle = `rgba(0,255,120,${glow})`;
+      ctx.fillStyle = "rgba(0,255,120,0.55)";
       ctx.beginPath();
-      ctx.arc(n.x, n.y, 2.2 + recruiterBoost * 0.8, 0, Math.PI * 2);
+      ctx.arc(n.x, n.y, 2.0, 0, Math.PI * 2);
       ctx.fill();
-
       for (let j = i + 1; j < activeNodes.length; j++) {
         const m = activeNodes[j];
-        const dx = n.x - m.x, dy = n.y - m.y;
-        const dist = Math.sqrt(dx * dx + dy * dy);
-        if (dist < 160) drawLine(n, m, dist, 0.6 + recruiterBoost * 0.4, "rgba(0,255,120,ALPHA)");
+        const d = Math.hypot(n.x - m.x, n.y - m.y);
+        if (d < 150) drawLine(n, m, d, .55 * pb, 0, 255, 120);
       }
-
-      // Mouse beam
-      const mx = AI_NEURAL.mouse.x, my = AI_NEURAL.mouse.y;
-      const mdist = Math.sqrt((n.x - mx) ** 2 + (n.y - my) ** 2);
-      if (mdist < 180) drawLine(n, { x: mx, y: my }, mdist, 1.2, "rgba(0,200,255,ALPHA)");
+      const mx = NEURAL.mouse.x, my = NEURAL.mouse.y;
+      const md = Math.hypot(n.x - mx, n.y - my);
+      if (md < 170) drawLine(n, { x: mx, y: my }, md, 1.1, 0, 200, 255);
     });
   }
 
   animate();
 
-  // FIX: resize re-initializes node positions
   let resizeTimer;
   window.addEventListener("resize", () => {
     clearTimeout(resizeTimer);
     resizeTimer = setTimeout(() => {
-      cancelAnimationFrame(animFrameId);
+      cancelAnimationFrame(animId);
       setup();
       animate();
-    }, 150);
+    }, 200);
+  });
+}
+
+/* =====================================================
+   PARTICLES
+===================================================== */
+function initParticles() {
+  const canvas = document.getElementById("particle-canvas");
+  if (!canvas) return;
+  if (window.innerWidth < 768) return;
+
+  const ctx = canvas.getContext("2d");
+  let width, height, particles;
+
+  function setup() {
+    width  = canvas.width  = window.innerWidth;
+    height = canvas.height = window.innerHeight;
+    particles = Array.from({ length: 55 }, () => ({
+      x: Math.random() * width, y: Math.random() * height,
+      vx: (Math.random() - .5) * .25, vy: (Math.random() - .5) * .25,
+      r: .8 + Math.random() * .8
+    }));
+  }
+
+  setup();
+
+  function animate() {
+    ctx.clearRect(0, 0, width, height);
+    particles.forEach(p => {
+      p.x += p.vx; p.y += p.vy;
+      if (p.x < 0 || p.x > width)  p.vx *= -1;
+      if (p.y < 0 || p.y > height) p.vy *= -1;
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+      ctx.fillStyle = "rgba(96,200,255,0.45)";
+      ctx.fill();
+    });
+    requestAnimationFrame(animate);
+  }
+
+  animate();
+
+  let resizeTimer;
+  window.addEventListener("resize", () => {
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(setup, 200);
   });
 }
