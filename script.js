@@ -325,7 +325,80 @@ function initPortfolioModal() {
     rag:        "Designed AI-powered solutions and Retrieval-Augmented Generation (RAG) applications that improved secure access to enterprise data through security-trimmed retrieval, ensuring users only accessed authorized information while speeding up decision-making and reducing the time spent searching for critical data.",
     agent:      "Built intelligent AI automation agents using Copilot Studio and workflows that simplified multi-step business processes, reducing repetitive manual work and improving overall operational efficiency.",
     backend:    "Improved algorithmic and backend performance in a manufacturing software role by leveraging efficient data structures, resulting in approximately 33% higher execution efficiency along with better system responsiveness, reliability, and user productivity.",
-    healthcare: "Designed and developed mobile health applications for healthcare professionals that supported real-world clinical workflows. These solutions exceeded client expectations and helped secure over $1 million in research grant funding for subsequent project phases."
+    healthcare: "Designed and developed mobile health applications for healthcare professionals that supported real-world clinical workflows. These solutions exceeded client expectations and helped secure over $1 million in research grant funding for subsequent project phases.",
+		/* =====================================================
+			 ACADEMIC PROJECTS
+		===================================================== */
+
+		block_world: {
+			title: "Flexible and Efficient Algorithm for the Block World Problem",
+			details: [
+				"Developed an AI planning algorithm for solving Block World problem variations.",
+				"Optimized state-space search for better performance across multiple scenarios.",
+				"Implemented in Python with interactive simulation using Tkinter.",
+				"Focused on improving flexibility and scalability of planning strategies."
+			]
+		},
+
+		texture_patterns: {
+			title: "Detection of Statistical Texture Patterns in Color Images",
+			details: [
+				"Applied computer vision techniques to extract texture features from images.",
+				"Used statistical modeling to classify color image patterns.",
+				"Improved classification accuracy through feature engineering approaches.",
+				"Implemented in Python using scientific computing tools."
+			]
+		},
+
+		covid_nlp: {
+			title: "Public Perception Analysis of COVID-19 Vaccine Using NLP",
+			details: [
+				"Performed sentiment analysis on large-scale public vaccine discourse data.",
+				"Applied NLP techniques for topic modeling and opinion mining.",
+				"Identified societal trends and public sentiment shifts over time.",
+				"Built ML pipeline for text preprocessing and classification."
+			]
+		},
+
+		gan_mnist: {
+			title: "GAN Model for MNIST Digit Generation",
+			details: [
+				"Designed and trained a Generative Adversarial Network (GAN).",
+				"Generated realistic handwritten digit images from noise distribution.",
+				"Improved generator-discriminator balance through tuning strategies.",
+				"Validated model performance using visual quality assessment."
+			]
+		},
+
+		wait_time_app: {
+			title: "Business Wait Time Tracker Web App Prototype",
+			details: [
+				"Built frontend prototype for real-time wait time tracking system.",
+				"Designed interactive UI for user engagement and updates.",
+				"Implemented using HTML, CSS, and JavaScript.",
+				"Focused on usability and responsive design principles."
+			]
+		},
+
+		cloud_bigdata: {
+			title: "Cloud Computing for Large-Scale Data-Intensive Problems",
+			details: [
+				"Utilized AWS services for distributed data processing workflows.",
+				"Implemented MapReduce-based large-scale computation models.",
+				"Used EC2, S3, Docker, and Hadoop for scalable architecture.",
+				"Optimized storage and compute efficiency for big data tasks."
+			]
+		},
+
+		external_merge_sort: {
+			title: "External Merge Sort Optimization for Top-K Queries",
+			details: [
+				"Analyzed external merge sort for large-scale dataset processing.",
+				"Optimized Top-K query execution using histogram-guided filtering.",
+				"Improved query performance on disk-based data systems.",
+				"Applied advanced database optimization techniques."
+			]
+		}
   };
 	
 	const experienceData = {
