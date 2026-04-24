@@ -586,6 +586,23 @@ function initSkillFilters() {
 function initTiltCards() {
   if (window.matchMedia("(pointer: coarse)").matches) return;
 
+  // Include metric cards for spotlight effect
+  const allTiltable = document.querySelectorAll(".tilt-card, .metric-card");
+
+  allTiltable.forEach(card => {
+    card.addEventListener("mousemove", e => {
+      const r = card.getBoundingClientRect();
+      const x = e.clientX - r.left;
+      const y = e.clientY - r.top;
+      card.style.setProperty("--mx", `${(x / r.width) * 100}%`);
+      card.style.setProperty("--my", `${(y / r.height) * 100}%`);
+    });
+    card.addEventListener("mouseleave", () => {
+      card.style.removeProperty("--mx");
+      card.style.removeProperty("--my");
+    });
+  });
+
   document.querySelectorAll(".tilt-card").forEach(card => {
     card.addEventListener("mousemove", e => {
       const r = card.getBoundingClientRect();
@@ -835,6 +852,7 @@ function initContactForm() {
 function initNeuralBackground() {
   const canvas = document.getElementById("neural-bg");
   if (!canvas) return;
+  // Mobile: canvas hidden via CSS, gradient mesh handles it
   if (window.innerWidth < 768) return;
 
   const ctx = canvas.getContext("2d");
@@ -940,7 +958,7 @@ function initNeuralBackground() {
 function initParticles() {
   const canvas = document.getElementById("particle-canvas");
   if (!canvas) return;
-  if (window.innerWidth < 768) return;
+  if (window.innerWidth < 768) return; // CSS handles mobile bg
 
   const ctx = canvas.getContext("2d");
   let width, height, particles;

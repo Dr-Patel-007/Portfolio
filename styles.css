@@ -128,7 +128,20 @@ button { font-family: inherit; }
   z-index: 0;
   pointer-events: none;
   opacity: .82;
-	filter: brightness(1.12);
+  filter: brightness(1.12);
+}
+
+/* Mobile neural — CSS-based fallback since canvas is skipped on mobile */
+@media (max-width: 767px) {
+  #neural-bg, #particle-canvas { display: none; }
+  .gradient-mesh {
+    background:
+      radial-gradient(ellipse at 10% 15%, rgba(96,200,255,.22), transparent 45%),
+      radial-gradient(ellipse at 85% 25%, rgba(180,139,255,.18), transparent 45%),
+      radial-gradient(ellipse at 50% 80%, rgba(61,255,160,.12), transparent 45%),
+      radial-gradient(ellipse at 75% 70%, rgba(96,200,255,.10), transparent 35%);
+    opacity: 1;
+  }
 }
 
 #particle-canvas {
@@ -1152,13 +1165,44 @@ section, header, footer, .modal,
   text-align: center;
   backdrop-filter: blur(18px);
   overflow: hidden;
-  transition: transform .3s var(--ease), border-color .3s, box-shadow .3s;
+  transition: transform .3s var(--ease), border-color .3s, box-shadow .3s, background .3s;
 }
+
+/* Shine sweep on metric cards */
+.metric-card::after {
+  content: "";
+  position: absolute;
+  top: -120%; left: -50%;
+  width: 60%;
+  height: 280%;
+  background: linear-gradient(120deg, transparent, rgba(255,255,255,.06), transparent);
+  transform: rotate(18deg);
+  transition: left .75s var(--ease-std);
+  pointer-events: none;
+}
+.metric-card:hover::after { left: 140%; }
+
+/* Spotlight */
+.metric-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    circle at var(--mx, 50%) var(--my, 50%),
+    rgba(255,255,255,.07),
+    transparent 55%
+  );
+  opacity: 0;
+  transition: opacity .3s;
+  pointer-events: none;
+}
+.metric-card:hover::before { opacity: 1; }
 
 .metric-card:hover {
   transform: translateY(-6px);
-  border-color: rgba(96,200,255,.2);
-  box-shadow: 0 0 40px rgba(96,200,255,.1), var(--shadow-lg);
+  border-color: rgba(96,200,255,.22);
+  box-shadow: 0 0 40px rgba(96,200,255,.14), var(--shadow-lg);
+  background: var(--bg-card-hover);
 }
 
 .metric-glow {
@@ -1286,6 +1330,7 @@ section, header, footer, .modal,
 .accent-amber  { background: linear-gradient(90deg, transparent, var(--accent-amber), transparent); }
 .accent-cyan   { background: linear-gradient(90deg, transparent, var(--accent-cyan), transparent); }
 .accent-linkedin { background: linear-gradient(90deg, transparent, #0A66C2, transparent); }
+.accent-pink   { background: linear-gradient(90deg, transparent, var(--accent-pink), transparent); }
 
 /* Card children */
 .card-icon {
@@ -1546,6 +1591,7 @@ section, header, footer, .modal,
   width: min(340px, 100%);
   height: 340px;
   margin: 1rem auto;
+  overflow: hidden;
 }
 
 .orbit-center {
@@ -1592,11 +1638,16 @@ section, header, footer, .modal,
 
 [data-theme="light"] .orbit span { background: rgba(255,255,255,.92); }
 
-.orbit-1 { width:175px;height:175px;top:82px;left:82px;animation-duration:13s; }
-.orbit-2 { width:230px;height:230px;top:55px;left:55px;animation-duration:17s; }
-.orbit-3 { width:300px;height:300px;top:20px;left:20px;animation-duration:22s; }
-.orbit-4 { width:210px;height:210px;top:65px;left:65px;animation-duration:16s;animation-direction:reverse; }
-.orbit-5 { width:270px;height:270px;top:35px;left:35px;animation-duration:20s;animation-direction:reverse; }
+.orbit-1  { width:145px;height:145px;top:97px;left:97px;animation-duration:11s; }
+.orbit-2  { width:190px;height:190px;top:75px;left:75px;animation-duration:15s;animation-direction:reverse; }
+.orbit-3  { width:240px;height:240px;top:50px;left:50px;animation-duration:19s; }
+.orbit-4  { width:285px;height:285px;top:27px;left:27px;animation-duration:24s;animation-direction:reverse; }
+.orbit-5  { width:170px;height:170px;top:85px;left:85px;animation-duration:13s;animation-direction:reverse; }
+.orbit-6  { width:215px;height:215px;top:62px;left:62px;animation-duration:17s; }
+.orbit-7  { width:260px;height:260px;top:40px;left:40px;animation-duration:21s;animation-direction:reverse; }
+.orbit-8  { width:130px;height:130px;top:105px;left:105px;animation-duration:9s; }
+.orbit-9  { width:305px;height:305px;top:17px;left:17px;animation-duration:27s; }
+.orbit-10 { width:200px;height:200px;top:70px;left:70px;animation-duration:16s;animation-direction:reverse; }
 
 @keyframes orbitSpin { to { transform: rotate(360deg); } }
 
@@ -1747,12 +1798,21 @@ section, header, footer, .modal,
   position: relative;
   z-index: 1;
   width: min(680px, 100%);
+  max-height: calc(100dvh - 3rem);
+  overflow-y: auto;
   background: var(--bg-soft);
   border: 1px solid var(--border-hover);
   border-radius: var(--r-xl);
   padding: clamp(1.5rem, 4vw, 2.5rem);
   box-shadow: var(--shadow-xl), 0 0 60px rgba(96,200,255,.07);
   animation: modalIn .3s var(--ease) both;
+  scroll-behavior: smooth;
+}
+
+.modal-content::-webkit-scrollbar { width: 5px; }
+.modal-content::-webkit-scrollbar-thumb {
+  background: rgba(96,200,255,.25);
+  border-radius: 99px;
 }
 
 @keyframes modalIn {
@@ -2041,6 +2101,11 @@ section, header, footer, .modal,
 #research .card:hover {
   box-shadow: 0 0 40px rgba(52,211,153,.11), var(--shadow-lg);
   border-color: rgba(52,211,153,.2);
+}
+
+#academic .card:hover {
+  box-shadow: 0 0 40px rgba(180,139,255,.15), var(--shadow-lg);
+  border-color: rgba(180,139,255,.25);
 }
 
 /* =====================================================
