@@ -77,10 +77,10 @@ function initCursorGlow() {
 ===================================================== */
 function initTypingAnimation() {
   const roles = [
-    "Senior Software Engineer – AI",
-    "Senior AI Engineer",
+    "Senior Software Engineer – Full Stack",
+    "Senior Engineer",
 	"Applied AI Engineer",
-	"AI Research Scientist",
+	"Research Scientist",
 	"Generative AI Engineer",
     "Python Expert",
 	"AI Platform Engineer",
